@@ -1,0 +1,11 @@
+{
+  "idl": "../contract/target/idl/xxx.json",
+  "scripts": {
+    "js": [
+      {
+        "from": "@codama/renderers-js",
+        "args": ["./app/contract-data/xxx"]
+      }
+    ]
+  }
+}

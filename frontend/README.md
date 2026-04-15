@@ -1,2 +1,3 @@
-# Frontend
-This is a frontend project for the project.
+# Care Chain Frontend Project
+
+This is the frontend project for the Care Chain
