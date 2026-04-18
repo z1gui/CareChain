@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Footer from '@/components/layout/Footer'
+import AppFooter from '@/components/layout/app-footer'
 
 export default function Home() {
   return (
@@ -227,7 +227,7 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <Footer />
+      <AppFooter />
     </>
   )
 }

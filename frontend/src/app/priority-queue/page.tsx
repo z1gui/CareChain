@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Footer from '@/components/layout/Footer'
+import AppFooter from '@/components/layout/app-footer'
 import { CheckInPaymentModal } from '@/components/modals'
 
 export default function PriorityQueuePage() {
@@ -188,71 +188,71 @@ export default function PriorityQueuePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
           <div className="flex flex-col gap-8">
             {/* Boost My Position Card */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
-                <span className="material-symbols-outlined text-white">speed</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold font-headline">Improve Ranking Slider</h3>
-                <p className="text-sm text-on-surface-variant">Burn $CARE tokens to exchange for faster bed allocation</p>
-              </div>
-            </div>
-            <div className="bg-surface-container-low p-6 rounded-2xl">
-              <div className="flex justify-between items-end mb-4">
-                <span className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Burn Amount</span>
-                <div className="text-right">
-                  <span className="text-3xl font-bold font-headline text-secondary">5,000</span>
-                  <span className="text-sm text-secondary ml-1">$CARE</span>
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white">speed</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-headline">Improve Ranking Slider</h3>
+                  <p className="text-sm text-on-surface-variant">Burn $CARE tokens to exchange for faster bed allocation</p>
                 </div>
               </div>
-              <input className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-secondary" max="50000" min="100" step="100" type="range" />
-              <div className="flex justify-between mt-4">
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-on-surface-variant">Estimated Jump</span>
-                  <span className="text-lg font-bold text-tertiary">+142 Positions</span>
+              <div className="bg-surface-container-low p-6 rounded-2xl">
+                <div className="flex justify-between items-end mb-4">
+                  <span className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Burn Amount</span>
+                  <div className="text-right">
+                    <span className="text-3xl font-bold font-headline text-secondary">5,000</span>
+                    <span className="text-sm text-secondary ml-1">$CARE</span>
+                  </div>
                 </div>
-                <div className="flex flex-col text-right">
-                  <span className="text-[10px] text-on-surface-variant">Time Saved</span>
-                  <span className="text-lg font-bold text-tertiary">~4.5 Days</span>
+                <input className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-secondary" max="50000" min="100" step="100" type="range" />
+                <div className="flex justify-between mt-4">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-on-surface-variant">Estimated Jump</span>
+                    <span className="text-lg font-bold text-tertiary">+142 Positions</span>
+                  </div>
+                  <div className="flex flex-col text-right">
+                    <span className="text-[10px] text-on-surface-variant">Time Saved</span>
+                    <span className="text-lg font-bold text-tertiary">~4.5 Days</span>
+                  </div>
                 </div>
               </div>
+              <div className="flex gap-4">
+                <button onClick={() => setIsCheckInOpen(true)} className="flex-1 bg-secondary text-white py-4 rounded-full font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all">Confirm Burn &amp; Boost</button>
+                <button className="px-6 border border-slate-200 rounded-full text-slate-600 font-medium hover:bg-slate-50">Rules</button>
+              </div>
             </div>
-            <div className="flex gap-4">
-              <button onClick={() => setIsCheckInOpen(true)} className="flex-1 bg-secondary text-white py-4 rounded-full font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all">Confirm Burn &amp; Boost</button>
-              <button className="px-6 border border-slate-200 rounded-full text-slate-600 font-medium hover:bg-slate-50">Rules</button>
-            </div>
-          </div>
 
-          {/* Bed Allocation Ready Card */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary">assignment_turned_in</span>
+            {/* Bed Allocation Ready Card */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-primary">assignment_turned_in</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-headline">Bed Allocation Ready</h3>
+                  <p className="text-sm text-on-surface-variant">Your priority slot has been confirmed at Singapore RWA Center.</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-bold font-headline">Bed Allocation Ready</h3>
-                <p className="text-sm text-on-surface-variant">Your priority slot has been confirmed at Singapore RWA Center.</p>
+              <div className="bg-primary/5 p-6 rounded-2xl mb-8 flex items-center justify-between border border-primary/10">
+                <div>
+                  <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Final Settlement</p>
+                  <p className="text-2xl font-bold text-on-surface">12,500 <span className="text-sm font-normal">$CARE</span></p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-on-surface-variant mb-1">Reserved Slot</p>
+                  <p className="text-sm font-bold text-on-surface">#04-12 Rehabilitation</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-4 mt-auto">
+                <button onClick={() => setIsCheckInOpen(true)} className="w-full bg-primary text-white py-5 rounded-full font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined">payments</span>
+                  Check-in &amp; Pay Now
+                </button>
+                <p className="text-center text-[10px] text-on-surface-variant italic">By clicking check-in, you agree to the facility's admission protocol.</p>
               </div>
             </div>
-            <div className="bg-primary/5 p-6 rounded-2xl mb-8 flex items-center justify-between border border-primary/10">
-              <div>
-                <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Final Settlement</p>
-                <p className="text-2xl font-bold text-on-surface">12,500 <span className="text-sm font-normal">$CARE</span></p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs text-on-surface-variant mb-1">Reserved Slot</p>
-                <p className="text-sm font-bold text-on-surface">#04-12 Rehabilitation</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-4 mt-auto">
-              <button onClick={() => setIsCheckInOpen(true)} className="w-full bg-primary text-white py-5 rounded-full font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
-                <span className="material-symbols-outlined">payments</span>
-                Check-in &amp; Pay Now
-              </button>
-              <p className="text-center text-[10px] text-on-surface-variant italic">By clicking check-in, you agree to the facility's admission protocol.</p>
-            </div>
-          </div>
           </div>
 
           {/* My Status Section */}
@@ -358,7 +358,7 @@ export default function PriorityQueuePage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <AppFooter />
       <CheckInPaymentModal isOpen={isCheckInOpen} onClose={() => setIsCheckInOpen(false)} />
     </>
   )

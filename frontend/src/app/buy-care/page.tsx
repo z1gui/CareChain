@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Footer from '@/components/layout/Footer'
+import AppFooter from '@/components/layout/app-footer'
 
 export default function BuyCarePage() {
   return (
@@ -17,7 +17,7 @@ export default function BuyCarePage() {
           {/* Wallet Address Header (Subtle) */}
           <div className="flex justify-between items-center px-2">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
               <span className="text-xs font-medium text-on-surface-variant font-label">Wallet: 0x71C...4e21</span>
             </div>
             <span className="text-xs font-bold text-primary font-label">Balance: 12.45 SOL</span>
@@ -129,7 +129,7 @@ export default function BuyCarePage() {
         </div>
       </main>
 
-      <Footer />
+      <AppFooter />
 
       {/* Visual Background Element */}
       <div className="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />

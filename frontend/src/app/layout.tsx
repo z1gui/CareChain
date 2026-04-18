@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Manrope } from 'next/font/google'
-import Header from '@/components/layout/Header'
+import AppHeader from '@/components/layout/app-header'
 import Providers from '@/components/providers'
 import { cn } from '@/utils'
 import '../styles/globals.css'
@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="bg-surface font-body text-on-surface antialiased">
         <Providers>
           <div className="app min-h-screen">
-            <Header />
+            <AppHeader />
             <main>
               <div className="mx-auto">
                 {children}

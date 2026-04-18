@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Footer from '@/components/layout/Footer'
+import AppFooter from '@/components/layout/app-footer'
 
 export default function BurnLogicPage() {
   return (
@@ -260,7 +260,7 @@ export default function BurnLogicPage() {
         <span className="absolute right-full mr-4 bg-on-surface text-white text-[10px] px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Start Token Burn</span>
       </Link>
 
-      <Footer />
+      <AppFooter />
     </>
   )
 }

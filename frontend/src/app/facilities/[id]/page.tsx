@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import Footer from '@/components/layout/Footer'
+import AppFooter from '@/components/layout/app-footer'
 import { BuyNftModal, QueueAdmissionModal } from '@/components/modals'
 
 export default function FacilityDetailsPage() {
@@ -230,7 +230,7 @@ export default function FacilityDetailsPage() {
           </div>
         </div>
       </div>
-      <Footer />
+      <AppFooter />
       <BuyNftModal isOpen={isBuyNftOpen} onClose={() => setIsBuyNftOpen(false)} />
       <QueueAdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
     </>
