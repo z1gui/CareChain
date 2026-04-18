@@ -4,6 +4,11 @@ export default antfu(
   {
     ignores: ['src/components/ui', 'app/contract-data'],
     vue: false,
+    formatters: {
+      css: true,
+      html: true,
+      markdown: 'prettier',
+    },
     typescript: {
       overrides: {
         'perfectionist/sort-imports': [
