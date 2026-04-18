@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter, Manrope } from 'next/font/google'
 import Header from '@/components/layout/Header'
-// import Header from '@/components/Header'
 import Providers from '@/components/providers'
 import { cn } from '@/utils'
-// import { Toaster } from '@/components/ui/sonner'
 import '../styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
@@ -34,7 +32,6 @@ export default function RootLayout({
             </main>
           </div>
         </Providers>
-        {/* <Toaster richColors /> */}
       </body>
     </html>
   )
