@@ -56,7 +56,7 @@ export default function Header() {
             </div>
             <button
               onClick={() => setIsWalletModalOpen(true)}
-              className="bg-primary text-white font-bold px-6 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-all shadow-md active:scale-95 text-sm whitespace-nowrap"
+              className="bg-primary text-white font-bold px-6 py-2 rounded-5xl flex items-center gap-2 hover:opacity-90 transition-all shadow-md active:scale-95 text-sm whitespace-nowrap"
             >
               Connect Wallet
             </button>

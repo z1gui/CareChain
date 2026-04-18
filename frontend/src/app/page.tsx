@@ -13,10 +13,10 @@ export default function Home() {
               alt="Modern clinical interior"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWMXGeIK3bpH70e8bSnOIR-W_niESOuG_CcD5kC75EHkP3JdoQrxwwwwl91sxdbZnfmvQd-fH18P8psp4DRUTYCUZqQrqIEIxWcWd4s4jG3f9bIVIJcDVuU317u7RZmOb2eoiqvVDeP9FYsNVHO3hITxdbsj32MEHhL9QYct7vTnsHIP095kW0RG382SLYMDZKF5UIgqCVmIhZxBJQMBWoCXNgqOdaQKou82JF14k4P_UUqJ8nhL29qPff59XO774OCK1vQXovraqi"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface" />
+            <div className="absolute inset-0 bg-linear-to-b from-surface via-transparent to-surface" />
           </div>
           <div className="container mx-auto px-6 relative z-10 text-center">
-            <span className="inline-block py-1 px-4 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold mb-6 tracking-widest uppercase">
+            <span className="inline-block py-1 px-4 rounded-5xl bg-secondary-fixed text-on-secondary-fixed text-xs font-bold mb-6 tracking-widest uppercase">
               Solana Ecosystem Pioneer
             </span>
             <h1 className="text-6xl md:text-8xl font-extrabold text-on-surface leading-tight mb-8 tracking-tighter">
@@ -26,10 +26,10 @@ export default function Home() {
               Transforming traditional healthcare assets into liquid RWA. We bridge clinical precision with decentralized finance to build a transparent, sovereign, and efficient future for an aging society.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/facilities" className="bg-gradient-to-br from-[#006a31] to-[#008378] text-on-primary px-10 py-4 rounded-full text-lg font-bold shadow-xl hover:scale-105 transition-transform">
+              <Link href="/facilities" className="bg-linear-to-br from-[#006a31] to-primary-container text-on-primary px-10 py-4 rounded-5xl text-lg font-bold shadow-xl hover:scale-105 transition-transform">
                 Get Started
               </Link>
-              <button className="bg-surface-container-lowest border border-outline-variant/30 text-on-surface px-10 py-4 rounded-full text-lg font-bold hover:bg-surface-container-low transition-colors">
+              <button className="bg-surface-container-lowest border border-outline-variant/30 text-on-surface px-10 py-4 rounded-5xl text-lg font-bold hover:bg-surface-container-low transition-colors">
                 View Whitepaper
               </button>
             </div>
@@ -40,17 +40,17 @@ export default function Home() {
         <section className="py-24 bg-surface-container-low">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-surface-container-lowest p-10 rounded-full flex flex-col justify-center items-center text-center shadow-sm">
+              <div className="bg-surface-container-lowest p-10 rounded-5xl flex flex-col justify-center items-center text-center shadow-sm">
                 <span className="text-xs text-on-surface-variant font-medium uppercase tracking-widest mb-2">Tokenized Beds</span>
                 <h3 className="text-5xl font-extrabold text-primary">200+</h3>
                 <p className="text-sm text-tertiary mt-2">Across 5 Top Clinical Facilities</p>
               </div>
-              <div className="bg-surface-container-lowest p-10 rounded-full flex flex-col justify-center items-center text-center shadow-sm">
+              <div className="bg-surface-container-lowest p-10 rounded-5xl flex flex-col justify-center items-center text-center shadow-sm">
                 <span className="text-xs text-on-surface-variant font-medium uppercase tracking-widest mb-2">Total Value Locked (TVL)</span>
                 <h3 className="text-5xl font-extrabold text-primary">$12.5M</h3>
                 <p className="text-sm text-secondary mt-2">Verified Live on Solana</p>
               </div>
-              <div className="bg-surface-container-lowest p-10 rounded-full flex flex-col justify-center items-center text-center shadow-sm">
+              <div className="bg-surface-container-lowest p-10 rounded-5xl flex flex-col justify-center items-center text-center shadow-sm">
                 <span className="text-xs text-on-surface-variant font-medium uppercase tracking-widest mb-2">Target APY</span>
                 <h3 className="text-5xl font-extrabold text-tertiary">7.2%-9.0%</h3>
                 <p className="text-sm text-on-surface-variant mt-2">Backed by Real Estate Yields</p>
@@ -66,7 +66,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold text-on-surface mb-8">Perfect Integration of RWA & Healthcare</h2>
               <div className="space-y-8">
                 <div className="flex gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center">
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center">
                     <span className="material-symbols-outlined text-on-primary-container">apartment</span>
                   </div>
                   <div>
@@ -75,7 +75,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center">
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center">
                     <span className="material-symbols-outlined text-on-tertiary-container">verified</span>
                   </div>
                   <div>
@@ -84,7 +84,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center">
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center">
                     <span className="material-symbols-outlined text-on-secondary-container">currency_exchange</span>
                   </div>
                   <div>
@@ -95,16 +95,16 @@ export default function Home() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-full bg-surface-container-high flex items-center justify-center p-4">
+              <div className="aspect-square rounded-5xl bg-surface-container-high flex items-center justify-center p-4">
                 <img
                   alt="Medical robotic arm"
-                  className="w-full h-full object-cover rounded-full shadow-2xl"
+                  className="w-full h-full object-cover shadow-2xl rounded-5xl"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy8oQt5j3VdVjnfTrRvV1X54aW_a5TlqEocKce0QIW0Br8sVb6mOic2W1JL4JT4sZ9yP4jLx5S7FlNbZY36j_E4wvUbXOu5QeDqy5XsfIvsXX1PLeT5ELREvGU3Pbhcv4fq6UmLKatF9l2yxeiesbepbTGvFzQ7Ejn54m6AjdcuLH173sZbXWTsrHEymwATNLqVg7XYDCUbYg4HCPcBPsxWDNfxMtLmgsSIbiYbIvqjxzlV5qzN0tn5aVbBLUzZHME3kbPrdxXAn7W"
                 />
               </div>
               <div className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-xl shadow-xl border border-outline-variant/10">
                 <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 rounded-full bg-tertiary" />
+                  <div className="w-3 h-3 rounded-5xl bg-tertiary" />
                   <span className="text-sm font-bold">100% Clinical Compliance</span>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="bg-surface-container-lowest p-8 rounded-xl border-l-4 border-secondary relative">
-                <div className="absolute -top-4 -right-4 bg-secondary text-white px-4 py-1 rounded-full text-xs font-bold">Highest Priority</div>
+                <div className="absolute -top-4 -right-4 bg-secondary text-white px-4 py-1 rounded-5xl text-xs font-bold">Highest Priority</div>
                 <h4 className="text-2xl font-bold mb-4">P1: Strategic Queue</h4>
                 <p className="text-sm text-on-surface-variant mb-6 leading-relaxed">For governance participants with large $CARE holdings and long-term locks. Enjoys priority residency rights and maximum yield weight.</p>
                 <ul className="space-y-3">
@@ -151,7 +151,7 @@ export default function Home() {
                 <h4 className="text-3xl font-bold mb-4">$CARE Burn Mechanism</h4>
                 <p className="text-lg opacity-90">15% of all healthcare facility operating profits will be used to buy back $CARE on the open market and burn it permanently. As occupancy rises, scarcity increases automatically via smart contracts.</p>
               </div>
-              <div className="flex-shrink-0 flex items-center justify-center bg-white/10 w-32 h-32 rounded-full border-4 border-dashed border-white/30">
+              <div className="shrink-0 flex items-center justify-center bg-white/10 w-32 h-32 rounded-5xl border-4 border-dashed border-white/30">
                 <span className="material-symbols-outlined text-6xl" style={{ fontVariationSettings: '"FILL" 1' }}>local_fire_department</span>
               </div>
             </div>
@@ -174,22 +174,22 @@ export default function Home() {
               <div className="absolute top-1/2 left-0 w-full h-1 bg-surface-container-high hidden md:block -translate-y-1/2" />
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">1</div>
+                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">1</div>
                   <h5 className="font-bold mb-2">Asset Intake</h5>
                   <p className="text-xs text-on-surface-variant">Evaluate and complete legal compliance and asset audits for physical nursing homes.</p>
                 </div>
                 <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">2</div>
+                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">2</div>
                   <h5 className="font-bold mb-2">On-chain Tokenization</h5>
                   <p className="text-xs text-on-surface-variant">Generate corresponding RWA tokens and launch initial liquidity pools.</p>
                 </div>
                 <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">3</div>
+                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">3</div>
                   <h5 className="font-bold mb-2">Yield Distribution</h5>
                   <p className="text-xs text-on-surface-variant">Monthly rental income is converted to USDC/CARE and auto-distributed to wallets.</p>
                 </div>
                 <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">4</div>
+                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">4</div>
                   <h5 className="font-bold mb-2">Ecosystem Expansion</h5>
                   <p className="text-xs text-on-surface-variant">Introduce bidding from care service providers to further boost underlying asset yields.</p>
                 </div>

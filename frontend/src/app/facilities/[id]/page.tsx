@@ -14,7 +14,7 @@ export default function FacilityDetailsPage() {
       <div className="pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto flex flex-col gap-8">
         {/* Hero Section */}
         <section className="relative h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl group">
-          <Link href="/facilities" className="absolute top-6 left-6 z-20 w-12 h-12 flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white rounded-full transition-all shadow-lg active:scale-95 group/back" title="Back to facilities list">
+          <Link href="/facilities" className="absolute top-6 left-6 z-20 w-12 h-12 flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white rounded-5xl transition-all shadow-lg active:scale-95 group/back" title="Back to facilities list">
             <span className="material-symbols-outlined transition-transform group-hover/back:-translate-x-1">arrow_back</span>
           </Link>
           <img alt="Foshan Leyi Care Center" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7kEoBbqYvfjpiMwMKKPPeHuTlweIxOza3CUT74TRchRK5IAuy-0rOF2JgkDIzoQ5RmgCXxGVsYKXikgsAE0XyFHu_ewMFKWT5RRrINbW9fwknZJ1w0yRH5O8c-31AqCIKoE8DYacALxtG9OuqYmny5IFlsq7xOMJ4Q1pPmVKCyR_VIdI0r-IjXlJx9CN5qMnU3WQ4-lmZP8Fx5IHycMfjFBwzv3BVVG3yfy2eCp844UzmFmWgsfcsstzRgPw1IgNI31CjnFE_hMeH" />
@@ -22,8 +22,8 @@ export default function FacilityDetailsPage() {
           <div className="absolute bottom-0 left-0 p-12 w-full flex flex-col md:flex-row justify-between items-end gap-6">
             <div className="space-y-4">
               <div className="flex gap-2">
-                <span className="px-3 py-1 bg-teal-500/20 backdrop-blur-md border border-teal-400/30 text-teal-100 text-xs font-bold rounded-full uppercase tracking-wider">Active Asset</span>
-                <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold rounded-full flex items-center gap-1">
+                <span className="px-3 py-1 bg-teal-500/20 backdrop-blur-md border border-teal-400/30 text-teal-100 text-xs font-bold rounded-5xl uppercase tracking-wider">Active Asset</span>
+                <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold rounded-5xl flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm">location_on</span> Foshan, Guangdong
                 </span>
               </div>
@@ -33,7 +33,7 @@ export default function FacilityDetailsPage() {
               </p>
             </div>
             <div className="flex gap-4">
-              <button className="px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-teal-50 transition-all flex items-center gap-2 shadow-lg">
+              <button className="px-8 py-4 bg-white text-primary font-bold rounded-5xl hover:bg-teal-50 transition-all flex items-center gap-2 shadow-lg">
                 <span className="material-symbols-outlined">description</span>
                 Asset Whitepaper
               </button>
@@ -60,8 +60,8 @@ export default function FacilityDetailsPage() {
             </div>
             <div className="mt-4">
               <span className="text-4xl font-extrabold text-on-surface font-headline">94%</span>
-              <div className="w-full bg-surface-container h-2 rounded-full mt-3">
-                <div className="bg-primary h-2 rounded-full" style={{ width: '94%' }} />
+              <div className="w-full bg-surface-container h-2 rounded-5xl mt-3">
+                <div className="bg-primary h-2 rounded-5xl" style={{ width: '94%' }} />
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function FacilityDetailsPage() {
                       <p className="text-xs font-bold text-on-surface-variant uppercase">Price</p>
                       <p className="text-on-surface font-extrabold">25,000 USDC</p>
                     </div>
-                    <button onClick={() => setIsBuyNftOpen(true)} className="px-6 py-3 bg-primary text-white font-bold rounded-full active:scale-95 transition-transform">Buy NFT</button>
+                    <button onClick={() => setIsBuyNftOpen(true)} className="px-6 py-3 bg-primary text-white font-bold rounded-5xl active:scale-95 transition-transform">Buy NFT</button>
                   </div>
                 </div>
 
@@ -171,7 +171,7 @@ export default function FacilityDetailsPage() {
                       <p className="text-xs font-bold text-on-surface-variant uppercase">Price</p>
                       <p className="text-on-surface font-extrabold">55,000 USDC</p>
                     </div>
-                    <button onClick={() => setIsBuyNftOpen(true)} className="px-6 py-3 bg-secondary text-white font-bold rounded-full active:scale-95 transition-transform">Buy NFT</button>
+                    <button onClick={() => setIsBuyNftOpen(true)} className="px-6 py-3 bg-secondary text-white font-bold rounded-5xl active:scale-95 transition-transform">Buy NFT</button>
                   </div>
                 </div>
               </div>
@@ -184,8 +184,8 @@ export default function FacilityDetailsPage() {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-extrabold font-headline text-lg">Queue Status</h3>
                 <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-5xl bg-secondary opacity-75" />
+                  <span className="relative inline-flex rounded-5xl h-3 w-3 bg-secondary" />
                 </span>
               </div>
               <div className="space-y-6">
@@ -194,8 +194,8 @@ export default function FacilityDetailsPage() {
                     <span className="text-error">VIP: Emergency Placement</span>
                     <span>~12 Days Wait</span>
                   </div>
-                  <div className="w-full bg-surface-container h-3 rounded-full">
-                    <div className="bg-error h-3 rounded-full" style={{ width: '85%' }} />
+                  <div className="w-full bg-surface-container h-3 rounded-5xl">
+                    <div className="bg-error h-3 rounded-5xl" style={{ width: '85%' }} />
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -203,12 +203,12 @@ export default function FacilityDetailsPage() {
                     <span className="text-secondary">Fast Track: Priority Access</span>
                     <span>~45 Days Wait</span>
                   </div>
-                  <div className="w-full bg-surface-container h-3 rounded-full">
-                    <div className="bg-secondary h-3 rounded-full" style={{ width: '60%' }} />
+                  <div className="w-full bg-surface-container h-3 rounded-5xl">
+                    <div className="bg-secondary h-3 rounded-5xl" style={{ width: '60%' }} />
                   </div>
                 </div>
               </div>
-              <button onClick={() => setIsAdmissionOpen(true)} className="w-full mt-8 py-3 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all active:scale-95">
+              <button onClick={() => setIsAdmissionOpen(true)} className="w-full mt-8 py-3 border-2 border-primary text-primary font-bold rounded-5xl hover:bg-primary hover:text-white transition-all active:scale-95">
                 Apply for Admission
               </button>
             </div>

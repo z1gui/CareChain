@@ -12,7 +12,7 @@ export default function AssetManagementPage() {
       <main className="max-w-7xl mx-auto px-8 py-8 pt-24">
         {/* Back Button */}
         <div className="mb-6">
-          <Link href="/facilities" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/40 backdrop-blur-md border border-white/20 shadow-sm text-on-surface-variant hover:bg-white/60 hover:text-primary transition-all group">
+          <Link href="/facilities" className="w-10 h-10 rounded-5xl flex items-center justify-center bg-white/40 backdrop-blur-md border border-white/20 shadow-sm text-on-surface-variant hover:bg-white/60 hover:text-primary transition-all group">
             <span className="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
           </Link>
         </div>
@@ -60,7 +60,7 @@ export default function AssetManagementPage() {
           <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row border border-surface-container-high">
             <div className="sm:w-1/3 relative h-48 sm:h-auto">
               <img alt="Foshan Facility" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn1zUu4fxDftEO-CtwHgHB0SHRDMwvZ-LEwrCrb8FWuGfo21XBJRSTjwO1zao0VE2cBjVh6Vr-DHAB7NmC2m7UGi102HVKZK7T8EuJoUuIhdrJllPdBxgmywrtVBhueshEVCglsNtJwpwgY1NQT6-gTtGqi-vRb4qDCTXcq11QLmKtiGzaMu8Cp1zbkIThTDhx0TbzD88RsBrZQLvG7HJ6-I4fAIX6zyST6MDuLVubV3t59--ft1kh4-whvrp8b27eQ7ipfbSCPz1X" />
-              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm tracking-wider">
+              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold text-primary shadow-sm tracking-wider">
                 ACTIVE
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function AssetManagementPage() {
           <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row border border-surface-container-high">
             <div className="sm:w-1/3 relative h-48 sm:h-auto">
               <img alt="Guangzhou Facility" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBExhzYyOhm_5rK0qBX-e09yWbj8J6FViJjuBn5NBeMPmv83Gzz9hTMCGZMcz96YHyRx22UO4tCeJBjZSrLOSVqkSoIx1f54Pb82M5rY_uZwZU13nBf4G-o9MBmsjJ6HL1roiJDyarkftqOFT0Q-UI_aJGuqFVkGEtah2jj-8siJ-0nSC2RNUrEfFGrXPv-8Zpc_HdfedjpY7mEi9VJy4zaDiP8qVnzVKQDgjusr4PoxT2TZ0XmiEsClgZV13rluC0hGQOck9150M87" />
-              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-secondary shadow-sm tracking-wider">
+              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold text-secondary shadow-sm tracking-wider">
                 ON-CHAIN
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function AssetManagementPage() {
           <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row border border-surface-container-high">
             <div className="sm:w-1/3 relative h-48 sm:h-auto">
               <img alt="Shenzhen Facility" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBomKHUA3qIO35Pv5TmRdP9U4NIAAKww1WolBdbshDKV8K8H3JDAzlAut11jMims6Pfw7AqYLv0LCMLnskeJkmz-y_i2eBwfKo8oMKrTRLaFMwZggfKDV98nnvTq2a91hAgh6RmtC6uh147BQ8AoZtLX3CYMuOH1HSnksimOUQytrQEG--LJawl23pWBajVFLgQsBxd-61umkprVnFifDEXjp2AShbytm9BDRg6q6vFTd8x0t3dkJXD5Ppf8F-tf0Xd93hA9uZ73Pu8" />
-              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm tracking-wider">
+              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold text-primary shadow-sm tracking-wider">
                 PENDING
               </div>
             </div>

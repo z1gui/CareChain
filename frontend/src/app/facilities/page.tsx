@@ -62,8 +62,8 @@ export default function FacilitiesPage() {
             <div className="h-56 relative overflow-hidden">
               <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Modern high-end elderly care facility" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZpz9IugFANNkCrtJ4kYYbj60fZ43W5k0tKCtjPsK0fd8g-abMXW05gAiri-eSWOD_2_r6IGsKA3m-LidmT2Il0TU3FPFZSB4i-1-KcKPJS6tchAepEnGWrtTGJMvWBv52OYdD5DAo8vQRV1O59tCFN49dOyC__LJhR5Alu1mB2f980u9d4Yi-_KqjG9MswOTjklDJFXr35phNXEtv-AsOIiHsxuc0VhHfdkAfV1ANlaE2rRDe4gWfNN1RRfZxHn4mw8kE-sUf-bB_" />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold font-headline">High Demand</span>
-                <span className="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold font-headline">RWA Certified</span>
+                <span className="bg-tertiary text-on-tertiary px-3 py-1 rounded-5xl text-xs font-bold font-headline">High Demand</span>
+                <span className="bg-primary-container text-on-primary-container px-3 py-1 rounded-5xl text-xs font-bold font-headline">RWA Certified</span>
               </div>
             </div>
             <div className="p-6">
@@ -84,7 +84,7 @@ export default function FacilitiesPage() {
                 <div className="bg-surface-container-low p-3 rounded-lg">
                   <div className="text-xs text-outline mb-1">Occupancy</div>
                   <div className="text-sm font-bold text-on-surface">94%</div>
-                  <div className="h-1 bg-surface-container-highest mt-2 rounded-full overflow-hidden">
+                  <div className="h-1 bg-surface-container-highest mt-2 rounded-5xl overflow-hidden">
                     <div className="h-full bg-tertiary w-[94%]" />
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function FacilitiesPage() {
             <div className="h-56 relative overflow-hidden">
               <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Sleek healthcare facility corridor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg1KE_t7YXRnW_fnCQ7moIublO3H8xKHTFGfP2Uhfc2avuXaY8g3Dm9m0qoJhJebUoNsswefU7awc5mGJLIy-27iU3-6DA1Y0T2rqP8wdnNQah1Fbt7clPjSzy9nY_imwE_OnyrHD4bJV3wFhX6ycxiQh6CJiMvCI57K8a25opcDNYb0CI87ASlXHaLRGuo-vR7NeplTcKeWriEBd9uzNTaS40tPVWO-aD_rWiTtwQ5ezWRMyTwqmI0GCFhh1XwT_A0YqIEi4LLa2K" />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-bold font-headline">Newly Listed</span>
+                <span className="bg-secondary text-on-secondary px-3 py-1 rounded-5xl text-xs font-bold font-headline">Newly Listed</span>
               </div>
             </div>
             <div className="p-6">
@@ -137,7 +137,7 @@ export default function FacilitiesPage() {
                 <div className="bg-surface-container-low p-3 rounded-lg">
                   <div className="text-xs text-outline mb-1">Occupancy</div>
                   <div className="text-sm font-bold text-on-surface">88%</div>
-                  <div className="h-1 bg-surface-container-highest mt-2 rounded-full overflow-hidden">
+                  <div className="h-1 bg-surface-container-highest mt-2 rounded-5xl overflow-hidden">
                     <div className="h-full bg-tertiary w-[88%]" />
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function FacilitiesPage() {
             <div className="h-56 relative overflow-hidden">
               <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Bright and airy common area" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlizZlPSXbIeycQ66QVuNc4nPsVYn3A1iXlY05KOfu5G--FkkA_GF_v2GbamBzC4j3lLbBnGMwRtMOz3jusYK_5TYaDtunpiNJwzPWiN2BqhePbwxK1TzcY2q1FJbmQ-9dpmv-h6N-sfGPHS5gMAqBMs-JKB0FhYNKyI3FptHJT4oGfqI9FCcxfhOvPh9OqjlvUbjIPIhp6z8P_g0SyPkzU8qQ4tu7Jg9qlKxCVVK5iX03hL1432qvTFc6mGR3nOCTE4iGeqHGHa0b" />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold font-headline">High Demand</span>
+                <span className="bg-tertiary text-on-tertiary px-3 py-1 rounded-5xl text-xs font-bold font-headline">High Demand</span>
               </div>
             </div>
             <div className="p-6">
@@ -190,7 +190,7 @@ export default function FacilitiesPage() {
                 <div className="bg-surface-container-low p-3 rounded-lg">
                   <div className="text-xs text-outline mb-1">Occupancy</div>
                   <div className="text-sm font-bold text-on-surface">98%</div>
-                  <div className="h-1 bg-surface-container-highest mt-2 rounded-full overflow-hidden">
+                  <div className="h-1 bg-surface-container-highest mt-2 rounded-5xl overflow-hidden">
                     <div className="h-full bg-tertiary w-[98%]" />
                   </div>
                 </div>

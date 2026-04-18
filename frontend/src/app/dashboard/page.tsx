@@ -23,7 +23,7 @@ export default function DashboardPage() {
               </h1>
             </div>
             <div className="mt-4 md:mt-0 flex gap-3">
-              <button className="bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant font-bold px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-white shadow-sm transition-all">
+              <button className="bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant font-bold px-4 py-2 rounded-5xl text-sm flex items-center gap-2 hover:bg-white shadow-sm transition-all">
                 <span className="material-symbols-outlined text-sm">download</span>
                 Export Statement
               </button>
@@ -33,8 +33,8 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Portfolio Stats Bento */}
             <div className="lg:col-span-8 bg-gradient-to-br from-primary to-primary-container p-8 rounded-xl shadow-xl text-on-primary flex flex-col justify-between relative overflow-hidden group">
-              <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-              <div className="absolute right-20 bottom-10 w-32 h-32 bg-secondary/20 rounded-full blur-2xl" />
+              <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/10 rounded-5xl blur-3xl group-hover:scale-125 transition-transform duration-700" />
+              <div className="absolute right-20 bottom-10 w-32 h-32 bg-secondary/20 rounded-5xl blur-2xl" />
 
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2 opacity-90">
@@ -62,8 +62,8 @@ export default function DashboardPage() {
               </div>
 
               <div className="mt-10 flex gap-4 relative z-10">
-                <button className="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-bold px-6 py-3 rounded-full transition-all text-sm">Compound</button>
-                <button className="bg-secondary text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-all text-sm">Add Assets</button>
+                <button className="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-bold px-6 py-3 rounded-5xl transition-all text-sm">Compound</button>
+                <button className="bg-secondary text-white font-bold px-6 py-3 rounded-5xl shadow-lg hover:scale-105 transition-all text-sm">Add Assets</button>
               </div>
             </div>
 
@@ -78,8 +78,8 @@ export default function DashboardPage() {
                   <div className="text-3xl font-headline font-extrabold text-on-surface">94.2%</div>
                   <p className="text-xs text-on-surface-variant mt-1">Sustained demand growth in East China facilities</p>
                 </div>
-                <div className="mt-4 w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
-                  <div className="h-full bg-tertiary rounded-full" style={{ width: '94%' }} />
+                <div className="mt-4 w-full h-1.5 bg-surface-container rounded-5xl overflow-hidden">
+                  <div className="h-full bg-tertiary rounded-5xl" style={{ width: '94%' }} />
                 </div>
               </div>
 
@@ -111,8 +111,8 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-headline font-bold">Yield Trend (Last 6 Months)</h3>
               <div className="flex gap-2">
-                <span className="px-3 py-1 bg-surface-container rounded-full text-xs font-bold text-on-surface-variant cursor-pointer">Daily</span>
-                <span className="px-3 py-1 bg-primary text-white rounded-full text-xs font-bold cursor-pointer shadow-sm">Monthly</span>
+                <span className="px-3 py-1 bg-surface-container rounded-5xl text-xs font-bold text-on-surface-variant cursor-pointer">Daily</span>
+                <span className="px-3 py-1 bg-primary text-white rounded-5xl text-xs font-bold cursor-pointer shadow-sm">Monthly</span>
               </div>
             </div>
 
@@ -206,7 +206,7 @@ export default function DashboardPage() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjnYydeQhaROgqoMGVzeSvZYy9rsGfI5eP9zPccTFXBoioAu28WUG9upkGonMLGSVWzNIE0MleVnO5rqjlWmR5lod4QHh7nA9seljCz0y4T8tMLYU7Bdxqsb0pnMV9vGn4FMlYT07f1hAl-rmeQi6OBebXiP0nkKd0rVdtSPdifxTZpufLI5L5Qt27pE50wFFvDAeGXWCDuZWRMwQqLIpjJm_b6IjMk9olqhTIi9C9cW0HBhuv1HTKpoAGBujqSha20Egs-2gnFwIe"
                 />
-                <div className="absolute top-4 right-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase">Standard Bed</div>
+                <div className="absolute top-4 right-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-5xl text-[10px] font-bold text-white uppercase">Standard Bed</div>
                 <div className="absolute bottom-4 left-4 flex gap-2">
                   <span className="px-2 py-1 bg-tertiary-container text-on-tertiary-container rounded text-[10px] font-bold">Yield Mode</span>
                 </div>
@@ -240,7 +240,7 @@ export default function DashboardPage() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE3N0Ug83WlqbU5bro2oHKRgIzDN88oPB0-w1ywYMHdOOMP4O8muP2ACbXD3X8PMTGjX4FqB0Jh0mU1AJOVSt-61GMDMyNOioqgg_ztQPUNdAMkMwywORsyQVbDMyfF5xRw8MAdjjrLVnnCqZMMFJDj6k-DuiTEL8x9GN5RH3FUe2G3ivOEY5FydNmwYy7At6RzDBqYJ8WUHJaFraaWmy3TcQyHvgWGk6ltcHLor_WxWnmMMXmKhhoVKW7qJAbYFLG-ysioSUPOYeL"
                 />
-                <div className="absolute top-4 right-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase">Luxury Suite</div>
+                <div className="absolute top-4 right-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-5xl text-[10px] font-bold text-white uppercase">Luxury Suite</div>
                 <div className="absolute bottom-4 left-4 flex gap-2">
                   <span className="px-2 py-1 bg-secondary text-white rounded text-[10px] font-bold">Occupancy Mode</span>
                   <span className="px-2 py-1 bg-white/90 text-on-surface rounded text-[10px] font-bold">P1 Queue</span>
@@ -269,14 +269,14 @@ export default function DashboardPage() {
             </div>
 
             <div className="bg-surface-container flex flex-col items-center justify-center p-8 rounded-xl border-2 border-dashed border-outline-variant text-center space-y-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-primary shadow-sm">
+              <div className="w-16 h-16 bg-white rounded-5xl flex items-center justify-center text-primary shadow-sm">
                 <span className="material-symbols-outlined text-4xl">add</span>
               </div>
               <div>
                 <h4 className="font-bold font-headline text-lg">Purchase New Asset</h4>
                 <p className="text-sm text-on-surface-variant max-w-[180px] mx-auto">Expand your portfolio with fractional BedRight NFTs.</p>
               </div>
-              <button className="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-md hover:scale-105 transition-all">Browse Units</button>
+              <button className="bg-primary text-white px-8 py-3 rounded-5xl font-bold shadow-md hover:scale-105 transition-all">Browse Units</button>
             </div>
           </div>
         </section>

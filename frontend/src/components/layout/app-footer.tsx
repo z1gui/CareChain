@@ -8,13 +8,13 @@ export default function Footer() {
             CareChain is dedicated to reshaping the ownership and operation of elderly care assets via Web3 technology. We are not just a DeFi protocol; we are the digital guardians of sovereign healthcare assets.
           </p>
           <div className="flex gap-4">
-            <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
+            <button className="w-10 h-10 rounded-5xl bg-white/10 flex items-center justify-center hover:bg-white/20">
               <span className="material-symbols-outlined text-sm">language</span>
             </button>
-            <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
+            <button className="w-10 h-10 rounded-5xl bg-white/10 flex items-center justify-center hover:bg-white/20">
               <span className="material-symbols-outlined text-sm">hub</span>
             </button>
-            <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
+            <button className="w-10 h-10 rounded-5xl bg-white/10 flex items-center justify-center hover:bg-white/20">
               <span className="material-symbols-outlined text-sm">mail</span>
             </button>
           </div>

@@ -20,9 +20,9 @@ export default function PriorityQueuePage() {
                 <span className="text-sm font-medium text-on-surface-variant">Total Pending</span>
                 <span className="text-4xl font-bold font-headline text-primary mt-1">1,284</span>
                 <div className="flex gap-2 mt-4">
-                  <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary rounded-full">P1: 42</span>
-                  <span className="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary rounded-full">P2: 156</span>
-                  <span className="text-[10px] px-2 py-0.5 bg-slate-200 text-slate-500 rounded-full">P3: 1,086</span>
+                  <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary rounded-5xl">P1: 42</span>
+                  <span className="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary rounded-5xl">P2: 156</span>
+                  <span className="text-[10px] px-2 py-0.5 bg-slate-200 text-slate-500 rounded-5xl">P3: 1,086</span>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function PriorityQueuePage() {
             <div className="bg-surface-container-low p-6 rounded-xl">
               <span className="text-sm font-medium text-on-surface-variant">Avg Wait Time</span>
               <span className="text-4xl font-bold font-headline text-on-surface mt-1">14.2<small className="text-lg ml-1 font-normal">days</small></span>
-              <div className="mt-4 w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+              <div className="mt-4 w-full bg-surface-container-highest h-1.5 rounded-5xl overflow-hidden">
                 <div className="bg-primary h-full w-[65%]" />
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function PriorityQueuePage() {
                 <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: '"FILL" 1' }}>workspace_premium</span>
                 <h2 className="font-bold text-lg">P1 - VIP Channel</h2>
               </div>
-              <span className="text-xs font-bold text-primary px-3 py-1 bg-primary/10 rounded-full">BedRight NFT Holders</span>
+              <span className="text-xs font-bold text-primary px-3 py-1 bg-primary/10 rounded-5xl">BedRight NFT Holders</span>
             </div>
             <div className="bg-white rounded-2xl shadow-[0_4px_20px_-12px_rgba(0,104,95,0.2)] overflow-hidden">
               <div className="bg-gradient-to-r from-primary to-primary-container p-4 flex items-center justify-between">
@@ -67,7 +67,7 @@ export default function PriorityQueuePage() {
               </div>
               <div className="divide-y divide-slate-50">
                 <div className="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-100 to-amber-300 flex items-center justify-center text-amber-800 font-bold">1</div>
+                  <div className="w-10 h-10 rounded-5xl bg-gradient-to-br from-amber-100 to-amber-300 flex items-center justify-center text-amber-800 font-bold">1</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...7x9a</p>
                     <p className="text-[10px] text-on-surface-variant">BedRight #0842</p>
@@ -75,7 +75,7 @@ export default function PriorityQueuePage() {
                   <span className="text-xs font-medium text-primary">Waiting: 2h</span>
                 </div>
                 <div className="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">2</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">2</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...3k1p</p>
                     <p className="text-[10px] text-on-surface-variant">BedRight #1105</p>
@@ -83,7 +83,7 @@ export default function PriorityQueuePage() {
                   <span className="text-xs font-medium text-primary">Waiting: 5h</span>
                 </div>
                 <div className="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">3</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">3</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...m9v0</p>
                     <p className="text-[10px] text-on-surface-variant">BedRight #0023</p>
@@ -102,7 +102,7 @@ export default function PriorityQueuePage() {
                 <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: '"FILL" 1' }}>bolt</span>
                 <h2 className="font-bold text-lg">P2 - Fast Track</h2>
               </div>
-              <span className="text-xs font-bold text-secondary px-3 py-1 bg-secondary/10 rounded-full">$CARE Burn Acceleration</span>
+              <span className="text-xs font-bold text-secondary px-3 py-1 bg-secondary/10 rounded-5xl">$CARE Burn Acceleration</span>
             </div>
             <div className="bg-white rounded-2xl shadow-[0_4px_20px_-12px_rgba(125,27,226,0.2)] overflow-hidden">
               <div className="bg-gradient-to-r from-secondary to-secondary-container p-4 flex items-center justify-between">
@@ -111,7 +111,7 @@ export default function PriorityQueuePage() {
               </div>
               <div className="divide-y divide-slate-50">
                 <div className="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">1</div>
+                  <div className="w-10 h-10 rounded-5xl bg-secondary-fixed flex items-center justify-center text-secondary font-bold">1</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...z2b4</p>
                     <p className="text-[10px] text-secondary font-medium">Burned 15,000 $CARE</p>
@@ -119,7 +119,7 @@ export default function PriorityQueuePage() {
                   <span className="text-xs font-medium text-secondary">Rank: #43</span>
                 </div>
                 <div className="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">2</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">2</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...y8w1</p>
                     <p className="text-[10px] text-secondary font-medium">Burned 12,500 $CARE</p>
@@ -127,7 +127,7 @@ export default function PriorityQueuePage() {
                   <span className="text-xs font-medium text-secondary">Rank: #44</span>
                 </div>
                 <div className="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">3</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">3</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...p5r6</p>
                     <p className="text-[10px] text-secondary font-medium">Burned 10,000 $CARE</p>
@@ -146,7 +146,7 @@ export default function PriorityQueuePage() {
                 <span className="material-symbols-outlined text-slate-500">groups</span>
                 <h2 className="font-bold text-lg">P3 - Standard Queue</h2>
               </div>
-              <span className="text-xs font-medium text-slate-400 px-3 py-1 bg-slate-100 rounded-full">Regular Waitlist</span>
+              <span className="text-xs font-medium text-slate-400 px-3 py-1 bg-slate-100 rounded-5xl">Regular Waitlist</span>
             </div>
             <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
               <div className="bg-slate-100 p-4 flex items-center justify-between">
@@ -155,7 +155,7 @@ export default function PriorityQueuePage() {
               </div>
               <div className="divide-y divide-slate-50">
                 <div className="p-4 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">1</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">1</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...r3q1</p>
                     <p className="text-[10px] text-on-surface-variant">Joined: 2023.10.12</p>
@@ -163,7 +163,7 @@ export default function PriorityQueuePage() {
                   <span className="text-xs font-medium text-slate-500">Rank: #242</span>
                 </div>
                 <div className="p-4 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">2</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">2</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...v4n8</p>
                     <p className="text-[10px] text-on-surface-variant">Joined: 2023.10.13</p>
@@ -171,7 +171,7 @@ export default function PriorityQueuePage() {
                   <span className="text-xs font-medium text-slate-500">Rank: #243</span>
                 </div>
                 <div className="p-4 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">3</div>
+                  <div className="w-10 h-10 rounded-5xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold">3</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold">Wallet...j2l5</p>
                     <p className="text-[10px] text-on-surface-variant">Joined: 2023.10.14</p>
@@ -190,7 +190,7 @@ export default function PriorityQueuePage() {
             {/* Boost My Position Card */}
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+                <div className="w-12 h-12 rounded-5xl bg-secondary-container flex items-center justify-center">
                   <span className="material-symbols-outlined text-white">speed</span>
                 </div>
                 <div>
@@ -219,15 +219,15 @@ export default function PriorityQueuePage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <button onClick={() => setIsCheckInOpen(true)} className="flex-1 bg-secondary text-white py-4 rounded-full font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all">Confirm Burn &amp; Boost</button>
-                <button className="px-6 border border-slate-200 rounded-full text-slate-600 font-medium hover:bg-slate-50">Rules</button>
+                <button onClick={() => setIsCheckInOpen(true)} className="flex-1 bg-secondary text-white py-4 rounded-5xl font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all">Confirm Burn &amp; Boost</button>
+                <button className="px-6 border border-slate-200 rounded-5xl text-slate-600 font-medium hover:bg-slate-50">Rules</button>
               </div>
             </div>
 
             {/* Bed Allocation Ready Card */}
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-5xl bg-primary/10 flex items-center justify-center">
                   <span className="material-symbols-outlined text-primary">assignment_turned_in</span>
                 </div>
                 <div>
@@ -246,7 +246,7 @@ export default function PriorityQueuePage() {
                 </div>
               </div>
               <div className="flex flex-col gap-4 mt-auto">
-                <button onClick={() => setIsCheckInOpen(true)} className="w-full bg-primary text-white py-5 rounded-full font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+                <button onClick={() => setIsCheckInOpen(true)} className="w-full bg-primary text-white py-5 rounded-5xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
                   <span className="material-symbols-outlined">payments</span>
                   Check-in &amp; Pay Now
                 </button>
@@ -259,7 +259,7 @@ export default function PriorityQueuePage() {
           <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col">
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-xl font-bold font-headline">My Status</h3>
-              <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-bold uppercase">P2 Fast Track</span>
+              <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-5xl text-xs font-bold uppercase">P2 Fast Track</span>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="bg-primary/5 p-4 rounded-2xl flex flex-col items-center">
@@ -278,21 +278,21 @@ export default function PriorityQueuePage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-secondary rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-secondary rounded-5xl" />
                     <span className="text-on-surface">Burned 2,000 $CARE</span>
                   </div>
                   <span className="text-on-surface-variant text-xs">2h ago</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-primary rounded-5xl" />
                     <span className="text-on-surface">Ranked up by 12 slots</span>
                   </div>
                   <span className="text-on-surface-variant text-xs">Yesterday 14:20</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-slate-300 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-slate-300 rounded-5xl" />
                     <span className="text-on-surface">Entered P2 Fast Track</span>
                   </div>
                   <span className="text-on-surface-variant text-xs">2023.10.15</span>
@@ -307,8 +307,8 @@ export default function PriorityQueuePage() {
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-tertiary" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-5xl bg-tertiary opacity-75" />
+                <span className="relative inline-flex rounded-5xl h-3 w-3 bg-tertiary" />
               </span>
               <h3 className="text-xl font-bold font-headline">Real-time Pulse</h3>
             </div>

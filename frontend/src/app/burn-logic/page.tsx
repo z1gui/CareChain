@@ -9,7 +9,7 @@ export default function BurnLogicPage() {
       <main className="pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex flex-col gap-12">
         <header>
           <div className="flex items-center gap-3 mb-4">
-            <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-xs font-bold uppercase tracking-wider">Protocol Efficiency</span>
+            <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-5xl text-xs font-bold uppercase tracking-wider">Protocol Efficiency</span>
             <span className="h-px flex-1 bg-surface-container-highest" />
           </div>
           <h1 className="font-headline leading-tight font-bold text-[#0D4741] text-[32px] mb-6">
@@ -35,7 +35,7 @@ export default function BurnLogicPage() {
                   <div className="text-[10px] text-slate-500">Wait: Indefinite</div>
                 </div>
                 <div className="hidden md:flex flex-col items-center">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mb-2 animate-pulse">
+                  <div className="w-12 h-12 bg-primary rounded-5xl flex items-center justify-center text-white mb-2 animate-pulse">
                     <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>local_fire_department</span>
                   </div>
                   <span className="text-[10px] font-bold text-primary uppercase">Burn $CARE</span>
@@ -61,7 +61,7 @@ export default function BurnLogicPage() {
               </div>
             </div>
             <div className="absolute top-0 right-0 w-64 h-64 opacity-5 -mr-12 -mt-12">
-              <img className="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2v9a0-_GSKduBa8oF1GPjzrBhVAbb8sORmfIO4I8tqjuRA4tvoMGKz_Hb8-CW4QVdsGZi2s899H00IWGsaNsA8bpTCOEmJQDDnbIrIrlrzR4f3Yc4TS9rWI4aOTsaIz2WAbbzcJEf1y87yDGfyOVFGyroVvAl5-n69B2lnX_D5O71Synj0SarCXeZkegWKU6AeM4HM7YTfYz0jqa3PczLTDH2h9netbE_KYt9tqgM7Y2m7GD4OXmnAsj9EKeRNlFvoC7BhpLMTZhW" />
+              <img className="w-full h-full object-cover rounded-5xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2v9a0-_GSKduBa8oF1GPjzrBhVAbb8sORmfIO4I8tqjuRA4tvoMGKz_Hb8-CW4QVdsGZi2s899H00IWGsaNsA8bpTCOEmJQDDnbIrIrlrzR4f3Yc4TS9rWI4aOTsaIz2WAbbzcJEf1y87yDGfyOVFGyroVvAl5-n69B2lnX_D5O71Synj0SarCXeZkegWKU6AeM4HM7YTfYz0jqa3PczLTDH2h9netbE_KYt9tqgM7Y2m7GD4OXmnAsj9EKeRNlFvoC7BhpLMTZhW" />
             </div>
           </div>
 
@@ -129,11 +129,11 @@ export default function BurnLogicPage() {
                 </div>
               </div>
             </div>
-            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary-container rounded-full opacity-20 blur-3xl" />
+            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary-container rounded-5xl opacity-20 blur-3xl" />
           </div>
           <div className="bg-surface-container-low p-8 rounded-2xl flex items-center justify-center">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-tertiary-container rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-tertiary-container rounded-5xl mb-4">
                 <span className="material-symbols-outlined text-white text-3xl">verified_user</span>
               </div>
               <h3 className="text-xl font-bold font-headline mb-2">Certified Deflation</h3>
@@ -175,7 +175,7 @@ export default function BurnLogicPage() {
                   <td className="py-6 font-bold text-on-surface">Immediate / 0 Waiting</td>
                   <td className="py-6 text-slate-500 text-sm">Hold NFT Asset</td>
                   <td className="py-6">
-                    <span className="px-3 py-1 bg-secondary text-white rounded-full text-[10px] font-bold">Highest Priority</span>
+                    <span className="px-3 py-1 bg-secondary text-white rounded-5xl text-[10px] font-bold">Highest Priority</span>
                   </td>
                   <td className="py-6 pr-6 rounded-r-2xl text-right">
                     <Link href="/facilities" className="text-secondary font-bold text-sm block">Browse NFTs →</Link>
@@ -196,10 +196,10 @@ export default function BurnLogicPage() {
                   <td className="py-6 font-bold text-on-surface">24 - 72 Hours</td>
                   <td className="py-6 text-slate-500 text-sm">Dynamic $CARE Burn</td>
                   <td className="py-6">
-                    <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-[10px] font-bold">Priority Access</span>
+                    <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-5xl text-[10px] font-bold">Priority Access</span>
                   </td>
                   <td className="py-6 pr-6 rounded-r-2xl text-right">
-                    <Link href="/buy-care" className="inline-block bg-primary text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform">Burn to Upgrade</Link>
+                    <Link href="/buy-care" className="inline-block bg-primary text-white px-4 py-2 rounded-5xl text-xs font-bold shadow-sm active:scale-95 transition-transform">Burn to Upgrade</Link>
                   </td>
                 </tr>
                 <tr className="bg-surface-container-low opacity-60">
@@ -217,7 +217,7 @@ export default function BurnLogicPage() {
                   <td className="py-6 font-medium text-slate-500">Indefinite</td>
                   <td className="py-6 text-slate-500 text-sm">Free Application</td>
                   <td className="py-6">
-                    <span className="px-3 py-1 bg-surface-container-highest text-slate-500 rounded-full text-[10px] font-bold">Lowest Priority</span>
+                    <span className="px-3 py-1 bg-surface-container-highest text-slate-500 rounded-5xl text-[10px] font-bold">Lowest Priority</span>
                   </td>
                   <td className="py-6 pr-6 rounded-r-2xl text-right">
                     <span className="text-xs text-slate-400">In Queue</span>
@@ -234,7 +234,7 @@ export default function BurnLogicPage() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-xl border border-surface-container-highest">
               <div className="flex items-center gap-3 mb-3">
-                <span className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-bold">Q</span>
+                <span className="w-8 h-8 bg-primary/10 text-primary rounded-5xl flex items-center justify-center text-sm font-bold">Q</span>
                 <h4 className="font-bold text-on-surface">What is the 30-day Cooling Period?</h4>
               </div>
               <p className="text-sm text-on-surface-variant pl-11 leading-relaxed">
@@ -243,7 +243,7 @@ export default function BurnLogicPage() {
             </div>
             <div className="bg-white p-6 rounded-xl border border-surface-container-highest">
               <div className="flex items-center gap-3 mb-3">
-                <span className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-bold">Q</span>
+                <span className="w-8 h-8 bg-primary/10 text-primary rounded-5xl flex items-center justify-center text-sm font-bold">Q</span>
                 <h4 className="font-bold text-how-does-pyth-oracle-drive-dynamic-pricing">How does Pyth Oracle drive dynamic pricing?</h4>
               </div>
               <p className="text-sm text-on-surface-variant pl-11 leading-relaxed">
@@ -255,7 +255,7 @@ export default function BurnLogicPage() {
       </main>
 
       {/* Floating Action Button */}
-      <Link href="/buy-care" className="fixed bottom-24 right-6 md:bottom-12 md:right-12 w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+      <Link href="/buy-care" className="fixed bottom-24 right-6 md:bottom-12 md:right-12 w-16 h-16 bg-primary text-white rounded-5xl shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
         <span className="material-symbols-outlined text-3xl group-hover:-translate-y-1 transition-transform">local_fire_department</span>
         <span className="absolute right-full mr-4 bg-on-surface text-white text-[10px] px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Start Token Burn</span>
       </Link>

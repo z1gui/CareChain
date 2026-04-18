@@ -9,7 +9,7 @@ export default function BuyCarePage() {
         <div className="w-full max-w-[480px] space-y-6 relative">
           {/* Back Button */}
           <div className="absolute -left-16 top-0 hidden lg:block">
-            <Link href="/" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/40 backdrop-blur-md border border-outline-variant/20 text-on-surface-variant hover:text-primary hover:bg-white/60 transition-all shadow-sm active:scale-90">
+            <Link href="/" className="w-10 h-10 rounded-5xl flex items-center justify-center bg-white/40 backdrop-blur-md border border-outline-variant/20 text-on-surface-variant hover:text-primary hover:bg-white/60 transition-all shadow-sm active:scale-90">
               <span className="material-symbols-outlined text-xl">chevron_left</span>
             </Link>
           </div>
@@ -17,7 +17,7 @@ export default function BuyCarePage() {
           {/* Wallet Address Header (Subtle) */}
           <div className="flex justify-between items-center px-2">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
+              <div className="w-2 h-2 rounded-5xl bg-tertiary animate-pulse" />
               <span className="text-xs font-medium text-on-surface-variant font-label">Wallet: 0x71C...4e21</span>
             </div>
             <span className="text-xs font-bold text-primary font-label">Balance: 12.45 SOL</span>
@@ -38,8 +38,8 @@ export default function BuyCarePage() {
               </div>
               <div className="flex justify-between items-center">
                 <input readOnly className="bg-transparent border-none focus:ring-0 text-2xl font-headline font-bold text-on-surface w-full p-0" placeholder="0.00" type="number" defaultValue="1.0" />
-                <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
-                  <div className="w-6 h-6 rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-5xl shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                  <div className="w-6 h-6 rounded-5xl bg-slate-900 flex items-center justify-center overflow-hidden">
                     <img alt="Solana logo" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQwp6KKz1Z7t9js7UJ1Hujt29edFHmaIUfrMRQVSCjp95qWqbefM3L_Z8cZAOrCr_HUQT4H18jUUDbVLgyct1-3rdbT94qcsZYVTzFCnVA4_xQ_mDBD4B0GEE50htlFiCMhtNTHaRB5MKqkx0YHQ7BrwDsVk6nHSsarmLZ4rEawztQiOLyD2lcIg5PS9ttsGleAxtWIsH8tmILSTfmhZYHihKRi3y8DSUS3m9vW69_pIBPer4UI0nRQbl3vah8zKkMtEkLeJz1n75k" />
                   </div>
                   <span className="font-bold text-sm font-headline">SOL</span>
@@ -50,7 +50,7 @@ export default function BuyCarePage() {
 
             {/* Swap Icon */}
             <div className="flex justify-center -my-4 relative z-10">
-              <div className="bg-white p-2 rounded-full shadow-md border border-outline-variant/10 text-primary">
+              <div className="bg-white p-2 rounded-5xl shadow-md border border-outline-variant/10 text-primary">
                 <span className="material-symbols-outlined">arrow_downward</span>
               </div>
             </div>
@@ -63,8 +63,8 @@ export default function BuyCarePage() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-2xl font-headline font-bold text-teal-800">12,450.00</span>
-                <div className="flex items-center gap-2 bg-primary text-white px-3 py-1.5 rounded-full shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <div className="flex items-center gap-2 bg-primary text-white px-3 py-1.5 rounded-5xl shadow-sm">
+                  <div className="w-6 h-6 rounded-5xl bg-white/20 flex items-center justify-center">
                     <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: '"FILL" 1' }}>health_and_safety</span>
                   </div>
                   <span className="font-bold text-sm font-headline">CARE</span>
@@ -85,7 +85,7 @@ export default function BuyCarePage() {
             </div>
 
             {/* Action Button */}
-            <button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-full font-headline font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+            <button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-5xl font-headline font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
               <span className="material-symbols-outlined">swap_calls</span>
               Buy $CARE Now
             </button>
@@ -132,8 +132,8 @@ export default function BuyCarePage() {
       <AppFooter />
 
       {/* Visual Background Element */}
-      <div className="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
-      <div className="fixed bottom-0 left-0 -z-10 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -ml-48 -mb-48 pointer-events-none" />
+      <div className="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-5xl blur-[120px] -mr-48 -mt-48 pointer-events-none" />
+      <div className="fixed bottom-0 left-0 -z-10 w-[600px] h-[600px] bg-secondary/5 rounded-5xl blur-[120px] -ml-48 -mb-48 pointer-events-none" />
     </div>
   )
 }

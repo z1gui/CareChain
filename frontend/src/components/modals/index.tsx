@@ -19,7 +19,7 @@ export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
             <h2 className="text-3xl font-headline font-extrabold tracking-tight text-teal-900">BedRight NFT Management</h2>
             <p className="text-on-surface-variant font-body mt-1">Asset Serial: FSH-A301</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+          <button onClick={onClose} className="p-2 hover:bg-surface-container-high rounded-5xl transition-colors">
             <span className="material-symbols-outlined text-outline">close</span>
           </button>
         </div>
@@ -62,11 +62,11 @@ export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
                 <span className="material-symbols-outlined text-lg">sync_alt</span>
                 Operation Mode
               </label>
-              <div className="flex bg-surface-container-high p-1 rounded-full w-fit">
-                <button className="px-6 py-2 rounded-full text-sm font-bold transition-all bg-surface-container-lowest text-primary shadow-sm">
+              <div className="flex bg-surface-container-high p-1 rounded-5xl w-fit">
+                <button className="px-6 py-2 rounded-5xl text-sm font-bold transition-all bg-surface-container-lowest text-primary shadow-sm">
                   Yield
                 </button>
-                <button className="px-6 py-2 rounded-full text-sm font-bold transition-all text-outline hover:text-on-surface">
+                <button className="px-6 py-2 rounded-5xl text-sm font-bold transition-all text-outline hover:text-on-surface">
                   Stay
                 </button>
               </div>
@@ -104,7 +104,7 @@ export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
           <button onClick={onClose} className="px-6 py-2.5 text-sm font-bold text-outline hover:text-on-surface transition-colors">
             Cancel
           </button>
-          <button onClick={onClose} className="px-8 py-2.5 bg-primary text-on-primary rounded-full font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all">
+          <button onClick={onClose} className="px-8 py-2.5 bg-primary text-on-primary rounded-5xl font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all">
             Confirm & Save
           </button>
         </div>
@@ -125,7 +125,7 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
             <h1 className="font-headline text-3xl font-extrabold text-primary tracking-tight mb-2">Buy BedRight NFT</h1>
             <p className="text-on-surface-variant font-medium">Please select the asset type you wish to invest in</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-surface-container rounded-full transition-colors">
+          <button onClick={onClose} className="p-2 hover:bg-surface-container rounded-5xl transition-colors">
             <span className="material-symbols-outlined text-on-surface-variant">close</span>
           </button>
         </div>
@@ -137,8 +137,8 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
                 <div className="bg-surface-container-highest p-2 rounded-lg">
                   <span className="material-symbols-outlined text-primary">bedroom_child</span>
                 </div>
-                <div className="w-5 h-5 rounded-full border-2 border-outline group-hover:border-primary transition-colors flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-5 h-5 rounded-5xl border-2 border-outline group-hover:border-primary transition-colors flex items-center justify-center">
+                  <div className="w-2.5 h-2.5 bg-primary rounded-5xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
               <h3 className="font-headline font-bold text-lg text-on-surface mb-1">Standard Care Unit</h3>
@@ -156,15 +156,15 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
             </div>
 
             <div className="group relative bg-surface-container-lowest p-6 rounded-xl cursor-pointer hover:-translate-y-1 transition-all duration-300 border-2 border-primary ring-4 ring-primary/5">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-on-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-on-secondary px-3 py-1 rounded-5xl text-[10px] font-bold uppercase tracking-widest shadow-lg">
                 Recommended
               </div>
               <div className="flex justify-between items-start mb-4">
                 <div className="bg-primary/10 p-2 rounded-lg">
                   <span className="material-symbols-outlined text-primary">spa</span>
                 </div>
-                <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 bg-primary rounded-full" />
+                <div className="w-5 h-5 rounded-5xl border-2 border-primary flex items-center justify-center">
+                  <div className="w-2.5 h-2.5 bg-primary rounded-5xl" />
                 </div>
               </div>
               <h3 className="font-headline font-bold text-lg text-on-surface mb-1">Garden Suite</h3>
@@ -186,8 +186,8 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
                 <div className="bg-surface-container-highest p-2 rounded-lg">
                   <span className="material-symbols-outlined text-primary">psychology</span>
                 </div>
-                <div className="w-5 h-5 rounded-full border-2 border-outline group-hover:border-primary transition-colors flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-5 h-5 rounded-5xl border-2 border-outline group-hover:border-primary transition-colors flex items-center justify-center">
+                  <div className="w-2.5 h-2.5 bg-primary rounded-5xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
               <h3 className="font-headline font-bold text-lg text-on-surface mb-1">Memory Care</h3>
@@ -219,7 +219,7 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
                 </div>
               </div>
             </div>
-            <button onClick={onClose} className="w-full md:w-auto px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold rounded-full shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+            <button onClick={onClose} className="w-full md:w-auto px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold rounded-5xl shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
               <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: '"FILL" 1' }}>account_balance_wallet</span>
               <span>Confirm Purchase</span>
             </button>
@@ -241,9 +241,9 @@ export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-surface/70 backdrop-blur-md">
-      <div className="w-full max-w-xl bg-surface-container-lowest rounded-3xl md:rounded-full md:px-8 shadow-2xl overflow-hidden ring-1 ring-on-surface/5">
+      <div className="w-full max-w-xl bg-surface-container-lowest rounded-3xl md:rounded-5xl md:px-8 shadow-2xl overflow-hidden ring-1 ring-on-surface/5">
         <div className="px-8 pt-8 pb-6 text-center border-b border-outline-variant/10">
-          <div className="w-16 h-16 bg-primary-container/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16 bg-primary-container/10 rounded-5xl flex items-center justify-center mx-auto mb-6">
             <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: '"FILL" 1' }}>medical_information</span>
           </div>
           <h2 className="text-2xl font-extrabold text-on-surface tracking-tight font-headline">Check-in & Finalize Payment</h2>
@@ -263,8 +263,8 @@ export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
                   <p className="text-sm text-on-surface-variant">Singapore RWA Center</p>
                 </div>
                 <div className="text-right flex items-center">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-tertiary-container text-on-tertiary-container">
-                    <span className="w-1.5 h-1.5 rounded-full bg-tertiary-fixed mr-2" />
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-5xl text-xs font-medium bg-tertiary-container text-on-tertiary-container">
+                    <span className="w-1.5 h-1.5 rounded-5xl bg-tertiary-fixed mr-2" />
                     Ready for Check-in
                   </span>
                 </div>
@@ -298,7 +298,7 @@ export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
         </div>
 
         <div className="px-8 pb-10 pt-4 flex flex-col gap-3">
-          <button onClick={onClose} className="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-bold text-sm tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+          <button onClick={onClose} className="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-5xl font-bold text-sm tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
             <span className="material-symbols-outlined text-lg">check_circle</span>
             Confirm & Transfer Payment
           </button>
@@ -323,7 +323,7 @@ export function ConnectWalletModal({ isOpen, onClose }: ModalProps) {
             <div className="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center">
               <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: '"FILL" 1' }}>account_balance_wallet</span>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-surface-container rounded-full transition-colors group">
+            <button onClick={onClose} className="p-2 hover:bg-surface-container rounded-5xl transition-colors group">
               <span className="material-symbols-outlined text-outline group-hover:text-on-surface">close</span>
             </button>
           </div>
@@ -388,7 +388,7 @@ export function QueueAdmissionModal({ isOpen, onClose }: ModalProps) {
             <h2 className="font-headline text-xl font-extrabold text-on-surface tracking-tight">Admission Application Confirmation</h2>
             <p className="text-sm text-on-surface-variant font-label tracking-wide uppercase mt-0.5">FACILITY ID: <span className="text-primary font-bold">FSH-A301</span></p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+          <button onClick={onClose} className="p-2 hover:bg-surface-container-high rounded-5xl transition-colors">
             <span className="material-symbols-outlined text-on-surface-variant">close</span>
           </button>
         </div>
@@ -439,7 +439,7 @@ export function QueueAdmissionModal({ isOpen, onClose }: ModalProps) {
                 <div className="text-xs text-on-surface-variant font-medium mb-1">New Rank</div>
                 <div className="flex items-center gap-2">
                   <span className="text-2xl font-headline font-extrabold text-on-surface">#12</span>
-                  <span className="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold rounded-full">P2 FAST TRACK</span>
+                  <span className="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold rounded-5xl">P2 FAST TRACK</span>
                 </div>
               </div>
               <div>
@@ -462,8 +462,8 @@ export function QueueAdmissionModal({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
         <div className="px-8 py-6 bg-surface-container-low flex gap-4">
-          <button onClick={onClose} className="flex-1 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-full font-headline font-bold text-center transition-all active:scale-[0.98] shadow-lg shadow-primary/20">Confirm &amp; Apply for Admission</button>
-          <button onClick={onClose} className="px-8 py-4 bg-transparent text-on-surface-variant font-headline font-bold rounded-full hover:bg-surface-container-high transition-colors">Cancel</button>
+          <button onClick={onClose} className="flex-1 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-5xl font-headline font-bold text-center transition-all active:scale-[0.98] shadow-lg shadow-primary/20">Confirm &amp; Apply for Admission</button>
+          <button onClick={onClose} className="px-8 py-4 bg-transparent text-on-surface-variant font-headline font-bold rounded-5xl hover:bg-surface-container-high transition-colors">Cancel</button>
         </div>
       </div>
     </div>
