@@ -2,13 +2,11 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
-import { ConnectWalletModal } from '@/components/modals'
+import WalletConnection from '@/components/wallet-connection'
 import { cn } from '@/utils'
 
 export default function Header() {
   const pathname = usePathname()
-  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -16,7 +14,7 @@ export default function Header() {
     { name: 'Facilities', href: '/facilities' },
     { name: 'Priority Queue', href: '/priority-queue' },
     { name: 'Burn Logic', href: '/burn-logic' },
-    { name: 'Governance', href: '/governance' },
+    // { name: 'Governance', href: '/governance' },
   ]
 
   return (
@@ -28,7 +26,7 @@ export default function Header() {
               CareChain
             </Link>
           </div>
-          <nav className="hidden md:flex items-center justify-center gap-8 font-display font-semibold tracking-tight h-full flex-grow">
+          <nav className="hidden md:flex items-center justify-center gap-8 font-display font-semibold tracking-tight h-full grow">
             {navLinks.map((link) => {
               const isActive = pathname === link.href
               return (
@@ -54,17 +52,10 @@ export default function Header() {
             <div className="flex items-center gap-4">
               <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">settings</span>
             </div>
-            <button
-              onClick={() => setIsWalletModalOpen(true)}
-              className="bg-primary text-white font-bold px-6 py-2 rounded-5xl flex items-center gap-2 hover:opacity-90 transition-all shadow-md active:scale-95 text-sm whitespace-nowrap"
-            >
-              Connect Wallet
-            </button>
+            <WalletConnection />
           </div>
         </div>
       </header>
-
-      <ConnectWalletModal isOpen={isWalletModalOpen} onClose={() => setIsWalletModalOpen(false)} />
     </>
   )
 }

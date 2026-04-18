@@ -10,7 +10,7 @@ export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
     return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-teal-950/20 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-teal-950/20 backdrop-blur-sm p-4">
       {/* Modal Container */}
       <div className="bg-surface-container-lowest w-full max-w-xl rounded-xl shadow-2xl overflow-hidden flex flex-col border border-outline-variant/10">
         {/* Modal Header */}
@@ -44,7 +44,7 @@ export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
           </div>
 
           {/* Quick Stats */}
-          <div className="flex items-center justify-between p-6 bg-gradient-to-br from-primary to-primary-container rounded-xl text-white shadow-lg shadow-primary/10">
+          <div className="flex items-center justify-between p-6 bg-linear-to-br from-primary to-primary-container rounded-xl text-white shadow-lg shadow-primary/10">
             <div>
               <p className="text-primary-fixed text-sm font-medium mb-1 opacity-90">Current APR</p>
               <p className="text-4xl font-headline font-extrabold">12.45%</p>
@@ -86,7 +86,7 @@ export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
               NFT Asset Transfer
             </h3>
             <div className="flex gap-2">
-              <div className="relative flex-grow">
+              <div className="relative grow">
                 <input className="w-full bg-surface-container-high border-0 rounded-xl px-5 py-4 text-sm font-body focus:ring-2 focus:ring-primary/40 placeholder:text-outline/60" placeholder="Recipient wallet address (0x...)" type="text" />
               </div>
               <button className="bg-secondary text-on-secondary px-6 py-4 rounded-xl font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 shadow-lg shadow-secondary/20">
@@ -118,7 +118,7 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
     return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4">
       <div className="bg-surface-container-lowest w-full max-w-4xl rounded-xl shadow-[0_10px_40px_-10px_rgba(0,104,95,0.04)] overflow-hidden flex flex-col max-h-[90vh]">
         <div className="px-8 py-8 border-b border-outline-variant/10 flex justify-between items-start">
           <div>
@@ -219,7 +219,7 @@ export function BuyNftModal({ isOpen, onClose }: ModalProps) {
                 </div>
               </div>
             </div>
-            <button onClick={onClose} className="w-full md:w-auto px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold rounded-5xl shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+            <button onClick={onClose} className="w-full md:w-auto px-10 py-4 bg-linear-to-br from-primary to-primary-container text-on-primary font-headline font-bold rounded-5xl shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
               <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: '"FILL" 1' }}>account_balance_wallet</span>
               <span>Confirm Purchase</span>
             </button>
@@ -240,7 +240,7 @@ export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
     return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-surface/70 backdrop-blur-md">
+    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-surface/70 backdrop-blur-md">
       <div className="w-full max-w-xl bg-surface-container-lowest rounded-3xl md:rounded-5xl md:px-8 shadow-2xl overflow-hidden ring-1 ring-on-surface/5">
         <div className="px-8 pt-8 pb-6 text-center border-b border-outline-variant/10">
           <div className="w-16 h-16 bg-primary-container/10 rounded-5xl flex items-center justify-center mx-auto mb-6">
@@ -298,7 +298,7 @@ export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
         </div>
 
         <div className="px-8 pb-10 pt-4 flex flex-col gap-3">
-          <button onClick={onClose} className="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-5xl font-bold text-sm tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+          <button onClick={onClose} className="w-full py-4 bg-linear-to-r from-primary to-primary-container text-on-primary rounded-5xl font-bold text-sm tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
             <span className="material-symbols-outlined text-lg">check_circle</span>
             Confirm & Transfer Payment
           </button>
@@ -311,77 +311,12 @@ export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
   )
 }
 
-export function ConnectWalletModal({ isOpen, onClose }: ModalProps) {
-  if (!isOpen)
-    return null
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/20 backdrop-blur-md p-4">
-      <div className="w-full max-w-md bg-surface-container-lowest rounded-[2rem] shadow-[0_24px_48px_-12px_rgba(0,104,95,0.12)] overflow-hidden flex flex-col border border-white/40">
-        <div className="p-8 pb-4">
-          <div className="flex justify-between items-start mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center">
-              <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: '"FILL" 1' }}>account_balance_wallet</span>
-            </div>
-            <button onClick={onClose} className="p-2 hover:bg-surface-container rounded-5xl transition-colors group">
-              <span className="material-symbols-outlined text-outline group-hover:text-on-surface">close</span>
-            </button>
-          </div>
-          <h2 className="font-headline text-2xl font-bold text-on-surface tracking-tight">Connect Wallet</h2>
-          <p className="font-body text-on-surface-variant mt-2 text-sm leading-relaxed">Choose a wallet to connect to CareChain</p>
-        </div>
-
-        <div className="px-8 space-y-3">
-          <button onClick={onClose} className="w-full flex items-center justify-between p-4 bg-surface-container-low hover:bg-surface-container-high rounded-2xl transition-all duration-200 group border border-transparent hover:border-primary/10">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center p-2">
-                <img alt="Phantom Icon" className="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXg-xRp_U75jcxrI3PgXhmJoGZV1uSN924pHTWHMNSczdZTIPXan4-yyR1LrDcBCKt9Yfg07ku2eTZ3GscAgaW5mdQAJMc0eGzckokS92LiBd-y1I-rFMiRoZJkXSH2YXbVPHhPRX_0KDKdM8v7I_DROQky1uSN4LtaNAzpux1lY0WNt2UA8QP9fCzgKa593CEB9GFogNQDbIrHK7LpY5VhBNONi2daGB9EE-l7BjLFjMR7Hl7Yz4yuFfQ0pHQz3oUNmB36GPepwdN" />
-              </div>
-              <span className="font-headline font-semibold text-on-surface">Phantom</span>
-            </div>
-            <span className="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
-          </button>
-          <button onClick={onClose} className="w-full flex items-center justify-between p-4 bg-surface-container-low hover:bg-surface-container-high rounded-2xl transition-all duration-200 group border border-transparent hover:border-primary/10">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center p-2">
-                <img alt="Solflare Icon" className="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ0MBFqMD4_HLJNv6z0nMOM95WjT-D5NbaUgY7eEw3y-5ivrfhg9v0pazzTA0eU2kKUSHdPVrhn-NuJZIl9Fyi6jXpxiC5_e59lH9AmHUrwk6EkREjZI2W6iF-Fk6ucVYA_ozu5rLsPkHennnG4P9RvwpyLIdtsoxk5MY3v4hr-LG42q-B3ehKqJeQA7JMQ_lhQfWe3ATArO30yuBpx_ClKYRfPz-0AEazENhHR-6gvWYHN2O-G43N7WUNIoi8YUDQ5GcgyfnSSY7h" />
-              </div>
-              <span className="font-headline font-semibold text-on-surface">Solflare</span>
-            </div>
-            <span className="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
-          </button>
-          <button onClick={onClose} className="w-full flex items-center justify-between p-4 bg-surface-container-low hover:bg-surface-container-high rounded-2xl transition-all duration-200 group border border-transparent hover:border-primary/10">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center p-2">
-                <img alt="OKX Icon" className="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfyMZyBSCbPlZJptP9Vor0fOO1JV7C1r9xh8OXcYr1iHTuXBp01Sz6s3sV9hWpNcvugKYA5pZNQUJ0hkTlY90Jiu0w6zUbTLstS2ct-mHn9_s3Frh3sHjTqAH-IbjRZol-TqOLwwRbr1aOjQaAHe3A-yDpLVp6zq_JPVsMoD-Z5z-dLWInXj9Q6AmkfqZvhLTxvk2S9Vr8hPARApBMca0ec0jYNTrFD2VWXMGcIoGpq4l6DFAFWzj3x5km5RfWaht8yvT7htrXLPPW" />
-              </div>
-              <span className="font-headline font-semibold text-on-surface">OKX Wallet</span>
-            </div>
-            <span className="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
-          </button>
-        </div>
-
-        <div className="p-8 mt-4 border-t border-surface-container-high/50 bg-surface-container-low/30">
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <div className="relative flex items-center">
-              <input className="peer h-5 w-5 rounded border-outline-variant text-primary focus:ring-primary/20 transition-all cursor-pointer" type="checkbox" />
-            </div>
-            <span className="font-body text-xs text-on-surface-variant leading-relaxed select-none">
-              I have read and agree to the <a className="text-primary hover:underline font-semibold" href="#">Terms & Conditions</a> and <a className="text-primary hover:underline font-semibold" href="#">Privacy Policy</a>. By connecting your wallet, you acknowledge asset ownership verification by CareChain.
-            </span>
-          </label>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export function QueueAdmissionModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen)
     return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-on-background/20 backdrop-blur-[4px]">
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-on-background/20 backdrop-blur-xs">
       <div className="bg-surface-container-lowest w-full max-w-xl mx-4 rounded-xl shadow-2xl overflow-hidden border border-white/40">
         <div className="px-8 py-6 flex items-center justify-between bg-surface-container-low border-b border-outline-variant/10">
           <div>
@@ -462,7 +397,7 @@ export function QueueAdmissionModal({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
         <div className="px-8 py-6 bg-surface-container-low flex gap-4">
-          <button onClick={onClose} className="flex-1 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-5xl font-headline font-bold text-center transition-all active:scale-[0.98] shadow-lg shadow-primary/20">Confirm &amp; Apply for Admission</button>
+          <button onClick={onClose} className="flex-1 py-4 bg-linear-to-r from-primary to-primary-container text-white rounded-5xl font-headline font-bold text-center transition-all active:scale-[0.98] shadow-lg shadow-primary/20">Confirm &amp; Apply for Admission</button>
           <button onClick={onClose} className="px-8 py-4 bg-transparent text-on-surface-variant font-headline font-bold rounded-5xl hover:bg-surface-container-high transition-colors">Cancel</button>
         </div>
       </div>
