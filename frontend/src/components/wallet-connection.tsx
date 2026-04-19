@@ -5,7 +5,7 @@ import { useBalance, useWalletConnection } from '@solana/react-hooks'
 import { LogOut } from 'lucide-react'
 import { useState } from 'react'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
-import { WalletSelectorDialog } from '@/components/dialogs/wallet-selector-dialog'
+import { WalletSelectorDialog } from '@/components/modals/WalletSelectorDialog'
 import { Button } from '@/components/ui/button'
 import { WalletAddress } from '@/components/wallet-address'
 

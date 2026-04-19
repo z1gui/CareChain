@@ -1,7 +1,14 @@
-'use client'
-
 import Link from 'next/link'
 import AppFooter from '@/components/layout/app-footer'
+import { SectionHeader } from '@/components/shared/SectionHeader'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 
 export default function BurnLogicPage() {
   return (
@@ -12,12 +19,10 @@ export default function BurnLogicPage() {
             <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-5xl text-xs font-bold uppercase tracking-wider">Protocol Efficiency</span>
             <span className="h-px flex-1 bg-surface-container-highest" />
           </div>
-          <h1 className="font-headline leading-tight font-bold text-[#0D4741] text-[32px] mb-6">
-            Token Burn &amp; Priority Mechanism
-          </h1>
-          <p className="text-lg text-on-surface-variant max-w-2xl font-light">
-            The CareChain protocol ensures full transparency in asset allocation. Through dynamic $CARE burn logic, we align market demand with the availability of real-world healthcare assets.
-          </p>
+          <SectionHeader
+            title="Token Burn & Priority Mechanism"
+            description="The CareChain protocol ensures full transparency in asset allocation. Through dynamic $CARE burn logic, we align market demand with the availability of real-world healthcare assets."
+          />
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -148,84 +153,82 @@ export default function BurnLogicPage() {
         {/* Channel Comparison Table */}
         <div className="mt-8">
           <h2 className="text-2xl font-bold font-headline mb-6 px-2">Access Tier Comparison</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-separate border-spacing-y-2">
-              <thead>
-                <tr className="text-[10px] uppercase tracking-widest text-slate-400 font-bold px-4">
-                  <th className="pb-4 pl-6">Access Tier</th>
-                  <th className="pb-4">Wait Time</th>
-                  <th className="pb-4">Cost Structure</th>
-                  <th className="pb-4">Priority Status</th>
-                  <th className="pb-4 pr-6 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="bg-secondary/5 hover:bg-secondary/10 transition-colors group">
-                  <td className="py-6 pl-6 rounded-l-2xl">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center text-white">
-                        <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: '"FILL" 1' }}>diamond</span>
-                      </div>
-                      <div>
-                        <div className="font-bold">P1 (VIP Access)</div>
-                        <div className="text-[10px] text-secondary font-medium">BedRight NFT Holder</div>
-                      </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Access Tier</TableHead>
+                <TableHead>Wait Time</TableHead>
+                <TableHead>Cost Structure</TableHead>
+                <TableHead>Priority Status</TableHead>
+                <TableHead className="text-right">Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow className="bg-secondary/5 hover:bg-secondary/10 transition-colors group">
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center text-white">
+                      <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: '"FILL" 1' }}>diamond</span>
                     </div>
-                  </td>
-                  <td className="py-6 font-bold text-on-surface">Immediate / 0 Waiting</td>
-                  <td className="py-6 text-slate-500 text-sm">Hold NFT Asset</td>
-                  <td className="py-6">
-                    <span className="px-3 py-1 bg-secondary text-white rounded-5xl text-[10px] font-bold">Highest Priority</span>
-                  </td>
-                  <td className="py-6 pr-6 rounded-r-2xl text-right">
-                    <Link href="/facilities" className="text-secondary font-bold text-sm block">Browse NFTs →</Link>
-                  </td>
-                </tr>
-                <tr className="bg-white hover:shadow-md transition-all">
-                  <td className="py-6 pl-6 rounded-l-2xl">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
-                        <span className="material-symbols-outlined text-sm">speed</span>
-                      </div>
-                      <div>
-                        <div className="font-bold">P2 (Fast Track)</div>
-                        <div className="text-[10px] text-primary font-medium">$CARE Burn Users</div>
-                      </div>
+                    <div>
+                      <div className="font-bold">P1 (VIP Access)</div>
+                      <div className="text-[10px] text-secondary font-medium">BedRight NFT Holder</div>
                     </div>
-                  </td>
-                  <td className="py-6 font-bold text-on-surface">24 - 72 Hours</td>
-                  <td className="py-6 text-slate-500 text-sm">Dynamic $CARE Burn</td>
-                  <td className="py-6">
-                    <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-5xl text-[10px] font-bold">Priority Access</span>
-                  </td>
-                  <td className="py-6 pr-6 rounded-r-2xl text-right">
-                    <Link href="/buy-care" className="inline-block bg-primary text-white px-4 py-2 rounded-5xl text-xs font-bold shadow-sm active:scale-95 transition-transform">Burn to Upgrade</Link>
-                  </td>
-                </tr>
-                <tr className="bg-surface-container-low opacity-60">
-                  <td className="py-6 pl-6 rounded-l-2xl">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-slate-400 rounded-xl flex items-center justify-center text-white">
-                        <span className="material-symbols-outlined text-sm">person</span>
-                      </div>
-                      <div>
-                        <div className="font-bold">P3 (Standard)</div>
-                        <div className="text-[10px] text-slate-500 font-medium">General Applicants</div>
-                      </div>
+                  </div>
+                </TableCell>
+                <TableCell className="font-bold text-on-surface">Immediate / 0 Waiting</TableCell>
+                <TableCell className="text-slate-500 text-sm">Hold NFT Asset</TableCell>
+                <TableCell>
+                  <span className="px-3 py-1 bg-secondary text-white rounded-5xl text-[10px] font-bold">Highest Priority</span>
+                </TableCell>
+                <TableCell className="text-right">
+                  <Link href="/facilities" className="text-secondary font-bold text-sm block">Browse NFTs →</Link>
+                </TableCell>
+              </TableRow>
+              <TableRow className="bg-white hover:shadow-md transition-all">
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                      <span className="material-symbols-outlined text-sm">speed</span>
                     </div>
-                  </td>
-                  <td className="py-6 font-medium text-slate-500">Indefinite</td>
-                  <td className="py-6 text-slate-500 text-sm">Free Application</td>
-                  <td className="py-6">
-                    <span className="px-3 py-1 bg-surface-container-highest text-slate-500 rounded-5xl text-[10px] font-bold">Lowest Priority</span>
-                  </td>
-                  <td className="py-6 pr-6 rounded-r-2xl text-right">
-                    <span className="text-xs text-slate-400">In Queue</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    <div>
+                      <div className="font-bold">P2 (Fast Track)</div>
+                      <div className="text-[10px] text-primary font-medium">$CARE Burn Users</div>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="font-bold text-on-surface">24 - 72 Hours</TableCell>
+                <TableCell className="text-slate-500 text-sm">Dynamic $CARE Burn</TableCell>
+                <TableCell>
+                  <span className="px-3 py-1 bg-primary-container text-on-primary-container rounded-5xl text-[10px] font-bold">Priority Access</span>
+                </TableCell>
+                <TableCell className="text-right">
+                  <Link href="/buy-care" className="inline-block bg-primary text-white px-4 py-2 rounded-5xl text-xs font-bold shadow-sm active:scale-95 transition-transform">Burn to Upgrade</Link>
+                </TableCell>
+              </TableRow>
+              <TableRow className="bg-surface-container-low opacity-60">
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-slate-400 rounded-xl flex items-center justify-center text-white">
+                      <span className="material-symbols-outlined text-sm">person</span>
+                    </div>
+                    <div>
+                      <div className="font-bold">P3 (Standard)</div>
+                      <div className="text-[10px] text-slate-500 font-medium">General Applicants</div>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="font-medium text-slate-500">Indefinite</TableCell>
+                <TableCell className="text-slate-500 text-sm">Free Application</TableCell>
+                <TableCell>
+                  <span className="px-3 py-1 bg-surface-container-highest text-slate-500 rounded-5xl text-[10px] font-bold">Lowest Priority</span>
+                </TableCell>
+                <TableCell className="text-right">
+                  <span className="text-xs text-slate-400">In Queue</span>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
 
         {/* FAQ Section */}
@@ -244,7 +247,7 @@ export default function BurnLogicPage() {
             <div className="bg-white p-6 rounded-xl border border-surface-container-highest">
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-8 h-8 bg-primary/10 text-primary rounded-5xl flex items-center justify-center text-sm font-bold">Q</span>
-                <h4 className="font-bold text-how-does-pyth-oracle-drive-dynamic-pricing">How does Pyth Oracle drive dynamic pricing?</h4>
+                <h4 className="font-bold text-on-surface">How does Pyth Oracle drive dynamic pricing?</h4>
               </div>
               <p className="text-sm text-on-surface-variant pl-11 leading-relaxed">
                 CareChain utilizes Pyth Oracle's cross-chain price feeds and on-chain application data. When pending asset applications in the P3 queue exceed set thresholds (e.g., 10, 50), the contract automatically adjusts the burn multiplier to ensure protocol resources favor the highest-value demand.

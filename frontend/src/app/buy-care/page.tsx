@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import AppFooter from '@/components/layout/app-footer'
+import { Button } from '@/components/ui/button'
 
 export default function BuyCarePage() {
   return (
@@ -85,10 +86,10 @@ export default function BuyCarePage() {
             </div>
 
             {/* Action Button */}
-            <button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-5xl font-headline font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+            <Button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-5xl font-headline font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 h-auto">
               <span className="material-symbols-outlined">swap_calls</span>
               Buy $CARE Now
-            </button>
+            </Button>
           </div>
 
           {/* Utility Bento Section */}

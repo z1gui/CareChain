@@ -1,63 +1,47 @@
-import Link from 'next/link'
 import AppFooter from '@/components/layout/app-footer'
+import { HeroSection } from '@/components/sections/HeroSection'
+import { PartnersSection } from '@/components/sections/PartnersSection'
+import { StatsGrid } from '@/components/sections/StatsGrid'
+import { FeatureItem } from '@/components/shared/FeatureItem'
+import { TimelineStep } from '@/components/shared/TimelineStep'
+
+const stats = [
+  { label: 'Tokenized Beds', value: '200+', description: 'Across 5 Top Clinical Facilities' },
+  { label: 'Total Value Locked (TVL)', value: '$12.5M', description: 'Verified Live on Solana' },
+  { label: 'Target APY', value: '7.2%-9.0%', description: 'Backed by Real Estate Yields' },
+]
+
+const partners = [
+  { icon: 'medical_services', name: 'Clinica Partners' },
+  { icon: 'token', name: 'Solana Labs' },
+  { icon: 'assured_workload', name: 'Global Health Fund' },
+  { icon: 'security', name: 'CertiK Verified' },
+  { icon: 'account_balance', name: 'Heritage Trust' },
+]
+
+const roadmapSteps = [
+  { step: 1, title: 'Asset Intake', description: 'Evaluate and complete legal compliance and asset audits for physical nursing homes.' },
+  { step: 2, title: 'On-chain Tokenization', description: 'Generate corresponding RWA tokens and launch initial liquidity pools.' },
+  { step: 3, title: 'Yield Distribution', description: 'Monthly rental income is converted to USDC/CARE and auto-distributed to wallets.' },
+  { step: 4, title: 'Ecosystem Expansion', description: 'Introduce bidding from care service providers to further boost underlying asset yields.' },
+]
 
 export default function Home() {
   return (
     <>
       <div className="pt-16">
-        {/* Hero Section */}
-        <section className="relative min-h-[921px] flex items-center justify-center overflow-hidden py-24">
-          <div className="absolute inset-0 z-0">
-            <img
-              className="w-full h-full object-cover opacity-10 blur-sm"
-              alt="Modern clinical interior"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWMXGeIK3bpH70e8bSnOIR-W_niESOuG_CcD5kC75EHkP3JdoQrxwwwwl91sxdbZnfmvQd-fH18P8psp4DRUTYCUZqQrqIEIxWcWd4s4jG3f9bIVIJcDVuU317u7RZmOb2eoiqvVDeP9FYsNVHO3hITxdbsj32MEHhL9QYct7vTnsHIP095kW0RG382SLYMDZKF5UIgqCVmIhZxBJQMBWoCXNgqOdaQKou82JF14k4P_UUqJ8nhL29qPff59XO774OCK1vQXovraqi"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-surface via-transparent to-surface" />
-          </div>
-          <div className="container mx-auto px-6 relative z-10 text-center">
-            <span className="inline-block py-1 px-4 rounded-5xl bg-secondary-fixed text-on-secondary-fixed text-xs font-bold mb-6 tracking-widest uppercase">
-              Solana Ecosystem Pioneer
-            </span>
-            <h1 className="text-6xl md:text-8xl font-extrabold text-on-surface leading-tight mb-8 tracking-tighter">
-              The <span className="text-primary italic">Sovereign</span><br />Sanctuary.
-            </h1>
-            <p className="max-w-2xl mx-auto text-xl text-on-surface-variant font-light mb-12 leading-relaxed">
-              Transforming traditional healthcare assets into liquid RWA. We bridge clinical precision with decentralized finance to build a transparent, sovereign, and efficient future for an aging society.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/facilities" className="bg-linear-to-br from-[#006a31] to-primary-container text-on-primary px-10 py-4 rounded-5xl text-lg font-bold shadow-xl hover:scale-105 transition-transform">
-                Get Started
-              </Link>
-              <button className="bg-surface-container-lowest border border-outline-variant/30 text-on-surface px-10 py-4 rounded-5xl text-lg font-bold hover:bg-surface-container-low transition-colors">
-                View Whitepaper
-              </button>
-            </div>
-          </div>
-        </section>
+        <HeroSection
+          badge="Solana Ecosystem Pioneer"
+          titleLine1="The"
+          titleHighlight="Sovereign"
+          titleLine2="Sanctuary."
+          description="Transforming traditional healthcare assets into liquid RWA. We bridge clinical precision with decentralized finance to build a transparent, sovereign, and efficient future for an aging society."
+          primaryCta={{ text: 'Get Started', href: '/facilities' }}
+          secondaryCta={{ text: 'View Whitepaper' }}
+          backgroundImage="https://lh3.googleusercontent.com/aida-public/AB6AXuDWMXGeIK3bpH70e8bSnOIR-W_niESOuG_CcD5kC75EHkP3JdoQrxwwwwl91sxdbZnfmvQd-fH18P8psp4DRUTYCUZqQrqIEIxWcWd4s4jG3f9bIVIJcDVuU317u7RZmOb2eoiqvVDeP9FYsNVHO3hITxdbsj32MEHhL9QYct7vTnsHIP095kW0RG382SLYMDZKF5UIgqCVmIhZxBJQMBWoCXNgqOdaQKou82JF14k4P_UUqJ8nhL29qPff59XO774OCK1vQXovraqi"
+        />
 
-        {/* Stats Bento Grid */}
-        <section className="py-24 bg-surface-container-low">
-          <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-surface-container-lowest p-10 rounded-5xl flex flex-col justify-center items-center text-center shadow-sm">
-                <span className="text-xs text-on-surface-variant font-medium uppercase tracking-widest mb-2">Tokenized Beds</span>
-                <h3 className="text-5xl font-extrabold text-primary">200+</h3>
-                <p className="text-sm text-tertiary mt-2">Across 5 Top Clinical Facilities</p>
-              </div>
-              <div className="bg-surface-container-lowest p-10 rounded-5xl flex flex-col justify-center items-center text-center shadow-sm">
-                <span className="text-xs text-on-surface-variant font-medium uppercase tracking-widest mb-2">Total Value Locked (TVL)</span>
-                <h3 className="text-5xl font-extrabold text-primary">$12.5M</h3>
-                <p className="text-sm text-secondary mt-2">Verified Live on Solana</p>
-              </div>
-              <div className="bg-surface-container-lowest p-10 rounded-5xl flex flex-col justify-center items-center text-center shadow-sm">
-                <span className="text-xs text-on-surface-variant font-medium uppercase tracking-widest mb-2">Target APY</span>
-                <h3 className="text-5xl font-extrabold text-tertiary">7.2%-9.0%</h3>
-                <p className="text-sm text-on-surface-variant mt-2">Backed by Real Estate Yields</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <StatsGrid stats={stats} />
 
         {/* Mission: RWA for Elderly Care */}
         <section className="py-32 bg-surface">
@@ -65,33 +49,25 @@ export default function Home() {
             <div>
               <h2 className="text-4xl font-bold text-on-surface mb-8">Perfect Integration of RWA & Healthcare</h2>
               <div className="space-y-8">
-                <div className="flex gap-6">
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center">
-                    <span className="material-symbols-outlined text-on-primary-container">apartment</span>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-2">Bed Tokenization</h4>
-                    <p className="text-on-surface-variant leading-relaxed">By tokenizing individual care beds as NFT/Tokens, we lower the entry barrier for massive real estate investments, enabling fractional ownership.</p>
-                  </div>
-                </div>
-                <div className="flex gap-6">
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center">
-                    <span className="material-symbols-outlined text-on-tertiary-container">verified</span>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-2">Full-Chain Transparency</h4>
-                    <p className="text-on-surface-variant leading-relaxed">Occupancy rates, financial yields, and operational status are uploaded to Solana via oracles, eliminating dark box operations in traditional investing.</p>
-                  </div>
-                </div>
-                <div className="flex gap-6">
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center">
-                    <span className="material-symbols-outlined text-on-secondary-container">currency_exchange</span>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-2">Instant Liquidity</h4>
-                    <p className="text-on-surface-variant leading-relaxed">Unlike traditional real estate with multi-year exit cycles, CareChain investors can trade their asset shares anytime on secondary markets.</p>
-                  </div>
-                </div>
+                <FeatureItem
+                  icon="apartment"
+                  title="Bed Tokenization"
+                  description="By tokenizing individual care beds as NFT/Tokens, we lower the entry barrier for massive real estate investments, enabling fractional ownership."
+                />
+                <FeatureItem
+                  icon="verified"
+                  title="Full-Chain Transparency"
+                  description="Occupancy rates, financial yields, and operational status are uploaded to Solana via oracles, eliminating dark box operations in traditional investing."
+                  iconBgColor="bg-tertiary-container"
+                  iconTextColor="text-on-tertiary-container"
+                />
+                <FeatureItem
+                  icon="currency_exchange"
+                  title="Instant Liquidity"
+                  description="Unlike traditional real estate with multi-year exit cycles, CareChain investors can trade their asset shares anytime on secondary markets."
+                  iconBgColor="bg-secondary-container"
+                  iconTextColor="text-on-secondary-container"
+                />
               </div>
             </div>
             <div className="relative">
@@ -173,59 +149,15 @@ export default function Home() {
             <div className="relative">
               <div className="absolute top-1/2 left-0 w-full h-1 bg-surface-container-high hidden md:block -translate-y-1/2" />
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">1</div>
-                  <h5 className="font-bold mb-2">Asset Intake</h5>
-                  <p className="text-xs text-on-surface-variant">Evaluate and complete legal compliance and asset audits for physical nursing homes.</p>
-                </div>
-                <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">2</div>
-                  <h5 className="font-bold mb-2">On-chain Tokenization</h5>
-                  <p className="text-xs text-on-surface-variant">Generate corresponding RWA tokens and launch initial liquidity pools.</p>
-                </div>
-                <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">3</div>
-                  <h5 className="font-bold mb-2">Yield Distribution</h5>
-                  <p className="text-xs text-on-surface-variant">Monthly rental income is converted to USDC/CARE and auto-distributed to wallets.</p>
-                </div>
-                <div className="relative bg-surface p-6 rounded-xl border border-outline-variant/10">
-                  <div className="w-8 h-8 rounded-5xl bg-primary text-white flex items-center justify-center mb-6 relative z-10 mx-auto md:mx-0">4</div>
-                  <h5 className="font-bold mb-2">Ecosystem Expansion</h5>
-                  <p className="text-xs text-on-surface-variant">Introduce bidding from care service providers to further boost underlying asset yields.</p>
-                </div>
+                {roadmapSteps.map(s => (
+                  <TimelineStep key={s.step} step={s.step} title={s.title} description={s.description} />
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Partners */}
-        <section className="py-24 bg-surface-container-highest">
-          <div className="container mx-auto px-6">
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-12">Trusted by Leading Institutions</p>
-            <div className="flex flex-wrap justify-center items-center gap-16 opacity-60 grayscale hover:grayscale-0 transition-all">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-3xl">medical_services</span>
-                <span className="font-headline font-bold text-xl">Clinica Partners</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-3xl">token</span>
-                <span className="font-headline font-bold text-xl">Solana Labs</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-3xl">assured_workload</span>
-                <span className="font-headline font-bold text-xl">Global Health Fund</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-3xl">security</span>
-                <span className="font-headline font-bold text-xl">CertiK Verified</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-3xl">account_balance</span>
-                <span className="font-headline font-bold text-xl">Heritage Trust</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <PartnersSection partners={partners} />
       </div>
       <AppFooter />
     </>
