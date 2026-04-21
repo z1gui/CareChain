@@ -1,9 +1,9 @@
-import AppFooter from '@/components/layout/app-footer'
-import { HeroSection } from '@/components/sections/HeroSection'
-import { PartnersSection } from '@/components/sections/PartnersSection'
-import { StatsGrid } from '@/components/sections/StatsGrid'
-import { FeatureItem } from '@/components/shared/FeatureItem'
-import { TimelineStep } from '@/components/shared/TimelineStep'
+import { AppFooter } from '@/components/layout/app-footer'
+import { HeroSection } from '@/components/sections/hero-section'
+import { PartnersSection } from '@/components/sections/partners-section'
+import { StatsGrid } from '@/components/sections/stats-grid'
+import { FeatureItem } from '@/components/shared/feature-item'
+import { TimelineStep } from '@/components/shared/time-line-step'
 
 const stats = [
   { label: 'Tokenized Beds', value: '200+', description: 'Across 5 Top Clinical Facilities' },

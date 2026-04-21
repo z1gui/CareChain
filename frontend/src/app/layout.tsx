@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Manrope } from 'next/font/google'
-import AppHeader from '@/components/layout/app-header'
-import Providers from '@/components/providers'
+import { AppHeader } from '@/components/layout/app-header'
+import { Providers } from '@/components/providers'
 import { cn } from '@/utils'
 import '../styles/globals.css'
 

@@ -1,4 +1,4 @@
-import { StatCard } from '@/components/shared/StatCard'
+import { StatCard } from '@/components/shared/stat-card'
 
 interface StatItem {
   label: string

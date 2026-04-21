@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import AppFooter from '@/components/layout/app-footer'
-import { SectionHeader } from '@/components/shared/SectionHeader'
+import { AppFooter } from '@/components/layout/app-footer'
+import { SectionHeader } from '@/components/shared/section-header'
 import {
   Table,
   TableBody,

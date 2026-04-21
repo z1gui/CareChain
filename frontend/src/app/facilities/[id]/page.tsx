@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import AppFooter from '@/components/layout/app-footer'
-import { BuyNftModal, QueueAdmissionModal } from '@/components/modals'
+import { AppFooter } from '@/components/layout/app-footer'
+import { BuyNftDialog, QueueAdmissionDialog } from '@/components/dialogs'
 
 export default function FacilityDetailsPage() {
   const [isBuyNftOpen, setIsBuyNftOpen] = useState(false)
@@ -231,8 +231,8 @@ export default function FacilityDetailsPage() {
         </div>
       </div>
       <AppFooter />
-      <BuyNftModal isOpen={isBuyNftOpen} onClose={() => setIsBuyNftOpen(false)} />
-      <QueueAdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
+      <BuyNftDialog isOpen={isBuyNftOpen} onClose={() => setIsBuyNftOpen(false)} />
+      <QueueAdmissionDialog isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
     </>
   )
 }

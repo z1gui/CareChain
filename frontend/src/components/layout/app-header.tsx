@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import WalletConnection from '@/components/wallet-connection'
+import { WalletConnection } from '@/components/wallet/wallet-connection'
 import { cn } from '@/utils'
 
-export default function Header() {
+export function AppHeader() {
   const pathname = usePathname()
 
   const navLinks = [

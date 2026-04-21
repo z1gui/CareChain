@@ -14,7 +14,7 @@ interface ModalProps {
   onClose: () => void
 }
 
-export function BuyNftModal({ isOpen, onClose }: ModalProps) {
+export function BuyNftDialog({ isOpen, onClose }: ModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">

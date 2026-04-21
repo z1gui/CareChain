@@ -13,7 +13,7 @@ const client = createClient({
   walletConnectors: autoDiscover(),
 })
 
-export default function Providers({ children }: PropsWithChildren) {
+export function Providers({ children }: PropsWithChildren) {
   return (
     <SolanaProvider client={client}>
       <QueryClientProvider client={queryClient}>

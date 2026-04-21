@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import AppFooter from '@/components/layout/app-footer'
-import { CheckInPaymentModal } from '@/components/modals'
-import { ActivityFeedItem } from '@/components/queue/ActivityFeedItem'
-import { BurnSlider } from '@/components/queue/BurnSlider'
-import { QueueChannel } from '@/components/queue/QueueChannel'
-import { SectionHeader } from '@/components/shared/SectionHeader'
-import { StatCard } from '@/components/shared/StatCard'
+import { AppFooter } from '@/components/layout/app-footer'
+import { CheckInPaymentDialog } from '@/components/dialogs'
+import { ActivityFeedItem } from '@/components/queue/activity-feed-item'
+import { BurnSlider } from '@/components/queue/burn-slider'
+import { QueueChannel } from '@/components/queue/queue-channel'
+import { SectionHeader } from '@/components/shared/section-header'
+import { StatCard } from '@/components/shared/stat-card'
 
 const p1Items = [
   { rank: 1, name: 'Wallet...7x9a', detail: 'BedRight #0842', status: 'Waiting: 2h' },
@@ -229,7 +229,7 @@ export default function PriorityQueuePage() {
         </section>
       </main>
       <AppFooter />
-      <CheckInPaymentModal isOpen={isCheckInOpen} onClose={() => setIsCheckInOpen(false)} />
+      <CheckInPaymentDialog isOpen={isCheckInOpen} onClose={() => setIsCheckInOpen(false)} />
     </>
   )
 }

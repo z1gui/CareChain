@@ -16,7 +16,7 @@ interface ModalProps {
   onClose: () => void
 }
 
-export function AssetManagementModal({ isOpen, onClose }: ModalProps) {
+export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
       <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto">

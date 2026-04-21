@@ -15,7 +15,7 @@ interface ModalProps {
   onClose: () => void
 }
 
-export function CheckInPaymentModal({ isOpen, onClose }: ModalProps) {
+export function CheckInPaymentDialog({ isOpen, onClose }: ModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
       <DialogContent className="max-w-xl rounded-3xl md:rounded-5xl md:px-8">

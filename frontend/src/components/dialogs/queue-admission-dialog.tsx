@@ -16,7 +16,7 @@ interface ModalProps {
   onClose: () => void
 }
 
-export function QueueAdmissionModal({ isOpen, onClose }: ModalProps) {
+export function QueueAdmissionDialog({ isOpen, onClose }: ModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
       <DialogContent className="max-w-xl">

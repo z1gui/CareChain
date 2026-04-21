@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { AssetManagementModal } from '@/components/modals'
-import { SectionHeader } from '@/components/shared/SectionHeader'
+import { AssetManagementDialog } from '@/components/dialogs'
+import { SectionHeader } from '@/components/shared/section-header'
 import { Button } from '@/components/ui/button'
 
 const assets = [
@@ -160,7 +160,7 @@ export default function AssetManagementPage() {
       {/* Simple Bottom Decor */}
       <div className="fixed bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary/30 via-secondary/30 to-tertiary/30 z-50" />
 
-      <AssetManagementModal isOpen={isAssetModalOpen} onClose={() => setIsAssetModalOpen(false)} />
+      <AssetManagementDialog isOpen={isAssetModalOpen} onClose={() => setIsAssetModalOpen(false)} />
     </>
   )
 }

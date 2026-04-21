@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import AppFooter from '@/components/layout/app-footer'
+import { AppFooter } from '@/components/layout/app-footer'
 import { Button } from '@/components/ui/button'
 
 export default function BuyCarePage() {

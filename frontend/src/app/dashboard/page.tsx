@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { PortfolioHero } from '@/components/dashboard/PortfolioHero'
-import { QuickActionCard } from '@/components/dashboard/QuickActionCard'
-import { YieldChart } from '@/components/dashboard/YieldChart'
-import { NftCard } from '@/components/facility/NftCard'
-import { QueueAdmissionModal } from '@/components/modals'
-import { SectionHeader } from '@/components/shared/SectionHeader'
-import { StatCard } from '@/components/shared/StatCard'
+import { PortfolioHero } from '@/components/dashboard/portfolio-hero'
+import { QuickActionCard } from '@/components/dashboard/quick-action-card'
+import { YieldChart } from '@/components/dashboard/yield-chart'
+import { NftCard } from '@/components/facility/nft-card'
+import { QueueAdmissionDialog } from '@/components/dialogs'
+import { SectionHeader } from '@/components/shared/section-header'
+import { StatCard } from '@/components/shared/stat-card'
 import { Button } from '@/components/ui/button'
 
 const portfolioStats = [
@@ -172,7 +172,7 @@ export default function DashboardPage() {
           </div>
         </section>
       </main>
-      <QueueAdmissionModal isOpen={isAssetModalOpen} onClose={() => setIsAssetModalOpen(false)} />
+      <QueueAdmissionDialog isOpen={isAssetModalOpen} onClose={() => setIsAssetModalOpen(false)} />
     </div>
   )
 }

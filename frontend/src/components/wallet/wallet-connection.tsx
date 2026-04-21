@@ -5,11 +5,11 @@ import { useBalance, useWalletConnection } from '@solana/react-hooks'
 import { LogOut } from 'lucide-react'
 import { useState } from 'react'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
-import { WalletSelectorDialog } from '@/components/modals/WalletSelectorDialog'
+import { WalletSelectorDialog } from '@/components/dialogs/wallet-selector-dialog'
 import { Button } from '@/components/ui/button'
-import { WalletAddress } from '@/components/wallet-address'
+import { WalletAddress } from '@/components/wallet/wallet-address'
 
-export default function WalletConnection() {
+export function WalletConnection() {
   const [open, setOpen] = useState(false)
   const { connected, wallet, disconnect } = useWalletConnection()
   const { lamports: balance } = useBalance(wallet?.account?.address)
