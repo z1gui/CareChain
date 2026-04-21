@@ -16,7 +16,7 @@ export function WalletClusterSelector() {
       <SelectContent alignItemWithTrigger>
         <SelectGroup>
           {clusters.map(cluster => (
-            <SelectItem key={cluster.moniker} value={cluster.moniker}>
+            <SelectItem key={cluster.moniker} value={cluster.moniker} role="button">
               {cluster.moniker}
             </SelectItem>
           ))}

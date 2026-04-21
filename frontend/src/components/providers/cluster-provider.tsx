@@ -1,7 +1,7 @@
 import type { Cluster } from '@/contexts'
 import type { PropsWithChildren } from 'react'
 import { resolveCluster } from '@solana/client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ClusterContext } from '@/contexts'
 
 const clusters = [
@@ -23,22 +23,23 @@ function _findCluster(moniker: Cluster['moniker'] | null) {
 const STORAGE_KEY = 'solana-cluster'
 
 export function ClusterProvider({ children }: PropsWithChildren) {
-  const [currentCluster, setCurrentCluster] = useState<Cluster>(() => {
-    const moniker = localStorage.getItem(STORAGE_KEY)
+  const [currentCluster, setCurrentCluster] = useState<Cluster>(clusters[0])
+
+  useEffect(() => {
+    const moniker = window.localStorage.getItem(STORAGE_KEY)
     const ret = _findCluster(moniker as Cluster['moniker'])
 
-    if (!ret) {
-      return clusters[0]
+    if (ret) {
+      // eslint-disable-next-line react/set-state-in-effect
+      setCurrentCluster(ret)
     }
-
-    return ret
-  })
+  }, [])
 
   const setCluster = (moniker: Cluster['moniker'] | null) => {
     const ret = _findCluster(moniker)
     if (ret && moniker) {
       setCurrentCluster(ret)
-      localStorage.setItem(STORAGE_KEY, moniker)
+      window.localStorage.setItem(STORAGE_KEY, moniker)
     }
   }
 
