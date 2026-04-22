@@ -19,6 +19,7 @@
     "pnpm": ">=8.15.6"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
     "chain": "surfpool start",

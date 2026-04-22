@@ -1,18 +1,16 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
 import { ClusterProvider } from '@/components/providers/cluster-provider'
 import { SolanaProvider } from '@/components/providers/solana-provider'
-
-const queryClient = new QueryClient()
+import { TanstackProvider } from '@/components/providers/tanstack-provider'
 
 export function Providers({ children }: PropsWithChildren) {
   return (
     <ClusterProvider>
       <SolanaProvider>
-        <QueryClientProvider client={queryClient}>
+        <TanstackProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -21,7 +19,7 @@ export function Providers({ children }: PropsWithChildren) {
           >
             {children}
           </ThemeProvider>
-        </QueryClientProvider>
+        </TanstackProvider>
       </SolanaProvider>
     </ClusterProvider>
   )

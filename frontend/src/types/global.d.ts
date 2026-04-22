@@ -1,18 +1,27 @@
+import type { QueryKey, UnusedSkipTokenOptions } from '@tanstack/react-query'
+
 declare global {
   type Nullable<T> = null | undefined | T
 
   namespace NodeJS {
     interface ProcessEnv {
-      // WalletConnect
-      NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID: string
-
-      // Contract
-      LOCAL_PRIVATE_KEY: string
-      LOCAL_RPC_URL: string
-      TEST_PRIVATE_KEY: string
-      SEPOLIA_RPC_URL: string
-      ETHERSCAN_API_KEY: string
+      // Base url
+      NEXT_PUBLIC_API_BASE_URL: string
     }
+  }
+
+  type QueryOptions = UnusedSkipTokenOptions & {
+    extraQueryKey?: QueryKey
+  }
+
+  interface ApiResponseData<Data> {
+    success: boolean
+    message: string
+    data: Data | null
+    error: {
+      code: string
+      details: string
+    } | null
   }
 
   interface NFTMetadata {

@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import { autoDiscover, createClient } from '@solana/client'
-import { SolanaProvider as _ClientProvider } from '@solana/react-hooks'
+import { SolanaProvider as SolanaClientProvider } from '@solana/react-hooks'
 import { useMemo } from 'react'
 import { useCluster } from '@/hooks'
 
@@ -12,8 +12,8 @@ export function SolanaProvider({ children }: PropsWithChildren) {
   }), [cluster])
 
   return (
-    <_ClientProvider client={client}>
+    <SolanaClientProvider client={client}>
       {children}
-    </_ClientProvider>
+    </SolanaClientProvider>
   )
 }

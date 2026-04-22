@@ -1,6 +1,6 @@
 import { lamports, lamportsToSolString } from '@solana/client'
 import { useBalance, useWalletConnection } from '@solana/react-hooks'
-import { LogOutIcon } from 'lucide-react'
+import { UnplugIcon } from 'lucide-react'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -36,7 +36,7 @@ export function WalletDisplay() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem variant="destructive" onClick={disconnect} role="button">
-              <LogOutIcon /> Disconnect
+              <UnplugIcon /> Disconnect
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>

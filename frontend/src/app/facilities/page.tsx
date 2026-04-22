@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { BuyNftDialog } from '@/components/dialogs'
 import { FacilityCard } from '@/components/facility/facility-card'
 import { FacilityFilterBar } from '@/components/facility/facility-filter-bar'
 import { AppFooter } from '@/components/layout/app-footer'
-import { BuyNftDialog } from '@/components/dialogs'
 import { SectionHeader } from '@/components/shared/section-header'
 
 const facilities = [
