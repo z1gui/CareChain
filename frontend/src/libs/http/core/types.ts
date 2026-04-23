@@ -8,3 +8,9 @@ export type ResponseInterceptor = (
 ) => Promise<Response> | Response
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+
+export type QueryValue = string | number | boolean | null | undefined
+
+export interface HttpRequestInit extends RequestInit {
+  queries?: Record<string, QueryValue>
+}

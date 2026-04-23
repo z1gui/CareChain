@@ -1,4 +1,4 @@
-import type { RequestInterceptor, ResponseInterceptor } from './types'
+import type { HttpRequestInit, RequestInterceptor, ResponseInterceptor } from './types'
 import { ApiError } from './errors'
 
 export interface CreateHttpClientOptions {
@@ -22,15 +22,28 @@ export function createHttpClient(options: CreateHttpClientOptions) {
 
   return async function http<Data, ResponseData = ApiResponseData<Data>>(
     path: string,
-    init: RequestInit = {},
+    init: HttpRequestInit = {},
   ): Promise<ResponseData> {
-    let input: RequestInfo | URL = `${baseUrl}${path}`
+    const { queries, ...requestInit } = init
+    const searchParams = new URLSearchParams()
+
+    for (const [key, value] of Object.entries(queries ?? {})) {
+      if (value === null || value === undefined) {
+        continue
+      }
+
+      searchParams.set(key, String(value))
+    }
+
+    const queryString = searchParams.toString()
+
+    let input: RequestInfo | URL = `${baseUrl}${path}${queryString ? `?${queryString}` : ''}`
     let finalInit: RequestInit = {
-      ...init,
+      ...requestInit,
       headers: {
         'content-type': 'application/json',
         ...(await getHeaders?.()),
-        ...(init.headers ?? {}),
+        ...(requestInit.headers ?? {}),
       },
     }
 

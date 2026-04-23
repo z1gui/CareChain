@@ -1,18 +1,20 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
 import { getPostsQuery } from '@/apis/posts/queries'
 import { Button } from '@/components/ui/button'
 
 export function PostList() {
   const { data, isLoading, refetch } = useQuery({
-    ...getPostsQuery(),
+    ...getPostsQuery({
+      extraQueryKey: [1],
+      init: {
+        queries: {
+          userId: 1,
+        },
+      },
+    }),
   })
-
-  useEffect(() => {
-    console.log(isLoading)
-  }, [data, isLoading])
 
   if (isLoading) {
     return <div>Loading...</div>
