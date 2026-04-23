@@ -15,7 +15,7 @@ export function StatsGrid({ stats }: StatsGridProps) {
     <section className="py-24 bg-surface-container-low">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stats.map((stat, i) => (
+          {stats.map(stat => (
             <StatCard
               key={stat.label}
               label={stat.label}

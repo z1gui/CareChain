@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { AppFooter } from '@/components/layout/app-footer'
 import { CheckInPaymentDialog } from '@/components/dialogs'
+import { AppFooter } from '@/components/layout/app-footer'
 import { ActivityFeedItem } from '@/components/queue/activity-feed-item'
 import { BurnSlider } from '@/components/queue/burn-slider'
 import { QueueChannel } from '@/components/queue/queue-channel'
@@ -222,8 +222,8 @@ export default function PriorityQueuePage() {
             <button className="text-xs text-primary font-bold hover:underline">View Block Explorer</button>
           </div>
           <div className="space-y-4 no-scrollbar overflow-y-auto max-h-64">
-            {activities.map((activity, i) => (
-              <ActivityFeedItem key={i} {...activity} />
+            {activities.map(activity => (
+              <ActivityFeedItem key={activity.icon} {...activity} />
             ))}
           </div>
         </section>
