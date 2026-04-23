@@ -19,7 +19,7 @@ interface ModalProps {
 export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
-      <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>BedRight NFT Management</DialogTitle>
           <DialogDescription>Asset Serial: FSH-A301</DialogDescription>

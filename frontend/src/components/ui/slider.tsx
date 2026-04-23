@@ -19,9 +19,9 @@ const Slider = React.forwardRef<
   >
     <SliderPrimitive.Control className="flex w-full items-center">
       <SliderPrimitive.Track className="h-2 w-full grow overflow-hidden rounded-lg bg-surface-container-high">
-        <SliderPrimitive.Indicator className="h-full bg-secondary" />
+        <SliderPrimitive.Indicator className="h-full bg-surface-container" />
       </SliderPrimitive.Track>
-      <SliderPrimitive.Thumb className="block size-5 rounded-5xl border-2 border-secondary bg-white ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:pointer-events-none disabled:opacity-50" />
+      <SliderPrimitive.Thumb className="block size-5 rounded-5xl border-2 border-primary bg-primary ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:pointer-events-none disabled:opacity-50" />
     </SliderPrimitive.Control>
   </SliderPrimitive.Root>
 ))

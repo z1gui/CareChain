@@ -106,7 +106,7 @@ export function WalletSelectorDialog({ open, setOpen }: WalletSelectorDialogProp
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="w-full max-w-md">
+      <DialogContent className="w-full sm:max-w-md">
         <DialogHeader>
           <div className="w-12 h-12 rounded-[1rem] mb-4 bg-primary-container/10 flex items-center justify-center">
             <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: '"FILL" 1' }}>account_balance_wallet</span>

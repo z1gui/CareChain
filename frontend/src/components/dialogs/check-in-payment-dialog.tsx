@@ -18,7 +18,7 @@ interface ModalProps {
 export function CheckInPaymentDialog({ isOpen, onClose }: ModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
-      <DialogContent className="max-w-xl rounded-3xl md:rounded-5xl md:px-8">
+      <DialogContent className="sm:max-w-xl rounded-3xl md:rounded-5xl md:px-8">
         <DialogHeader className="text-center border-b border-outline-variant/10 pb-6">
           <div className="w-16 h-16 bg-primary-container/10 rounded-5xl flex items-center justify-center mx-auto mb-6">
             <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: '"FILL" 1' }}>medical_information</span>

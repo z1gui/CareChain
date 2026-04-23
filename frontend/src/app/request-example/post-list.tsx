@@ -22,8 +22,8 @@ export function PostList() {
 
   return (
     <div>
-      <Button onClick={() => refetch()}>Refresh</Button>
-      <pre className="whitespace-pre-wrap">{data && JSON.stringify(data, null, 2)}</pre>
+      <Button onClick={() => refetch}>Refresh</Button>
+      <pre className="whitespace-pre-wrap">{data ? JSON.stringify(data, null, 2) : null}</pre>
     </div>
   )
 }
