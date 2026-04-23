@@ -1,5 +1,5 @@
 import type { RequestInterceptor, ResponseInterceptor } from './types'
-import { ApiError } from './types'
+import { ApiError } from './errors'
 
 export interface CreateHttpClientOptions {
   baseUrl: string

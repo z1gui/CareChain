@@ -1,15 +1,3 @@
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
-
-export class ApiError extends Error {
-  constructor(
-    public status: number,
-    public code: string,
-    public payload?: unknown,
-  ) {
-    super(code)
-  }
-}
-
 export type RequestInterceptor = (
   input: RequestInfo | URL,
   init: RequestInit,
@@ -18,3 +6,5 @@ export type RequestInterceptor = (
 export type ResponseInterceptor = (
   response: Response,
 ) => Promise<Response> | Response
+
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'

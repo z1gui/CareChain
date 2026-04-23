@@ -1,9 +1,9 @@
 import { createHttpClient } from '../core'
-import { sharedConfig } from './shared-config'
+import { baseConfig } from './base-config'
 
-export function clientHttp() {
+export function createBrowserHttp() {
   return createHttpClient({
-    ...sharedConfig,
+    ...baseConfig,
     onUnauthorized: () => {
       // window.location.href = '/login'
     },

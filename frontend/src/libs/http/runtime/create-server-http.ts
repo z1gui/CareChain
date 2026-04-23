@@ -1,9 +1,9 @@
 import { createHttpClient } from '../core'
-import { sharedConfig } from './shared-config'
+import { baseConfig } from './base-config'
 
-export async function serverHttp() {
+export function createServerHttp() {
   return createHttpClient({
-    ...sharedConfig,
+    ...baseConfig,
     getHeaders: async () => {
       // const cookieStore = await cookies()
       return {

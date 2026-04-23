@@ -1,4 +1,5 @@
-import type { QueryKey, UnusedSkipTokenOptions } from '@tanstack/react-query'
+import type { HttpClient } from '@/libs/http'
+import type { DefaultError, QueryKey, UnusedSkipTokenOptions } from '@tanstack/react-query'
 
 declare global {
   type Nullable<T> = null | undefined | T
@@ -10,8 +11,17 @@ declare global {
     }
   }
 
-  type QueryOptions = UnusedSkipTokenOptions & {
+  type QueryOptions<
+    TQueryFn extends (...args: any[]) => any,
+    TError = DefaultError,
+    TData = Awaited<ReturnType<TQueryFn>>,
+    TQueryKey extends QueryKey = QueryKey,
+  > = Omit<
+    UnusedSkipTokenOptions<Awaited<ReturnType<TQueryFn>>, TError, TData, TQueryKey>,
+    'queryFn'
+  > & {
     extraQueryKey?: QueryKey
+    init?: RequestInit
   }
 
   interface ApiResponseData<Data> {
