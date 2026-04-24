@@ -91,7 +91,9 @@ export default function AssetManagementPage() {
             <div key={asset.serial} className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row border border-surface-container-high">
               <div className="sm:w-1/3 relative h-48 sm:h-auto">
                 <img alt={asset.serial} className="w-full h-full object-cover" src={asset.image} />
-                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold text-primary shadow-sm tracking-wider">
+                <div className={`absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold shadow-sm tracking-wider ${
+                  asset.serial === 'GZ-B102' ? 'text-secondary' : 'text-primary'
+                }`}>
                   {asset.serial === 'FSH-A301' ? 'ACTIVE' : asset.serial === 'GZ-B102' ? 'ON-CHAIN' : 'PENDING'}
                 </div>
               </div>

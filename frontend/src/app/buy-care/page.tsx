@@ -1,8 +1,22 @@
-import Link from 'next/link'
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { AppFooter } from '@/components/layout/app-footer'
 import { Button } from '@/components/ui/button'
 
 export default function BuyCarePage() {
+  const router = useRouter()
+  const [payAmount, setPayAmount] = useState('1.0')
+  const [showTokenDropdown, setShowTokenDropdown] = useState(false)
+
+  const handleBlur = () => {
+    if (!payAmount) return
+    if (!payAmount.includes('.')) {
+      setPayAmount(`${payAmount}.0`)
+    }
+  }
+
   return (
     <div className="bg-background text-on-surface font-body min-h-screen flex flex-col pt-16">
       <main className="flex-grow pt-16 pb-20 px-4 flex flex-col items-center">
@@ -10,9 +24,12 @@ export default function BuyCarePage() {
         <div className="w-full max-w-[480px] space-y-6 relative">
           {/* Back Button */}
           <div className="absolute -left-16 top-0 hidden lg:block">
-            <Link href="/" className="w-10 h-10 rounded-5xl flex items-center justify-center bg-white/40 backdrop-blur-md border border-outline-variant/20 text-on-surface-variant hover:text-primary hover:bg-white/60 transition-all shadow-sm active:scale-90">
+            <button
+              onClick={() => router.back()}
+              className="w-10 h-10 rounded-5xl flex items-center justify-center bg-white/40 backdrop-blur-md border border-outline-variant/20 text-on-surface-variant hover:text-primary hover:bg-white/60 transition-all shadow-sm active:scale-90 cursor-pointer"
+            >
               <span className="material-symbols-outlined text-xl">chevron_left</span>
-            </Link>
+            </button>
           </div>
 
           {/* Wallet Address Header (Subtle) */}
@@ -37,14 +54,36 @@ export default function BuyCarePage() {
                 <span className="text-xs font-bold text-on-surface-variant uppercase font-label">Pay</span>
                 <span className="text-xs font-medium text-primary cursor-pointer hover:underline">Max</span>
               </div>
-              <div className="flex justify-between items-center">
-                <input readOnly className="bg-transparent border-none focus:ring-0 text-2xl font-headline font-bold text-on-surface w-full p-0" placeholder="0.00" type="number" defaultValue="1.0" />
-                <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-5xl shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
-                  <div className="w-6 h-6 rounded-5xl bg-slate-900 flex items-center justify-center overflow-hidden">
-                    <img alt="Solana logo" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQwp6KKz1Z7t9js7UJ1Hujt29edFHmaIUfrMRQVSCjp95qWqbefM3L_Z8cZAOrCr_HUQT4H18jUUDbVLgyct1-3rdbT94qcsZYVTzFCnVA4_xQ_mDBD4B0GEE50htlFiCMhtNTHaRB5MKqkx0YHQ7BrwDsVk6nHSsarmLZ4rEawztQiOLyD2lcIg5PS9ttsGleAxtWIsH8tmILSTfmhZYHihKRi3y8DSUS3m9vW69_pIBPer4UI0nRQbl3vah8zKkMtEkLeJz1n75k" />
+              <div className="flex justify-between items-center gap-4">
+                <input
+                  className="bg-transparent border-none focus:ring-0 focus:outline-none text-2xl font-headline font-bold text-on-surface w-full p-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  placeholder="0.00"
+                  type="text"
+                  value={payAmount}
+                  onChange={e => setPayAmount(e.target.value)}
+                  onBlur={handleBlur}
+                />
+                <div className="relative shrink-0">
+                  <div
+                    onClick={() => setShowTokenDropdown(!showTokenDropdown)}
+                    className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-5xl shadow-sm cursor-pointer hover:bg-slate-50 transition-colors"
+                  >
+                    <div className="w-6 h-6 rounded-5xl bg-slate-900 flex items-center justify-center overflow-hidden">
+                      <img alt="Solana logo" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQwp6KKz1Z7t9js7UJ1Hujt29edFHmaIUfrMRQVSCjp95qWqbefM3L_Z8cZAOrCr_HUQT4H18jUUDbVLgyct1-3rdbT94qcsZYVTzFCnVA4_xQ_mDBD4B0GEE50htlFiCMhtNTHaRB5MKqkx0YHQ7BrwDsVk6nHSsarmLZ4rEawztQiOLyD2lcIg5PS9ttsGleAxtWIsH8tmILSTfmhZYHihKRi3y8DSUS3m9vW69_pIBPer4UI0nRQbl3vah8zKkMtEkLeJz1n75k" />
+                    </div>
+                    <span className="font-bold text-sm font-headline">SOL</span>
+                    <span className={`material-symbols-outlined text-sm transition-transform ${showTokenDropdown ? 'rotate-180' : ''}`}>expand_more</span>
                   </div>
-                  <span className="font-bold text-sm font-headline">SOL</span>
-                  <span className="material-symbols-outlined text-sm">expand_more</span>
+                  {showTokenDropdown && (
+                    <div className="absolute right-0 top-full mt-1 bg-white rounded-xl shadow-lg border border-outline-variant/10 py-1 z-20 min-w-[140px]">
+                      <div className="flex items-center gap-2 px-3 py-2 hover:bg-surface-container-low cursor-pointer">
+                        <div className="w-5 h-5 rounded-5xl bg-slate-900 flex items-center justify-center overflow-hidden">
+                          <img alt="Solana logo" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQwp6KKz1Z7t9js7UJ1Hujt29edFHmaIUfrMRQVSCjp95qWqbefM3L_Z8cZAOrCr_HUQT4H18jUUDbVLgyct1-3rdbT94qcsZYVTzFCnVA4_xQ_mDBD4B0GEE50htlFiCMhtNTHaRB5MKqkx0YHQ7BrwDsVk6nHSsarmLZ4rEawztQiOLyD2lcIg5PS9ttsGleAxtWIsH8tmILSTfmhZYHihKRi3y8DSUS3m9vW69_pIBPer4UI0nRQbl3vah8zKkMtEkLeJz1n75k" />
+                        </div>
+                        <span className="font-bold text-sm">SOL</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

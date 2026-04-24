@@ -74,8 +74,8 @@ export function CheckInPaymentDialog({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
 
-        <DialogFooter className="flex-col gap-3">
-          <Button onClick={onClose} className="w-full py-4 bg-linear-to-r from-primary to-primary-container text-on-primary rounded-5xl font-bold text-sm tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+        <DialogFooter className="flex-col gap-3 sm:flex-col items-stretch bg-transparent">
+          <Button onClick={onClose} className="w-full py-6 bg-linear-to-r from-primary to-primary-container text-on-primary rounded-5xl font-bold text-sm tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
             <span className="material-symbols-outlined text-lg">check_circle</span>
             Confirm & Transfer Payment
           </Button>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -17,11 +18,13 @@ interface ModalProps {
 }
 
 export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
+  const [mode, setMode] = useState<'yield' | 'stay'>('yield')
+
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl p-8">
         <DialogHeader>
-          <DialogTitle>BedRight NFT Management</DialogTitle>
+          <DialogTitle className="text-primary">BedRight NFT Management</DialogTitle>
           <DialogDescription>Asset Serial: FSH-A301</DialogDescription>
         </DialogHeader>
 
@@ -64,10 +67,24 @@ export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
                 Operation Mode
               </label>
               <div className="flex bg-surface-container-high p-1 rounded-5xl w-fit">
-                <button className="px-6 py-2 rounded-5xl text-sm font-bold transition-all bg-surface-container-lowest text-primary shadow-sm">
+                <button
+                  onClick={() => setMode('yield')}
+                  className={`px-6 py-2 rounded-5xl text-sm font-bold transition-all ${
+                    mode === 'yield'
+                      ? 'bg-surface-container-lowest text-primary shadow-sm'
+                      : 'text-outline hover:text-on-surface'
+                  }`}
+                >
                   Yield
                 </button>
-                <button className="px-6 py-2 rounded-5xl text-sm font-bold transition-all text-outline hover:text-on-surface">
+                <button
+                  onClick={() => setMode('stay')}
+                  className={`px-6 py-2 rounded-5xl text-sm font-bold transition-all ${
+                    mode === 'stay'
+                      ? 'bg-surface-container-lowest text-primary shadow-sm'
+                      : 'text-outline hover:text-on-surface'
+                  }`}
+                >
                   Stay
                 </button>
               </div>
@@ -88,9 +105,9 @@ export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
             </h3>
             <div className="flex gap-2">
               <div className="relative grow">
-                <Input className="py-4" placeholder="Recipient wallet address (0x...)" type="text" />
+                <Input className="py-5" placeholder="Recipient wallet address (0x...)" type="text" />
               </div>
-              <Button className="bg-secondary text-on-secondary px-6 py-4 rounded-xl font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 shadow-lg shadow-secondary/20">
+              <Button className="bg-secondary text-on-secondary px-6 py-5 rounded-xl font-bold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 shadow-lg shadow-secondary/20">
                 Transfer Asset
               </Button>
             </div>
@@ -101,7 +118,7 @@ export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>
+          <Button variant="ghost" className="text-gray-500 hover:text-gray-700" onClick={onClose}>
             Cancel
           </Button>
           <Button onClick={onClose}>
