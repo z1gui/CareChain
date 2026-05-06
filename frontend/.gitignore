@@ -1,5 +1,6 @@
 # directories
 node_modules
+.surfpool
 .coverage_artifacts
 .coverage_cache
 .coverage_contracts

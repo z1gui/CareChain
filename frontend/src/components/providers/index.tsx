@@ -1,31 +1,26 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import { autoDiscover, createClient } from '@solana/client'
-import { SolanaProvider } from '@solana/react-hooks'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
+import { ClusterProvider } from '@/components/providers/cluster-provider'
+import { SolanaProvider } from '@/components/providers/solana-provider'
+import { TanstackProvider } from '@/components/providers/tanstack-provider'
 
-const queryClient = new QueryClient()
-
-const client = createClient({
-  cluster: 'devnet',
-  walletConnectors: autoDiscover(),
-})
-
-export default function Providers({ children }: PropsWithChildren) {
+export function Providers({ children }: PropsWithChildren) {
   return (
-    <SolanaProvider client={client}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </QueryClientProvider>
-    </SolanaProvider>
+    <ClusterProvider>
+      <SolanaProvider>
+        <TanstackProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </TanstackProvider>
+      </SolanaProvider>
+    </ClusterProvider>
   )
 }
