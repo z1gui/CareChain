@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: carechain-backend
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/carechain?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root1234}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:root1234}
+      repositories:
+        enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+
+server:
+  port: 8080
+
+management:
+  health:
+    redis:
+      enabled: ${MANAGEMENT_HEALTH_REDIS_ENABLED:false}
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    root: INFO
+    com.carechain.backend: INFO
+
+auth:
+  challenge-ttl-minutes: 5
+  jwt-expiration-minutes: 120
+  jwt-secret: change-this-dev-secret-to-a-long-random-value
+  message-statement: Sign this message to log in to CareChain.
+
+helius:
+  base-url: ${HELIUS_BASE_URL:https://devnet.helius-rpc.com}
+  api-key: ${HELIUS_API_KEY:efcd701a-0a61-4b6d-9ae4-5ee974625963}
+  timeout-ms: ${HELIUS_TIMEOUT_MS:5000}

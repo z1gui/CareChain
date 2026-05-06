@@ -1,1 +1,7 @@
 .DS_Store
+/backend/.idea/
+/backend/.m2/
+/backend/AGENTS.md
+/backend/CareChain.postman_collection.json
+/backend/target/
+/doc/
