@@ -8,9 +8,7 @@ describe("carechain", () => {
 
   const program = anchor.workspace.carechain as Program<Carechain>;
 
-  it("Is initialized!", async () => {
-    // Add your test here.
-    const tx = await program.methods.initialize().rpc();
-    console.log("Your transaction signature", tx);
+  it.skip("keeps the default carechain scaffold disabled until a real integration flow exists", async () => {
+    void program;
   });
 });

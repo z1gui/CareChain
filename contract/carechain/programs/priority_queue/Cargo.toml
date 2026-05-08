@@ -1,12 +1,12 @@
 [package]
-name = "carechain"
+name = "priority_queue"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "carechain"
+name = "priority_queue"
 
 [features]
 default = []
@@ -16,7 +16,6 @@ no-idl = []
 no-log-ix-name = []
 idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 
-
 [dependencies]
 anchor-lang = "0.32.1"
-anchor-spl = { version = "0.32.1", features = ["metadata"] }
+anchor-spl = { version = "0.32.1", features = ["token"] }

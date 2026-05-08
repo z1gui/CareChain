@@ -6,7 +6,7 @@ pub mod state;
 
 use instructions::*;
 
-declare_id!("CqPp16dBjmgK5QN4ftThjWeW1Kkx5oGuHzRmvLPGKnJ4");
+declare_id!("2M14a3k2cbSVqAkViKMfVEqndLWESHwNTwCHRYD66PwY");
 
 #[program]
 pub mod carechain {
