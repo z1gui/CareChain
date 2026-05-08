@@ -33,7 +33,7 @@ pub fn handler(
     bed_class_id: String,
     room_type: String,
     care_tier: String,
-    price_usdc: u64,
+    price_sol: u64,
     apy_bps: u16,
     total_supply: u16,
     privilege_level: String,
@@ -44,7 +44,7 @@ pub fn handler(
     bed_class.bed_class_id = bed_class_id;
     bed_class.room_type = room_type;
     bed_class.care_tier = care_tier;
-    bed_class.price_usdc = price_usdc;
+    bed_class.price_sol = price_sol;
     bed_class.apy_bps = apy_bps;
     bed_class.total_supply = total_supply;
     bed_class.minted_supply = 0;

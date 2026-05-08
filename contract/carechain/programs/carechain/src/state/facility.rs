@@ -17,7 +17,7 @@ pub struct Facility {
     pub sold_nfts: u16,
     /// 占用率 (basis points, 0-10000)
     pub occupancy_rate: u16,
-    /// 金库 USDC 代币账户地址
+    /// 金库接收 SOL 的地址
     pub treasury: Pubkey,
     /// PDA bump
     pub bump: u8,

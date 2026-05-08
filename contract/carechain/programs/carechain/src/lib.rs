@@ -30,14 +30,14 @@ pub mod carechain {
         bed_class_id: String,
         room_type: String,
         care_tier: String,
-        price_usdc: u64,
+        price_sol: u64,
         apy_bps: u16,
         total_supply: u16,
         privilege_level: String,
     ) -> Result<()> {
         create_bed_class::handler(
             ctx, facility_id, bed_class_id, room_type, care_tier,
-            price_usdc, apy_bps, total_supply, privilege_level,
+            price_sol, apy_bps, total_supply, privilege_level,
         )
     }
 

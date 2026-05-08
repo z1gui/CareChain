@@ -1,8 +1,9 @@
 use anchor_lang::prelude::*;
+use anchor_lang::system_program::{transfer, Transfer as SystemTransfer};
 use anchor_spl::{
     associated_token::AssociatedToken,
     metadata::{create_metadata_accounts_v3, CreateMetadataAccountsV3, Metadata as Metaplex, mpl_token_metadata::types::DataV2},
-    token::{self, Mint, MintTo, Token, TokenAccount, Transfer},
+    token::{self, Mint, MintTo, Token, TokenAccount},
 };
 use crate::errors::CareChainError;
 use crate::state::{BedClass, BedMode, BedPosition, Facility};
@@ -11,7 +12,7 @@ use crate::state::{BedClass, BedMode, BedPosition, Facility};
 ///
 /// 流程:
 /// 1. 校验床位类型未售罄
-/// 2. 用户支付 USDC 到金库
+/// 2. 用户支付 SOL 到金库
 /// 3. 通过 PDA 铸币权限铸造 1 枚 NFT
 /// 4. 创建 BedPosition 账户，默认 Yield 模式
 /// 5. 更新 BedClass 和 Facility 计数器
@@ -71,23 +72,12 @@ pub struct MintBedrightNft<'info> {
     )]
     pub bed_position: Box<Account<'info, BedPosition>>,
 
-    /// USDC Mint 地址
-    pub usdc_mint: Box<Account<'info, Mint>>,
-
-    /// 用户的 USDC 关联代币账户
+    /// CHECK: 金库接收 SOL 的系统账户
     #[account(
         mut,
-        associated_token::mint = usdc_mint,
-        associated_token::authority = user,
+        constraint = treasury.key() == facility.treasury @ CareChainError::InvalidTreasury,
     )]
-    pub user_usdc_ata: Box<Account<'info, TokenAccount>>,
-
-    /// 金库的 USDC 代币账户
-    #[account(
-        mut,
-        constraint = treasury_usdc_ata.key() == facility.treasury @ CareChainError::InvalidTreasury,
-    )]
-    pub treasury_usdc_ata: Box<Account<'info, TokenAccount>>,
+    pub treasury: UncheckedAccount<'info>,
 
     /// CHECK: Metaplex Metadata PDA
     #[account(
@@ -121,16 +111,15 @@ pub fn handler(
         CareChainError::BedClassSoldOut
     );
 
-    let price = ctx.accounts.bed_class.price_usdc;
+    let price = ctx.accounts.bed_class.price_sol;
 
-    // 1. 用户支付 USDC 到金库
-    token::transfer(
+    // 1. 用户支付 SOL 到金库
+    transfer(
         CpiContext::new(
-            ctx.accounts.token_program.to_account_info(),
-            Transfer {
-                from: ctx.accounts.user_usdc_ata.to_account_info(),
-                to: ctx.accounts.treasury_usdc_ata.to_account_info(),
-                authority: ctx.accounts.user.to_account_info(),
+            ctx.accounts.system_program.to_account_info(),
+            SystemTransfer {
+                from: ctx.accounts.user.to_account_info(),
+                to: ctx.accounts.treasury.to_account_info(),
             },
         ),
         price,
@@ -170,11 +159,14 @@ pub fn handler(
     ctx.accounts.bed_class.minted_supply += 1;
     ctx.accounts.facility.sold_nfts += 1;
 
-    // 5. 挂载 Metaplex Metadata，为其注入名字和图片
+    // 5. 挂载 Metaplex Metadata，为其注入动态生成的API URI
+    let mint_key = ctx.accounts.nft_mint.key().to_string();
+    let dynamic_uri = format!("https://api.carechain.com/metadata/{}", mint_key);
+
     let data_v2 = DataV2 {
-        name: "CareChain BedRight".to_string(),
+        name: "BED".to_string(),
         symbol: "BED".to_string(),
-        uri: "https://beige-capitalist-xerinae-88.mypinata.cloud/ipfs/bafkreigd2towxght2lw2wuty5z3t7kcc5fvheg26bvh5wfakcrlrdzza4i".to_string(), // 示例 3D 科幻床位占位 JSON
+        uri: dynamic_uri,
         seller_fee_basis_points: 500, // 5% 版税
         creators: None,
         collection: None,

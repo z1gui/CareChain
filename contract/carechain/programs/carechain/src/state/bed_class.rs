@@ -13,8 +13,8 @@ pub struct BedClass {
     pub room_type: String,
     /// 护理等级 (如 "生活自理型")
     pub care_tier: String,
-    /// USDC 价格 (含小数位, 如 500_000_000 = 500 USDC)
-    pub price_usdc: u64,
+    /// SOL 价格 (以 lamports 为单位, 1 SOL = 1_000_000_000 lamports)
+    pub price_sol: u64,
     /// 年化收益率 (basis points, 如 650 = 6.5%)
     pub apy_bps: u16,
     /// 总供应量
@@ -39,7 +39,7 @@ impl BedClass {
         + (4 + Self::MAX_ID_LEN) // bed_class_id
         + (4 + Self::MAX_TYPE_LEN) // room_type
         + (4 + Self::MAX_TIER_LEN) // care_tier
-        + 8  // price_usdc
+        + 8  // price_sol
         + 2  // apy_bps
         + 2  // total_supply
         + 2  // minted_supply

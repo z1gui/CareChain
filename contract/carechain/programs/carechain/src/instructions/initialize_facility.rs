@@ -17,7 +17,7 @@ pub struct InitializeFacility<'info> {
     )]
     pub facility: Account<'info, Facility>,
 
-    /// CHECK: 金库 USDC 代币账户，由管理员指定
+    /// CHECK: 金库 SOL 系统账户，由管理员指定
     pub treasury: UncheckedAccount<'info>,
 
     pub system_program: Program<'info, System>,
