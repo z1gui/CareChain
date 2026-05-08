@@ -8,6 +8,11 @@ export default defineConfig({
     react(),
     nodePolyfills({
       include: ['buffer'],
+      globals: {
+        Buffer: true,
+        global: true,
+        process: false,
+      },
     }),
   ],
   define: {

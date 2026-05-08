@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
+import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import { clusterApiUrl } from '@solana/web3.js';
 import InitializeFacility from './components/InitializeFacility';
 import CreateBedClass from './components/CreateBedClass';
 import MintBedrightNft from './components/MintBedrightNft';
+import PriorityQueuePanel from './components/PriorityQueuePanel';
+import YieldVaultPanel from './components/YieldVaultPanel';
 
 export default function App() {
   // 设置为 Solana Devnet 测试网
@@ -35,6 +38,8 @@ export default function App() {
               <InitializeFacility />
               <CreateBedClass />
               <MintBedrightNft />
+              <PriorityQueuePanel />
+              <YieldVaultPanel />
             </main>
           </div>
         </WalletModalProvider>
