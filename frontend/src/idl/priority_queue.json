@@ -1,0 +1,1220 @@
+{
+  "address": "GB7xr669643BvgwmoDJwCEKFXWN252ECQtq3G2MhaENr",
+  "metadata": {
+    "name": "priority_queue",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "allocate_next_bed",
+      "docs": [
+        "作用：由管理员将指定排队条目标记为已分配床位邀请。",
+        "请求参数：`ctx` 为管理员和队列账户上下文，`facility_id` 为设施业务 ID，`applicant_id` 为目标申请人业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        44,
+        74,
+        47,
+        55,
+        85,
+        240,
+        239,
+        113
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "queue_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  101,
+                  110,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              },
+              {
+                "kind": "arg",
+                "path": "applicant_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "applicant_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "burn_care_and_upgrade",
+      "docs": [
+        "作用：燃烧 CARE 代币，将等待中的 P3 申请人升级到 P2 通道。",
+        "请求参数：`ctx` 为申请人、CARE 代币和队列账户上下文，`facility_id` 为设施业务 ID，`applicant_id` 为申请人业务 ID，`burn_amount` 为燃烧数量。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        168,
+        234,
+        243,
+        168,
+        139,
+        220,
+        234,
+        200
+      ],
+      "accounts": [
+        {
+          "name": "applicant",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "queue_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  101,
+                  110,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              },
+              {
+                "kind": "arg",
+                "path": "applicant_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "care_mint"
+        },
+        {
+          "name": "user_care_ata",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "applicant_id",
+          "type": "string"
+        },
+        {
+          "name": "burn_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "cancel_queue_entry",
+      "docs": [
+        "作用：取消指定的排队条目，并在必要时回收计数和刷新定价。",
+        "请求参数：`ctx` 为调用者和队列账户上下文，`facility_id` 为设施业务 ID，`applicant_id` 为目标申请人业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        164,
+        183,
+        143,
+        117,
+        118,
+        221,
+        88,
+        10
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "queue_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  101,
+                  110,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              },
+              {
+                "kind": "arg",
+                "path": "applicant_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "applicant_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "confirm_admission",
+      "docs": [
+        "作用：由管理员确认入住，并将排队条目更新为已入住状态。",
+        "请求参数：`ctx` 为管理员、床位和队列账户上下文，`facility_id` 为设施业务 ID，`applicant_id` 为目标申请人业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        74,
+        92,
+        150,
+        82,
+        192,
+        69,
+        161,
+        35
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "queue_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  101,
+                  110,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              },
+              {
+                "kind": "arg",
+                "path": "applicant_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "bedright_program"
+        },
+        {
+          "name": "bed_position"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "applicant_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_queue",
+      "docs": [
+        "作用：初始化某个设施的排队总状态账户。",
+        "请求参数：`ctx` 为初始化所需账户上下文，`facility_id` 为设施业务 ID，`burn_price_per_day` 为初始每日燃烧价格。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        174,
+        102,
+        132,
+        232,
+        90,
+        202,
+        27,
+        20
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "facility"
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "burn_price_per_day",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "join_p3_queue",
+      "docs": [
+        "作用：为普通申请人创建 P3 排队条目，并刷新当前排队定价。",
+        "请求参数：`ctx` 为申请人和队列账户上下文，`facility_id` 为设施业务 ID，`applicant_id` 为申请人业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        204,
+        106,
+        95,
+        166,
+        252,
+        246,
+        54,
+        8
+      ],
+      "accounts": [
+        {
+          "name": "applicant",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "queue_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  101,
+                  110,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              },
+              {
+                "kind": "arg",
+                "path": "applicant_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "applicant_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "register_p1_from_nft",
+      "docs": [
+        "作用：基于 BedRight NFT 为用户登记 P1 通道排队资格。",
+        "请求参数：`ctx` 为 NFT、床位和队列账户上下文，`facility_id` 为设施业务 ID，`applicant_id` 为申请人业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        180,
+        54,
+        51,
+        61,
+        91,
+        185,
+        92,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "applicant",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "queue_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "bedright_program"
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "bed_position"
+        },
+        {
+          "name": "queue_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  117,
+                  101,
+                  95,
+                  101,
+                  110,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              },
+              {
+                "kind": "arg",
+                "path": "applicant_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "applicant_id",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "QueueEntry",
+      "discriminator": [
+        211,
+        46,
+        29,
+        56,
+        240,
+        146,
+        48,
+        178
+      ]
+    },
+    {
+      "name": "QueueState",
+      "discriminator": [
+        18,
+        227,
+        150,
+        65,
+        218,
+        214,
+        72,
+        191
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AdmissionConfirmed",
+      "discriminator": [
+        107,
+        146,
+        148,
+        41,
+        24,
+        255,
+        88,
+        253
+      ]
+    },
+    {
+      "name": "BedAllocated",
+      "discriminator": [
+        18,
+        90,
+        106,
+        56,
+        45,
+        197,
+        101,
+        165
+      ]
+    },
+    {
+      "name": "PricingUpdated",
+      "discriminator": [
+        29,
+        21,
+        233,
+        77,
+        53,
+        198,
+        67,
+        37
+      ]
+    },
+    {
+      "name": "QueueJoined",
+      "discriminator": [
+        56,
+        81,
+        235,
+        53,
+        196,
+        128,
+        138,
+        193
+      ]
+    },
+    {
+      "name": "QueueUpgraded",
+      "discriminator": [
+        158,
+        36,
+        181,
+        134,
+        240,
+        176,
+        133,
+        234
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotImplemented",
+      "msg": "Instruction is not implemented yet"
+    },
+    {
+      "code": 6001,
+      "name": "QueueAlreadyInitialized",
+      "msg": "Queue already initialized"
+    },
+    {
+      "code": 6002,
+      "name": "QueueNotInitialized",
+      "msg": "Queue not initialized"
+    },
+    {
+      "code": 6003,
+      "name": "QueueEntryAlreadyExists",
+      "msg": "Queue entry already exists"
+    },
+    {
+      "code": 6004,
+      "name": "QueueEntryNotFound",
+      "msg": "Queue entry not found"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidFacility",
+      "msg": "Invalid facility"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidApplicantId",
+      "msg": "Invalid applicant id"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidQueueLane",
+      "msg": "Invalid queue lane"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidQueueStatus",
+      "msg": "Invalid queue status"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidBedPosition",
+      "msg": "Invalid bed position"
+    },
+    {
+      "code": 6010,
+      "name": "UnauthorizedAdmin",
+      "msg": "Unauthorized admin"
+    },
+    {
+      "code": 6011,
+      "name": "UnauthorizedApplicant",
+      "msg": "Unauthorized applicant"
+    },
+    {
+      "code": 6012,
+      "name": "UnauthorizedNftOwner",
+      "msg": "Unauthorized NFT owner"
+    },
+    {
+      "code": 6013,
+      "name": "ApplicantNotInP3",
+      "msg": "Applicant is not in P3"
+    },
+    {
+      "code": 6014,
+      "name": "ApplicantNotWaiting",
+      "msg": "Applicant is not waiting"
+    },
+    {
+      "code": 6015,
+      "name": "ApplicantNotInvited",
+      "msg": "Applicant is not invited"
+    },
+    {
+      "code": 6016,
+      "name": "ApplicantAlreadyAdmitted",
+      "msg": "Applicant already admitted"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidCareMint",
+      "msg": "Invalid CARE mint"
+    },
+    {
+      "code": 6018,
+      "name": "InsufficientCareBalance",
+      "msg": "Insufficient CARE balance"
+    },
+    {
+      "code": 6019,
+      "name": "BurnAmountMustBePositive",
+      "msg": "Burn amount must be positive"
+    },
+    {
+      "code": 6020,
+      "name": "InvalidBedRightMode",
+      "msg": "Invalid BedRight mode"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidBedRightOwner",
+      "msg": "Invalid BedRight owner"
+    },
+    {
+      "code": 6022,
+      "name": "InvalidBedRightFacility",
+      "msg": "Invalid BedRight facility"
+    },
+    {
+      "code": 6023,
+      "name": "PricingRuleError",
+      "msg": "Pricing rule error"
+    },
+    {
+      "code": 6024,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "AdmissionConfirmed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "applicant_id",
+            "type": "string"
+          },
+          {
+            "name": "bed_position",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BedAllocated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "applicant_id",
+            "type": "string"
+          },
+          {
+            "name": "lane",
+            "type": "u8"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PricingUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "p3_count",
+            "type": "u32"
+          },
+          {
+            "name": "multiplier_bps",
+            "type": "u16"
+          },
+          {
+            "name": "burn_price_per_day",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QueueEntry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "applicant_id",
+            "type": "string"
+          },
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "wallet",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "mint",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "lane",
+            "type": {
+              "defined": {
+                "name": "QueueLane"
+              }
+            }
+          },
+          {
+            "name": "queue_no",
+            "type": "u64"
+          },
+          {
+            "name": "burn_amount",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "QueueStatus"
+              }
+            }
+          },
+          {
+            "name": "bed_position",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "updated_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QueueJoined",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "applicant_id",
+            "type": "string"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "lane",
+            "type": "u8"
+          },
+          {
+            "name": "queue_no",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QueueLane",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "P1"
+          },
+          {
+            "name": "P2"
+          },
+          {
+            "name": "P3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QueueState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "facility",
+            "type": "pubkey"
+          },
+          {
+            "name": "admin_wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "p1_count",
+            "type": "u32"
+          },
+          {
+            "name": "p2_count",
+            "type": "u32"
+          },
+          {
+            "name": "p3_count",
+            "type": "u32"
+          },
+          {
+            "name": "next_queue_no",
+            "type": "u64"
+          },
+          {
+            "name": "multiplier_bps",
+            "type": "u16"
+          },
+          {
+            "name": "burn_price_per_day",
+            "type": "u64"
+          },
+          {
+            "name": "updated_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QueueStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Waiting"
+          },
+          {
+            "name": "Invited"
+          },
+          {
+            "name": "Admitted"
+          },
+          {
+            "name": "Cancelled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QueueUpgraded",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "applicant_id",
+            "type": "string"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "old_lane",
+            "type": "u8"
+          },
+          {
+            "name": "new_lane",
+            "type": "u8"
+          },
+          {
+            "name": "burn_amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}

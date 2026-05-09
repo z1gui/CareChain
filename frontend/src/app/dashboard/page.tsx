@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { PublicKey } from '@solana/web3.js'
 import { PortfolioHero } from '@/components/dashboard/portfolio-hero'
 import { QuickActionCard } from '@/components/dashboard/quick-action-card'
 import { YieldChart } from '@/components/dashboard/yield-chart'
@@ -10,12 +11,8 @@ import { NftCard } from '@/components/facility/nft-card'
 import { SectionHeader } from '@/components/shared/section-header'
 import { StatCard } from '@/components/shared/stat-card'
 import { Button } from '@/components/ui/button'
-
-const portfolioStats = [
-  { label: 'Monthly Yield', value: '$95.50', unit: 'USDC', highlight: false },
-  { label: 'Accrued Yield', value: '$1,240.12', unit: 'USDC', highlight: false },
-  { label: 'Annual Yield', value: '8.2%', unit: 'APY', highlight: true },
-]
+import { useYieldPositions } from '@/hooks'
+import { lamportsToSol } from '@/config/chain'
 
 const chartBars = [
   { label: 'Jan', height: '45%' },
@@ -41,6 +38,7 @@ const nftAssets = [
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDjnYydeQhaROgqoMGVzeSvZYy9rsGfI5eP9zPccTFXBoioAu28WUG9upkGonMLGSVWzNIE0MleVnO5rqjlWmR5lod4QHh7nA9seljCz0y4T8tMLYU7Bdxqsb0pnMV9vGn4FMlYT07f1hAl-rmeQi6OBebXiP0nkKd0rVdtSPdifxTZpufLI5L5Qt27pE50wFFvDAeGXWCDuZWRMwQqLIpjJm_b6IjMk9olqhTIi9C9cW0HBhuv1HTKpoAGBujqSha20Egs-2gnFwIe',
     type: 'Standard Bed',
     mode: 'Yield Mode',
+    mintAddress: undefined as PublicKey | undefined,
   },
   {
     serial: 'FSH-B102',
@@ -51,11 +49,36 @@ const nftAssets = [
     type: 'Luxury Suite',
     mode: 'Occupancy Mode',
     queue: 'P1 Queue',
+    mintAddress: undefined as PublicKey | undefined,
   },
 ]
 
 export default function DashboardPage() {
   const [isAssetModalOpen, setIsAssetModalOpen] = useState(false)
+
+  const mints = nftAssets.map(a => a.mintAddress).filter(Boolean) as PublicKey[]
+  const yieldQueries = useYieldPositions(mints)
+
+  const totalClaimableLamports = yieldQueries.reduce((sum, q) => {
+    if (q.data?.claimableLamports) {
+      return sum + BigInt(q.data.claimableLamports.toString())
+    }
+    return sum
+  }, BigInt(0))
+
+  const hasYieldData = mints.length > 0 && yieldQueries.some(q => q.data !== null)
+  const accruedYieldSol = lamportsToSol(totalClaimableLamports.toString())
+
+  const portfolioStats = [
+    { label: 'Monthly Yield', value: '$95.50', unit: 'USDC', highlight: false },
+    {
+      label: 'Accrued Yield',
+      value: hasYieldData ? accruedYieldSol : '1,240.12',
+      unit: hasYieldData ? 'SOL' : 'USDC',
+      highlight: false,
+    },
+    { label: 'Annual Yield', value: '8.2%', unit: 'APY', highlight: true },
+  ]
 
   return (
     <div className="min-h-screen pt-16 bg-surface">

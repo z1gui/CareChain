@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { PublicKey } from '@solana/web3.js'
 import { AssetManagementDialog } from '@/components/dialogs'
 import { SectionHeader } from '@/components/shared/section-header'
 import { Button } from '@/components/ui/button'
@@ -15,6 +16,7 @@ const assets = [
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBn1zUu4fxDftEO-CtwHgHB0SHRDMwvZ-LEwrCrb8FWuGfo21XBJRSTjwO1zao0VE2cBjVh6Vr-DHAB7NmC2m7UGi102HVKZK7T8EuJoUuIhdrJllPdBxgmywrtVBhueshEVCglsNtJwpwgY1NQT6-gTtGqi-vRb4qDCTXcq11QLmKtiGzaMu8Cp1zbkIThTDhx0TbzD88RsBrZQLvG7HJ6-I4fAIX6zyST6MDuLVubV3t59--ft1kh4-whvrp8b27eQ7ipfbSCPz1X',
     type: 'Standard Bed',
     mode: 'Yield Mode',
+    mintAddress: undefined as PublicKey | undefined,
   },
   {
     serial: 'GZ-B102',
@@ -24,6 +26,7 @@ const assets = [
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBExhzYyOhm_5rK0qBX-e09yWbj8J6FViJjuBn5NBeMPmv83Gzz9hTMCGZMcz96YHyRx22UO4tCeJBjZSrLOSVqkSoIx1f54Pb82M5rY_uZwZU13nBf4G-o9MBmsjJ6HL1roiJDyarkftqOFT0Q-UI_aJGuqFVkGEtah2jj-8siJ-0nSC2RNUrEfFGrXPv-8Zpc_HdfedjpY7mEi9VJy4zaDiP8qVnzVKQDgjusr4PoxT2TZ0XmiEsClgZV13rluC0hGQOck9150M87',
     type: 'Luxury Suite',
     mode: 'Residence Mode',
+    mintAddress: undefined as PublicKey | undefined,
   },
   {
     serial: 'SZ-C505',
@@ -33,11 +36,13 @@ const assets = [
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBomKHUA3qIO35Pv5TmRdP9U4NIAAKww1WolBdbshDKV8K8H3JDAzlAut11jMims6Pfw7AqYLv0LCMLnskeJkmz-y_i2eBwfKo8oMKrTRLaFMwZggfKDV98nnvTq2a91hAgh6RmtC6uh147BQ8AoZtLX3CYMuOH1HSnksimOUQytrQEG--LJawl23pWBajVFLgQsBxd-61umkprVnFifDEXjp2AShbytm9BDRg6q6vFTd8x0t3dkJXD5Ppf8F-tf0Xd93hA9uZ73Pu8',
     type: 'Standard Bed',
     mode: 'Yield Mode',
+    mintAddress: undefined as PublicKey | undefined,
   },
 ]
 
 export default function AssetManagementPage() {
   const [isAssetModalOpen, setIsAssetModalOpen] = useState(false)
+  const [selectedMint, setSelectedMint] = useState<PublicKey | undefined>(undefined)
 
   return (
     <>
@@ -118,7 +123,13 @@ export default function AssetManagementPage() {
                   </div>
                 </div>
                 <div className="mt-8 flex">
-                  <Button onClick={() => setIsAssetModalOpen(true)} className="flex-1 bg-primary text-on-primary py-2.5 rounded-lg text-sm font-bold active:scale-[0.98] transition-transform shadow-sm flex justify-center items-center gap-2">
+                  <Button
+                    onClick={() => {
+                      setSelectedMint(asset.mintAddress)
+                      setIsAssetModalOpen(true)
+                    }}
+                    className="flex-1 bg-primary text-on-primary py-2.5 rounded-lg text-sm font-bold active:scale-[0.98] transition-transform shadow-sm flex justify-center items-center gap-2"
+                  >
                     <span className="material-symbols-outlined text-sm">settings</span> Manage Asset
                   </Button>
                 </div>
@@ -162,7 +173,14 @@ export default function AssetManagementPage() {
       {/* Simple Bottom Decor */}
       <div className="fixed bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary/30 via-secondary/30 to-tertiary/30 z-50" />
 
-      <AssetManagementDialog isOpen={isAssetModalOpen} onClose={() => setIsAssetModalOpen(false)} />
+      <AssetManagementDialog
+        isOpen={isAssetModalOpen}
+        onClose={() => {
+          setIsAssetModalOpen(false)
+          setSelectedMint(undefined)
+        }}
+        mintAddress={selectedMint}
+      />
     </>
   )
 }

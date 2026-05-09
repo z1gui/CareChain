@@ -1,6 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { type PublicKey } from '@solana/web3.js'
+import { useClaimYield, useYieldPosition } from '@/hooks'
+import { lamportsToSol } from '@/config/chain'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -12,13 +15,30 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 
-interface ModalProps {
+interface AssetManagementDialogProps {
   isOpen: boolean
   onClose: () => void
+  mintAddress?: PublicKey
 }
 
-export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
+export function AssetManagementDialog({ isOpen, onClose, mintAddress }: AssetManagementDialogProps) {
   const [mode, setMode] = useState<'yield' | 'stay'>('yield')
+
+  const { data: yieldPosition, isLoading: yieldLoading } = useYieldPosition(mintAddress ?? undefined)
+  const claimMutation = useClaimYield()
+
+  const hasOnChainData = !!yieldPosition
+  const claimableSol = yieldPosition
+    ? lamportsToSol(yieldPosition.claimableLamports.toString())
+    : '0.0000'
+
+  const handleClaim = () => {
+    if (!mintAddress || !yieldPosition) return
+    claimMutation.mutate(
+      { facilityId: yieldPosition.facilityId, mintAddress },
+      { onSuccess: onClose },
+    )
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={open => !open && onClose()}>
@@ -54,8 +74,16 @@ export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
               <p className="text-4xl font-headline font-extrabold">12.45%</p>
             </div>
             <div className="text-right">
-              <p className="text-primary-fixed text-sm font-medium mb-1 opacity-90">Accrued USDC</p>
-              <p className="text-3xl font-headline font-bold">$4,821.50</p>
+              <p className="text-primary-fixed text-sm font-medium mb-1 opacity-90">
+                {hasOnChainData ? 'Claimable SOL' : 'Accrued USDC'}
+              </p>
+              <p className="text-3xl font-headline font-bold">
+                {yieldLoading
+                  ? '...'
+                  : hasOnChainData
+                    ? `${claimableSol} SOL`
+                    : '$4,821.50'}
+              </p>
             </div>
           </div>
 
@@ -95,6 +123,23 @@ export function AssetManagementDialog({ isOpen, onClose }: ModalProps) {
                 <strong>Cooling Period Info:</strong> After a mode change, a 30-day cooling period will be applied. You cannot change the status again during this time. In Yield mode, your asset is automatically added to the CareChain pool to earn steady returns.
               </div>
             </div>
+
+            {/* Claim Yield Button */}
+            {hasOnChainData && Number(claimableSol) > 0 && (
+              <Button
+                onClick={handleClaim}
+                disabled={claimMutation.isPending}
+                className="w-full bg-tertiary text-white py-3 rounded-xl font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-tertiary/20 h-auto"
+              >
+                {claimMutation.isPending ? 'Claiming...' : `Claim ${claimableSol} SOL`}
+              </Button>
+            )}
+
+            {claimMutation.error && (
+              <p className="text-xs text-red-500 text-center">
+                {claimMutation.error.message}
+              </p>
+            )}
           </div>
 
           {/* Transfer Section */}

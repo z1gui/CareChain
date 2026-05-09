@@ -9,6 +9,8 @@ interface BurnSliderProps {
   timeSaved: string
   onConfirm?: () => void
   onRules?: () => void
+  disabled?: boolean
+  loading?: boolean
 }
 
 export function BurnSlider({
@@ -18,9 +20,11 @@ export function BurnSlider({
   timeSaved,
   onConfirm,
   onRules,
+  disabled = false,
+  loading = false,
 }: BurnSliderProps) {
   return (
-    <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
+    <div className={`bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6 ${disabled ? 'opacity-60' : ''}`}>
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 rounded-5xl bg-secondary-container flex items-center justify-center">
           <span className="material-symbols-outlined text-white">speed</span>
@@ -38,7 +42,7 @@ export function BurnSlider({
             <span className="text-sm text-secondary ml-1">$CARE</span>
           </div>
         </div>
-        <Slider defaultValue={[amount]} max={50000} min={100} step={100} onValueChange={value => onChange?.(Array.isArray(value) ? [...value] : [value])} />
+        <Slider value={[amount]} max={50000} min={100} step={100} onValueChange={value => onChange?.(Array.isArray(value) ? [...value] : [value])} disabled={disabled} />
         <div className="flex justify-between mt-4">
           <div className="flex flex-col">
             <span className="text-[10px] text-on-surface-variant">Estimated Jump</span>
@@ -51,10 +55,18 @@ export function BurnSlider({
         </div>
       </div>
       <div className="flex gap-4">
-        <button onClick={onConfirm} className="flex-1 bg-secondary text-white py-4 rounded-5xl font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all">
-          Confirm Burn & Boost
+        <button
+          onClick={onConfirm}
+          disabled={disabled}
+          className="flex-1 bg-secondary text-white py-4 rounded-5xl font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        >
+          {loading ? 'Processing...' : 'Confirm Burn & Boost'}
         </button>
-        <button onClick={onRules} className="px-6 border border-slate-200 rounded-5xl text-slate-600 font-medium hover:bg-slate-50">
+        <button
+          onClick={onRules}
+          disabled={disabled}
+          className="px-6 border border-slate-200 rounded-5xl text-slate-600 font-medium hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           Rules
         </button>
       </div>

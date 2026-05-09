@@ -1,0 +1,1196 @@
+{
+  "address": "AEDNejZqKMWRXPp8E2mtqmeBooNAr4rtkEN5mdAbv8Tp",
+  "metadata": {
+    "name": "yield_vault",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "allocate_yield_to_positions",
+      "docs": [
+        "作用：将某个收益批次中的一部分金额分配到指定 NFT 收益仓位。",
+        "请求参数：`ctx` 为管理员、收益池、批次和仓位账户上下文，`facility_id` 为设施业务 ID，`snapshot_id` 为批次快照 ID，`amount_lamports` 为本次分配金额。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        224,
+        82,
+        41,
+        44,
+        197,
+        25,
+        49,
+        180
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "facility_yield_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  99,
+                  105,
+                  108,
+                  105,
+                  116,
+                  121,
+                  95,
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "yield_distribution_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  100,
+                  105,
+                  115,
+                  116,
+                  114,
+                  105,
+                  98,
+                  117,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "snapshot_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "yield_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "yield_position.mint",
+                "account": "YieldPosition"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "snapshot_id",
+          "type": "string"
+        },
+        {
+          "name": "amount_lamports",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claim_yield",
+      "docs": [
+        "作用：由当前收益所有者领取指定 NFT 的可领取收益。",
+        "请求参数：`ctx` 为用户、收益池、收益仓位和金库账户上下文，`mint` 为目标 NFT 的 Mint 地址。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        49,
+        74,
+        111,
+        7,
+        186,
+        22,
+        61,
+        165
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "yield_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "facility_yield_pool",
+          "writable": true
+        },
+        {
+          "name": "yield_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "mint"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "mint",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "deposit_yield",
+      "docs": [
+        "作用：向设施收益池注入原生 SOL 收益，并创建对应的分账批次记录。",
+        "请求参数：`ctx` 为管理员、收益池和批次账户上下文，`facility_id` 为设施业务 ID，`amount_lamports` 为注资金额，`source` 为收益来源，`snapshot_id` 为批次快照 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        204,
+        126,
+        164,
+        36,
+        57,
+        174,
+        68,
+        139
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "yield_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "relations": [
+            "yield_vault"
+          ]
+        },
+        {
+          "name": "facility_yield_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  99,
+                  105,
+                  108,
+                  105,
+                  116,
+                  121,
+                  95,
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "yield_distribution_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  100,
+                  105,
+                  115,
+                  116,
+                  114,
+                  105,
+                  98,
+                  117,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "snapshot_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        },
+        {
+          "name": "amount_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "source",
+          "type": {
+            "defined": {
+              "name": "YieldSource"
+            }
+          }
+        },
+        {
+          "name": "snapshot_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_facility_yield_pool",
+      "docs": [
+        "作用：初始化某个设施对应的收益池统计账户。",
+        "请求参数：`ctx` 为管理员、设施和收益池账户上下文，`facility_id` 为设施业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        179,
+        107,
+        32,
+        255,
+        30,
+        190,
+        141,
+        144
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "yield_vault"
+          ]
+        },
+        {
+          "name": "yield_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "facility"
+        },
+        {
+          "name": "facility_yield_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  99,
+                  105,
+                  108,
+                  105,
+                  116,
+                  121,
+                  95,
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_yield_position",
+      "docs": [
+        "作用：为指定 NFT 初始化收益仓位账户。",
+        "请求参数：`ctx` 为付款人、设施、NFT 和床位账户上下文，`facility_id` 为设施业务 ID。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        16,
+        157,
+        39,
+        50,
+        9,
+        62,
+        3,
+        16
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "yield_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "facility_yield_pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  99,
+                  105,
+                  108,
+                  105,
+                  116,
+                  121,
+                  95,
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "facility_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "bed_position"
+        },
+        {
+          "name": "yield_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "facility_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_yield_vault",
+      "docs": [
+        "作用：初始化全局收益金库配置账户。",
+        "请求参数：`ctx` 为管理员和金库账户上下文，`bedright_program_id` 为关联的 BedRight 程序地址。",
+        "返回参数：成功返回 `Ok(())`，失败返回对应的链上错误。"
+      ],
+      "discriminator": [
+        117,
+        33,
+        120,
+        230,
+        252,
+        0,
+        222,
+        91
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "yield_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  121,
+                  105,
+                  101,
+                  108,
+                  100,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "bedright_program_id",
+          "type": "pubkey"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "FacilityYieldPool",
+      "discriminator": [
+        23,
+        155,
+        33,
+        245,
+        31,
+        3,
+        160,
+        149
+      ]
+    },
+    {
+      "name": "YieldDistributionRecord",
+      "discriminator": [
+        125,
+        166,
+        70,
+        89,
+        93,
+        192,
+        218,
+        130
+      ]
+    },
+    {
+      "name": "YieldPosition",
+      "discriminator": [
+        77,
+        217,
+        160,
+        86,
+        158,
+        186,
+        248,
+        193
+      ]
+    },
+    {
+      "name": "YieldVault",
+      "discriminator": [
+        17,
+        229,
+        96,
+        254,
+        254,
+        179,
+        195,
+        163
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "YieldAllocated",
+      "discriminator": [
+        245,
+        80,
+        146,
+        127,
+        48,
+        46,
+        140,
+        235
+      ]
+    },
+    {
+      "name": "YieldClaimed",
+      "discriminator": [
+        177,
+        201,
+        94,
+        68,
+        19,
+        200,
+        227,
+        27
+      ]
+    },
+    {
+      "name": "YieldDeposited",
+      "discriminator": [
+        240,
+        44,
+        237,
+        73,
+        80,
+        47,
+        196,
+        86
+      ]
+    },
+    {
+      "name": "YieldOwnerSynced",
+      "discriminator": [
+        57,
+        197,
+        71,
+        231,
+        132,
+        8,
+        75,
+        42
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotImplemented",
+      "msg": "Instruction is not implemented yet"
+    },
+    {
+      "code": 6001,
+      "name": "VaultAlreadyInitialized",
+      "msg": "Vault already initialized"
+    },
+    {
+      "code": 6002,
+      "name": "VaultNotInitialized",
+      "msg": "Vault not initialized"
+    },
+    {
+      "code": 6003,
+      "name": "FacilityYieldPoolAlreadyInitialized",
+      "msg": "Facility yield pool already initialized"
+    },
+    {
+      "code": 6004,
+      "name": "FacilityYieldPoolNotFound",
+      "msg": "Facility yield pool not found"
+    },
+    {
+      "code": 6005,
+      "name": "YieldPositionAlreadyInitialized",
+      "msg": "Yield position already initialized"
+    },
+    {
+      "code": 6006,
+      "name": "YieldPositionNotFound",
+      "msg": "Yield position not found"
+    },
+    {
+      "code": 6007,
+      "name": "DistributionRecordAlreadyExists",
+      "msg": "Distribution record already exists"
+    },
+    {
+      "code": 6008,
+      "name": "UnauthorizedAdmin",
+      "msg": "Unauthorized admin"
+    },
+    {
+      "code": 6009,
+      "name": "UnauthorizedOwner",
+      "msg": "Unauthorized owner"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidFacility",
+      "msg": "Invalid facility"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidBedPosition",
+      "msg": "Invalid bed position"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidYieldPosition",
+      "msg": "Invalid yield position"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidVaultAccount",
+      "msg": "Invalid vault account"
+    },
+    {
+      "code": 6014,
+      "name": "InvalidSnapshotId",
+      "msg": "Invalid snapshot id"
+    },
+    {
+      "code": 6015,
+      "name": "AmountMustBePositive",
+      "msg": "Amount must be positive"
+    },
+    {
+      "code": 6016,
+      "name": "NoClaimableYield",
+      "msg": "No claimable yield"
+    },
+    {
+      "code": 6017,
+      "name": "InsufficientVaultBalance",
+      "msg": "Insufficient vault balance"
+    },
+    {
+      "code": 6018,
+      "name": "OverAllocatePendingFunds",
+      "msg": "Over allocated pending funds"
+    },
+    {
+      "code": 6019,
+      "name": "PositionInactive",
+      "msg": "Position inactive"
+    },
+    {
+      "code": 6020,
+      "name": "PositionNotInYieldMode",
+      "msg": "Position not in yield mode"
+    },
+    {
+      "code": 6021,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "FacilityYieldPool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "facility",
+            "type": "pubkey"
+          },
+          {
+            "name": "admin_wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_deposited_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "total_allocated_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "total_claimed_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "pending_unallocated_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "last_deposit_ts",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldAllocated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "snapshot_id",
+            "type": "string"
+          },
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldClaimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldDeposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "snapshot_id",
+            "type": "string"
+          },
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "source",
+            "type": "u8"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldDistributionRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "snapshot_id",
+            "type": "string"
+          },
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "type": {
+              "defined": {
+                "name": "YieldSource"
+              }
+            }
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "distributed_position_count",
+            "type": "u16"
+          },
+          {
+            "name": "created_by",
+            "type": "pubkey"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldOwnerSynced",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "old_owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "new_owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldPosition",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "facility_id",
+            "type": "string"
+          },
+          {
+            "name": "bed_position",
+            "type": "pubkey"
+          },
+          {
+            "name": "claimable_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "claimed_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "care_boost_bps",
+            "type": "u16"
+          },
+          {
+            "name": "last_claim_ts",
+            "type": "i64"
+          },
+          {
+            "name": "last_accrual_ts",
+            "type": "i64"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldSource",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "FacilityIncome"
+          },
+          {
+            "name": "CareBurnBonus"
+          }
+        ]
+      }
+    },
+    {
+      "name": "YieldVault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "bedright_program_id",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}

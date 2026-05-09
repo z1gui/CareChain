@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { PublicKey } from '@solana/web3.js'
+import { useWalletConnection } from '@solana/react-hooks'
 import { CheckInPaymentDialog } from '@/components/dialogs'
 import { AppFooter } from '@/components/layout/app-footer'
 import { ActivityFeedItem } from '@/components/queue/activity-feed-item'
@@ -8,24 +10,17 @@ import { BurnSlider } from '@/components/queue/burn-slider'
 import { QueueChannel } from '@/components/queue/queue-channel'
 import { SectionHeader } from '@/components/shared/section-header'
 import { StatCard } from '@/components/shared/stat-card'
+import { Button } from '@/components/ui/button'
+import {
+  useBurnCareAndUpgrade,
+  useJoinP3Queue,
+  useQueueEntry,
+  useQueueState,
+} from '@/hooks'
+import { getAssociatedTokenAddress } from '@/utils/pda'
+import { CARE_MINT_ADDRESS, DEFAULT_FACILITY_ID, getApplicantId } from '@/config/chain'
 
-const p1Items = [
-  { rank: 1, name: 'Wallet...7x9a', detail: 'BedRight #0842', status: 'Waiting: 2h' },
-  { rank: 2, name: 'Wallet...3k1p', detail: 'BedRight #1105', status: 'Waiting: 5h' },
-  { rank: 3, name: 'Wallet...m9v0', detail: 'BedRight #0023', status: 'Waiting: 8h' },
-]
-
-const p2Items = [
-  { rank: 1, name: 'Wallet...z2b4', detail: 'Burned 15,000 $CARE', status: 'Rank: #43' },
-  { rank: 2, name: 'Wallet...y8w1', detail: 'Burned 12,500 $CARE', status: 'Rank: #44' },
-  { rank: 3, name: 'Wallet...p5r6', detail: 'Burned 10,000 $CARE', status: 'Rank: #45' },
-]
-
-const p3Items = [
-  { rank: 1, name: 'Wallet...r3q1', detail: 'Joined: 2023.10.12', status: 'Rank: #242' },
-  { rank: 2, name: 'Wallet...v4n8', detail: 'Joined: 2023.10.13', status: 'Rank: #243' },
-  { rank: 3, name: 'Wallet...j2l5', detail: 'Joined: 2023.10.14', status: 'Rank: #244' },
-]
+const CARE_MINT = new PublicKey(CARE_MINT_ADDRESS)
 
 const activities = [
   {
@@ -59,7 +54,75 @@ const activities = [
 ]
 
 export default function PriorityQueuePage() {
+  const { connected, wallet } = useWalletConnection()
   const [isCheckInOpen, setIsCheckInOpen] = useState(false)
+  const [burnAmount, setBurnAmount] = useState(5000)
+
+  const applicantId = wallet?.account?.address
+    ? getApplicantId(wallet.account.address)
+    : undefined
+
+  const { data: queueState, isLoading: queueStateLoading } = useQueueState(DEFAULT_FACILITY_ID)
+  const { data: queueEntry, isLoading: entryLoading } = useQueueEntry(
+    DEFAULT_FACILITY_ID,
+    applicantId,
+  )
+
+  const joinMutation = useJoinP3Queue()
+  const burnMutation = useBurnCareAndUpgrade()
+
+  const totalPending = queueState
+    ? queueState.p1Count + queueState.p2Count + queueState.p3Count
+    : 0
+
+  const handleJoinP3 = () => {
+    if (!applicantId) return
+    joinMutation.mutate({ facilityId: DEFAULT_FACILITY_ID, applicantId })
+  }
+
+  const handleBurn = () => {
+    if (!applicantId || !wallet?.account?.address || burnMutation.isPending) return
+    const userCareAta = getAssociatedTokenAddress(
+      CARE_MINT,
+      new PublicKey(wallet.account.address),
+    )
+    burnMutation.mutate({
+      facilityId: DEFAULT_FACILITY_ID,
+      applicantId,
+      burnAmount: burnAmount.toString(),
+      careMint: CARE_MINT,
+      userCareAta,
+    })
+  }
+
+  const p1Items = [
+    { rank: 1, name: 'Wallet...7x9a', detail: 'BedRight #0842', status: 'Waiting: 2h' },
+    { rank: 2, name: 'Wallet...3k1p', detail: 'BedRight #1105', status: 'Waiting: 5h' },
+    { rank: 3, name: 'Wallet...m9v0', detail: 'BedRight #0023', status: 'Waiting: 8h' },
+  ]
+
+  const p2Items = [
+    { rank: 1, name: 'Wallet...z2b4', detail: 'Burned 15,000 $CARE', status: 'Rank: #43' },
+    { rank: 2, name: 'Wallet...y8w1', detail: 'Burned 12,500 $CARE', status: 'Rank: #44' },
+    { rank: 3, name: 'Wallet...p5r6', detail: 'Burned 10,000 $CARE', status: 'Rank: #45' },
+  ]
+
+  const p3Items = [
+    { rank: 1, name: 'Wallet...r3q1', detail: 'Joined: 2023.10.12', status: 'Rank: #242' },
+    { rank: 2, name: 'Wallet...v4n8', detail: 'Joined: 2023.10.13', status: 'Rank: #243' },
+    { rank: 3, name: 'Wallet...j2l5', detail: 'Joined: 2023.10.14', status: 'Rank: #244' },
+  ]
+
+  const userLane = queueEntry
+    ? (queueEntry.lane.p1 ? 'P1' : queueEntry.lane.p2 ? 'P2' : queueEntry.lane.p3 ? 'P3' : 'None')
+    : 'None'
+
+  const userStatus = queueEntry
+    ? (queueEntry.status.waiting ? 'Waiting'
+        : queueEntry.status.invited ? 'Invited'
+          : queueEntry.status.admitted ? 'Admitted'
+            : queueEntry.status.cancelled ? 'Cancelled' : 'Unknown')
+    : 'Not Joined'
 
   return (
     <>
@@ -71,14 +134,35 @@ export default function PriorityQueuePage() {
             description="Network-wide RWA Rehabilitation Bed Dynamic Ranking System"
           />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <StatCard label="Total Pending" value="1,284" borderColor="outline">
+            <StatCard
+              label="Total Pending"
+              value={queueStateLoading ? '...' : totalPending.toLocaleString()}
+              borderColor="outline"
+            >
               <div className="flex gap-2 mt-4">
-                <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary rounded-5xl">P1: 42</span>
-                <span className="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary rounded-5xl">P2: 156</span>
-                <span className="text-[10px] px-2 py-0.5 bg-slate-200 text-slate-500 rounded-5xl">P3: 1,086</span>
+                <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary rounded-5xl">
+                  P1:
+                  {' '}
+                  {queueStateLoading ? '...' : queueState?.p1Count ?? 0}
+                </span>
+                <span className="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary rounded-5xl">
+                  P2:
+                  {' '}
+                  {queueStateLoading ? '...' : queueState?.p2Count ?? 0}
+                </span>
+                <span className="text-[10px] px-2 py-0.5 bg-slate-200 text-slate-500 rounded-5xl">
+                  P3:
+                  {' '}
+                  {queueStateLoading ? '...' : queueState?.p3Count ?? 0}
+                </span>
               </div>
             </StatCard>
-            <StatCard label="Daily $CARE Burned" value="45,920" valueClassName="text-secondary" borderColor="outline" />
+            <StatCard
+              label="Burn Price / Day"
+              value={queueStateLoading ? '...' : queueState?.burnPricePerDay?.toString() ?? '--'}
+              valueClassName="text-secondary"
+              borderColor="outline"
+            />
             <StatCard label="Avg Wait Time" value="14.2" description="days" borderColor="outline" progress={65} />
             <StatCard label="Bed Turnover Rate (QoQ)" value="98.2%" description="Asset Pool: Singapore #04-12 Rehab Center" borderColor="tertiary" />
           </div>
@@ -92,7 +176,7 @@ export default function PriorityQueuePage() {
             icon="workspace_premium"
             iconColor="text-primary"
             headerGradient="bg-gradient-to-r from-primary to-primary-container"
-            badge="BedRight NFT Holders"
+            badge={`BedRight NFT Holders (${queueState?.p1Count ?? 0})`}
             badgeColor="bg-primary/10 text-primary"
             items={p1Items}
             viewAllText="View All VIPs (12)"
@@ -103,7 +187,7 @@ export default function PriorityQueuePage() {
             icon="bolt"
             iconColor="text-secondary"
             headerGradient="bg-gradient-to-r from-secondary to-secondary-container"
-            badge="$CARE Burn Acceleration"
+            badge={`$CARE Burn Acceleration (${queueState?.p2Count ?? 0})`}
             badgeColor="bg-secondary/10 text-secondary"
             items={p2Items}
             viewAllText="View All P2 Rankings (88)"
@@ -114,22 +198,56 @@ export default function PriorityQueuePage() {
             icon="groups"
             iconColor="text-slate-500"
             headerGradient="bg-slate-100"
-            badge="Regular Waitlist"
+            badge={`Regular Waitlist (${queueState?.p3Count ?? 0})`}
             badgeColor="bg-slate-100 text-slate-400"
             items={p3Items}
             viewAllText="View Full Queue"
           />
         </div>
 
+        {/* Wallet connection warning */}
+        {!connected && (
+          <div className="mb-6 p-4 bg-secondary/10 border border-secondary/20 rounded-2xl text-center">
+            <span className="material-symbols-outlined text-secondary align-middle mr-2">wallet</span>
+            <span className="text-sm font-medium text-secondary">Connect wallet to join queue or burn $CARE</span>
+          </div>
+        )}
+
+        {/* Error display */}
+        {(joinMutation.error || burnMutation.error) && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
+            {joinMutation.error?.message || burnMutation.error?.message}
+          </div>
+        )}
+
         {/* Middle Interaction Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
           <div className="flex flex-col gap-8">
             <BurnSlider
-              amount={5000}
+              amount={burnAmount}
+              onChange={value => setBurnAmount(value[0] ?? 5000)}
               estimatedJump="+142 Positions"
               timeSaved="~4.5 Days"
-              onConfirm={() => setIsCheckInOpen(true)}
+              onConfirm={handleBurn}
+              disabled={!connected || burnMutation.isPending}
+              loading={burnMutation.isPending}
             />
+
+            {connected && !queueEntry && !entryLoading && (
+              <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-4">
+                <h3 className="text-xl font-bold font-headline">Join Standard Queue</h3>
+                <p className="text-sm text-on-surface-variant">
+                  You are not in the queue yet. Join P3 to start waiting for bed allocation.
+                </p>
+                <Button
+                  onClick={handleJoinP3}
+                  disabled={joinMutation.isPending}
+                  className="w-full bg-primary text-white py-4 rounded-5xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all h-auto"
+                >
+                  {joinMutation.isPending ? 'Joining...' : 'Join P3 Queue'}
+                </Button>
+              </div>
+            )}
 
             {/* Bed Allocation Ready Card */}
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col gap-6">
@@ -166,12 +284,21 @@ export default function PriorityQueuePage() {
           <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col">
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-xl font-bold font-headline">My Status</h3>
-              <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-5xl text-xs font-bold uppercase">P2 Fast Track</span>
+              <span className={`px-3 py-1 rounded-5xl text-xs font-bold uppercase ${
+                userLane === 'P1' ? 'bg-primary/10 text-primary'
+                  : userLane === 'P2' ? 'bg-secondary/10 text-secondary'
+                    : userLane === 'P3' ? 'bg-slate-100 text-slate-500'
+                      : 'bg-slate-100 text-slate-400'
+              }`}>
+                {userLane === 'None' ? 'Not in Queue' : `${userLane} ${userStatus}`}
+              </span>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="bg-primary/5 p-4 rounded-2xl flex flex-col items-center">
                 <span className="text-[10px] text-primary/60 font-bold uppercase mb-1">Current Rank</span>
-                <span className="text-3xl font-bold text-primary">#142</span>
+                <span className="text-3xl font-bold text-primary">
+                  {entryLoading ? '...' : queueEntry ? `#${queueEntry.queueNo.toString()}` : '--'}
+                </span>
                 <span className="text-[10px] text-primary/60 mt-1">In Global Queue</span>
               </div>
               <div className="bg-secondary/5 p-4 rounded-2xl flex flex-col items-center">
@@ -180,6 +307,22 @@ export default function PriorityQueuePage() {
                 <span className="text-[10px] text-secondary/60 mt-1">Based on History</span>
               </div>
             </div>
+            {queueEntry && (
+              <div className="mb-4 p-4 bg-surface-container-low rounded-2xl space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-on-surface-variant">Burn Amount</span>
+                  <span className="font-bold">{queueEntry.burnAmount.toString()} $CARE</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-on-surface-variant">Facility</span>
+                  <span className="font-bold">{queueEntry.facilityId}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-on-surface-variant">Updated</span>
+                  <span className="font-bold">{new Date(Number(queueEntry.updatedAt) * 1000).toLocaleDateString()}</span>
+                </div>
+              </div>
+            )}
             <div className="flex-1">
               <h4 className="text-xs font-bold text-on-surface-variant uppercase mb-4 tracking-widest">Recent Activity History</h4>
               <div className="space-y-4">
