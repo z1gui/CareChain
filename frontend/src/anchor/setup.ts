@@ -1,4 +1,5 @@
-import { AnchorProvider, Program, type Idl } from '@coral-xyz/anchor'
+import type { AnchorProvider, Idl } from '@coral-xyz/anchor'
+import { Program } from '@coral-xyz/anchor'
 import { carechainIdl, priorityQueueIdl, yieldVaultIdl } from '@/idl'
 
 export function getPriorityQueueProgram(provider: AnchorProvider) {

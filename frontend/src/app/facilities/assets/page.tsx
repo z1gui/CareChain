@@ -1,8 +1,8 @@
 'use client'
 
+import type { PublicKey } from '@solana/web3.js'
 import Link from 'next/link'
 import { useState } from 'react'
-import { PublicKey } from '@solana/web3.js'
 import { AssetManagementDialog } from '@/components/dialogs'
 import { SectionHeader } from '@/components/shared/section-header'
 import { Button } from '@/components/ui/button'
@@ -98,7 +98,8 @@ export default function AssetManagementPage() {
                 <img alt={asset.serial} className="w-full h-full object-cover" src={asset.image} />
                 <div className={`absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold shadow-sm tracking-wider ${
                   asset.serial === 'GZ-B102' ? 'text-secondary' : 'text-primary'
-                }`}>
+                }`}
+                >
                   {asset.serial === 'FSH-A301' ? 'ACTIVE' : asset.serial === 'GZ-B102' ? 'ON-CHAIN' : 'PENDING'}
                 </div>
               </div>

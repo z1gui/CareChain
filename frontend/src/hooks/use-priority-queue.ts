@@ -1,8 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import type { PublicKey } from '@solana/web3.js'
 import { BN } from '@coral-xyz/anchor'
-import { type PublicKey, SystemProgram } from '@solana/web3.js'
+import { SystemProgram } from '@solana/web3.js'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { getPriorityQueueProgram } from '@/anchor/setup'
+import { DEFAULT_FACILITY_ID } from '@/config/chain'
 import {
   carechainProgramId,
   deriveBedPositionPda,
@@ -10,14 +12,14 @@ import {
   deriveQueueStatePda,
   TOKEN_PROGRAM_ID,
 } from '@/utils/pda'
-import { DEFAULT_FACILITY_ID } from '@/config/chain'
 import { useAnchorProvider } from './use-anchor-provider'
 
 export function usePriorityQueueProgram() {
   const provider = useAnchorProvider()
 
   return useMemo(() => {
-    if (!provider) return null
+    if (!provider)
+      return null
     return getPriorityQueueProgram(provider)
   }, [provider])
 }
@@ -28,7 +30,8 @@ export function useQueueState(facilityId: string = DEFAULT_FACILITY_ID) {
   return useQuery({
     queryKey: ['queueState', facilityId],
     queryFn: async () => {
-      if (!program) throw new Error('Program not initialized')
+      if (!program)
+        throw new Error('Program not initialized')
       const pda = deriveQueueStatePda(facilityId)
       try {
         const account = await (program.account as any).queueState.fetch(pda)
@@ -61,7 +64,8 @@ export function useQueueEntry(facilityId: string = DEFAULT_FACILITY_ID, applican
   return useQuery({
     queryKey: ['queueEntry', facilityId, applicantId],
     queryFn: async () => {
-      if (!program || !applicantId) throw new Error('Missing params')
+      if (!program || !applicantId)
+        throw new Error('Missing params')
       const pda = deriveQueueEntryPda(facilityId, applicantId)
       try {
         const account = await (program.account as any).queueEntry.fetch(pda)
@@ -96,7 +100,8 @@ export function useJoinP3Queue() {
 
   return useMutation({
     mutationFn: async ({ facilityId, applicantId }: { facilityId: string, applicantId: string }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const queueStatePda = deriveQueueStatePda(facilityId)
@@ -144,7 +149,8 @@ export function useBurnCareAndUpgrade() {
       careMint: PublicKey
       userCareAta: PublicKey
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const queueStatePda = deriveQueueStatePda(facilityId)
@@ -189,7 +195,8 @@ export function useRegisterP1FromNft() {
       applicantId: string
       mintAddress: PublicKey
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const queueStatePda = deriveQueueStatePda(facilityId)
@@ -228,7 +235,8 @@ export function useAllocateNextBed() {
 
   return useMutation({
     mutationFn: async ({ facilityId, applicantId }: { facilityId: string, applicantId: string }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const queueStatePda = deriveQueueStatePda(facilityId)
@@ -271,7 +279,8 @@ export function useConfirmAdmission() {
       /** 前端输入 mint，合约实际接收 bedPositionPda */
       mintAddress: PublicKey
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const queueStatePda = deriveQueueStatePda(facilityId)
@@ -308,7 +317,8 @@ export function useCancelQueueEntry() {
 
   return useMutation({
     mutationFn: async ({ facilityId, applicantId }: { facilityId: string, applicantId: string }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const queueStatePda = deriveQueueStatePda(facilityId)

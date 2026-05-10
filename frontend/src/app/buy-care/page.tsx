@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { AppFooter } from '@/components/layout/app-footer'
 import { Button } from '@/components/ui/button'
 
@@ -11,7 +11,8 @@ export default function BuyCarePage() {
   const [showTokenDropdown, setShowTokenDropdown] = useState(false)
 
   const handleBlur = () => {
-    if (!payAmount) return
+    if (!payAmount)
+      return
     if (!payAmount.includes('.')) {
       setPayAmount(`${payAmount}.0`)
     }

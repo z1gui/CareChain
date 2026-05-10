@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, use } from 'react'
+import { use, useState } from 'react'
 import { BuyNftDialog, QueueAdmissionDialog } from '@/components/dialogs'
 import { AppFooter } from '@/components/layout/app-footer'
 
@@ -21,7 +21,7 @@ interface FacilityDetail {
 }
 
 const facilitiesData: Record<string, FacilityDetail> = {
-  '1': {
+  1: {
     name: 'Foshan Leyi Care Center',
     subtitle: 'Premium Medical Care',
     location: 'Foshan, Guangdong',
@@ -38,7 +38,7 @@ const facilitiesData: Record<string, FacilityDetail> = {
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCx9-cZ6AcOGNXliEGldsuCtxemdMp6MfFAYUmS8ImsZNVyilMjOqevAldW91QPXMHy4K3cBAdrrIoVIZNLQV3e7BC8lm1cWjVr3YRNHE8Myxb_46R1yZy0goU5BENHQNC93DvEGwzgzd8XwiSweLBct1wvpf2yysj7QSrSHeQdgEu3VmI9rDV0G30eoyAeUOZmLIG9PtKRXX_YnthGDV9JI_dbal8tdkBup8UfxXgC3u0nRzR-u00jtt-OK6lvPLqg9vak8eml5m6s',
     ],
   },
-  '2': {
+  2: {
     name: 'Guangzhou Yuexiu Kangtai Court',
     subtitle: 'Comprehensive Senior Care',
     location: 'Guangzhou, Yuexiu',
@@ -55,11 +55,11 @@ const facilitiesData: Record<string, FacilityDetail> = {
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCx9-cZ6AcOGNXliEGldsuCtxemdMp6MfFAYUmS8ImsZNVyilMjOqevAldW91QPXMHy4K3cBAdrrIoVIZNLQV3e7BC8lm1cWjVr3YRNHE8Myxb_46R1yZy0goU5BENHQNC93DvEGwzgzd8XwiSweLBct1wvpf2yysj7QSrSHeQdgEu3VmI9rDV0G30eoyAeUOZmLIG9PtKRXX_YnthGDV9JI_dbal8tdkBup8UfxXgC3u0nRzR-u00jtt-OK6lvPLqg9vak8eml5m6s',
     ],
   },
-  '3': {
+  3: {
     name: 'Shenzhen Futian Evergreen Residence',
     subtitle: 'Elite Wellness Living',
     location: 'Shenzhen, Futian',
-    description: "Shenzhen's highest-demand luxury senior living facility, providing elite wellness programs and cutting-edge medical support in a vibrant urban environment.",
+    description: 'Shenzhen\'s highest-demand luxury senior living facility, providing elite wellness programs and cutting-edge medical support in a vibrant urban environment.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDlizZlPSXbIeycQ66QVuNc4nPsVYn3A1iXlY05KOfu5G--FkkA_GF_v2GbamBzC4j3lLbBnGMwRtMOz3jusYK_5TYaDtunpiNJwzPWiN2BqhePbwxK1TzcY2q1FJbmQ-9dpmv-h6N-sfGPHS5gMAqBMs-JKB0FhYNKyI3FptHJT4oGfqI9FCcxfhOvPh9OqjlvUbjIPIhp6z8P_g0SyPkzU8qQ4tu7Jg9qlKxCVVK5iX03hL1432qvTFc6mGR3nOCTE4iGeqHGHa0b',
     annualYield: '9.1%',
     annualYieldDelta: '+0.7% from last period',

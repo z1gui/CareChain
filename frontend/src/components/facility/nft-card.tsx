@@ -1,8 +1,8 @@
 'use client'
 
-import { type PublicKey } from '@solana/web3.js'
-import { useYieldPosition } from '@/hooks'
+import type { PublicKey } from '@solana/web3.js'
 import { lamportsToSol } from '@/config/chain'
+import { useYieldPosition } from '@/hooks'
 import { cn } from '@/utils'
 
 interface NftCardProps {

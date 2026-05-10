@@ -1,6 +1,7 @@
-import { useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
+import type { PublicKey } from '@solana/web3.js'
 import { BN } from '@coral-xyz/anchor'
-import { type PublicKey, SystemProgram } from '@solana/web3.js'
+import { SystemProgram } from '@solana/web3.js'
+import { useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { getYieldVaultProgram } from '@/anchor/setup'
 import {
@@ -22,7 +23,8 @@ export function useYieldVaultProgram() {
   const provider = useAnchorProvider()
 
   return useMemo(() => {
-    if (!provider) return null
+    if (!provider)
+      return null
     return getYieldVaultProgram(provider)
   }, [provider])
 }
@@ -37,7 +39,8 @@ export function useYieldVault() {
   return useQuery({
     queryKey: ['yieldVault'],
     queryFn: async () => {
-      if (!program) throw new Error('Program not initialized')
+      if (!program)
+        throw new Error('Program not initialized')
       const pda = deriveYieldVaultPda()
       try {
         const account = await (program.account as any).yieldVault.fetch(pda)
@@ -62,7 +65,8 @@ export function useFacilityYieldPool(facilityId: string) {
   return useQuery({
     queryKey: ['facilityYieldPool', facilityId],
     queryFn: async () => {
-      if (!program) throw new Error('Program not initialized')
+      if (!program)
+        throw new Error('Program not initialized')
       const pda = deriveFacilityYieldPoolPda(facilityId)
       try {
         const account = await (program.account as any).facilityYieldPool.fetch(pda)
@@ -93,7 +97,8 @@ export function useYieldPosition(mint?: PublicKey) {
   return useQuery({
     queryKey: ['yieldPosition', mint?.toBase58()],
     queryFn: async () => {
-      if (!program || !mint) throw new Error('Missing params')
+      if (!program || !mint)
+        throw new Error('Missing params')
       const pda = deriveYieldPositionPda(mint)
       try {
         const account = await (program.account as any).yieldPosition.fetch(pda)
@@ -126,7 +131,8 @@ export function useYieldDistribution(snapshotId?: string) {
   return useQuery({
     queryKey: ['yieldDistribution', snapshotId],
     queryFn: async () => {
-      if (!program || !snapshotId) throw new Error('Missing params')
+      if (!program || !snapshotId)
+        throw new Error('Missing params')
       const pda = deriveYieldDistributionPda(snapshotId)
       try {
         const account = await (program.account as any).yieldDistributionRecord.fetch(pda)
@@ -161,7 +167,8 @@ export function useYieldPositions(mintAddresses: PublicKey[]) {
     queries: mintAddresses.map(mint => ({
       queryKey: ['yieldPosition', mint.toBase58()],
       queryFn: async () => {
-        if (!program) throw new Error('Program not initialized')
+        if (!program)
+          throw new Error('Program not initialized')
         const pda = deriveYieldPositionPda(mint)
         try {
           const account = await (program.account as any).yieldPosition.fetch(pda)
@@ -201,7 +208,8 @@ export function useInitializeYieldVault() {
 
   return useMutation({
     mutationFn: async () => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const yieldVaultPda = deriveYieldVaultPda()
@@ -229,7 +237,8 @@ export function useInitializeFacilityYieldPool() {
 
   return useMutation({
     mutationFn: async ({ facilityId }: { facilityId: string }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const yieldVaultPda = deriveYieldVaultPda()
@@ -267,7 +276,8 @@ export function useInitializeYieldPosition() {
       facilityId: string
       mintAddress: PublicKey
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const yieldVaultPda = deriveYieldVaultPda()
@@ -312,7 +322,8 @@ export function useDepositYield() {
       amountLamports: string
       snapshotId: string
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const yieldVaultPda = deriveYieldVaultPda()
@@ -363,7 +374,8 @@ export function useAllocateYieldToPositions() {
       amountLamports: string
       mintAddress: PublicKey
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const facilityYieldPoolPda = deriveFacilityYieldPoolPda(facilityId)
@@ -406,7 +418,8 @@ export function useClaimYield() {
       facilityId: string
       mintAddress: PublicKey
     }) => {
-      if (!program || !provider) throw new Error('Wallet not connected')
+      if (!program || !provider)
+        throw new Error('Wallet not connected')
 
       const wallet = provider.wallet.publicKey
       const yieldVaultPda = deriveYieldVaultPda()

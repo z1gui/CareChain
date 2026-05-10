@@ -68,7 +68,7 @@ export function BuyNftDialog({ isOpen, onClose }: ModalProps) {
 
         {/* Asset Cards */}
         <div className="grid grid-cols-3 gap-3 mb-4">
-          {assetTypes.map(asset => {
+          {assetTypes.map((asset) => {
             const isSelected = selected === asset.id
             return (
               <div
@@ -91,13 +91,15 @@ export function BuyNftDialog({ isOpen, onClose }: ModalProps) {
                   <div className={[
                     'p-1.5 rounded-lg',
                     isSelected ? 'bg-primary/10' : 'bg-surface-container-highest',
-                  ].join(' ')}>
+                  ].join(' ')}
+                  >
                     <span className="material-symbols-outlined text-primary text-[20px]">{asset.icon}</span>
                   </div>
                   <div className={[
                     'w-4 h-4 rounded-5xl border-2 flex items-center justify-center flex-shrink-0',
                     isSelected ? 'border-primary' : 'border-outline',
-                  ].join(' ')}>
+                  ].join(' ')}
+                  >
                     {isSelected && <div className="w-2 h-2 bg-primary rounded-5xl" />}
                   </div>
                 </div>

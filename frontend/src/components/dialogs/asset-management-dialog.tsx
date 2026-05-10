@@ -1,9 +1,7 @@
 'use client'
 
+import type { PublicKey } from '@solana/web3.js'
 import { useState } from 'react'
-import { type PublicKey } from '@solana/web3.js'
-import { useClaimYield, useYieldPosition } from '@/hooks'
-import { lamportsToSol } from '@/config/chain'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -14,6 +12,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { lamportsToSol } from '@/config/chain'
+import { useClaimYield, useYieldPosition } from '@/hooks'
 
 interface AssetManagementDialogProps {
   isOpen: boolean
@@ -33,7 +33,8 @@ export function AssetManagementDialog({ isOpen, onClose, mintAddress }: AssetMan
     : '0.0000'
 
   const handleClaim = () => {
-    if (!mintAddress || !yieldPosition) return
+    if (!mintAddress || !yieldPosition)
+      return
     claimMutation.mutate(
       { facilityId: yieldPosition.facilityId, mintAddress },
       { onSuccess: onClose },

@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { PublicKey } from '@solana/web3.js'
 import { useWalletConnection } from '@solana/react-hooks'
+import { PublicKey } from '@solana/web3.js'
+import { useState } from 'react'
 import { CheckInPaymentDialog } from '@/components/dialogs'
 import { AppFooter } from '@/components/layout/app-footer'
 import { ActivityFeedItem } from '@/components/queue/activity-feed-item'
@@ -11,6 +11,7 @@ import { QueueChannel } from '@/components/queue/queue-channel'
 import { SectionHeader } from '@/components/shared/section-header'
 import { StatCard } from '@/components/shared/stat-card'
 import { Button } from '@/components/ui/button'
+import { CARE_MINT_ADDRESS, DEFAULT_FACILITY_ID, getApplicantId } from '@/config/chain'
 import {
   useBurnCareAndUpgrade,
   useJoinP3Queue,
@@ -18,7 +19,6 @@ import {
   useQueueState,
 } from '@/hooks'
 import { getAssociatedTokenAddress } from '@/utils/pda'
-import { CARE_MINT_ADDRESS, DEFAULT_FACILITY_ID, getApplicantId } from '@/config/chain'
 
 const CARE_MINT = new PublicKey(CARE_MINT_ADDRESS)
 
@@ -76,12 +76,14 @@ export default function PriorityQueuePage() {
     : 0
 
   const handleJoinP3 = () => {
-    if (!applicantId) return
+    if (!applicantId)
+      return
     joinMutation.mutate({ facilityId: DEFAULT_FACILITY_ID, applicantId })
   }
 
   const handleBurn = () => {
-    if (!applicantId || !wallet?.account?.address || burnMutation.isPending) return
+    if (!applicantId || !wallet?.account?.address || burnMutation.isPending)
+      return
     const userCareAta = getAssociatedTokenAddress(
       CARE_MINT,
       new PublicKey(wallet.account.address),
@@ -118,15 +120,18 @@ export default function PriorityQueuePage() {
     : 'None'
 
   const userStatus = queueEntry
-    ? (queueEntry.status.waiting ? 'Waiting'
-        : queueEntry.status.invited ? 'Invited'
-          : queueEntry.status.admitted ? 'Admitted'
+    ? (queueEntry.status.waiting
+        ? 'Waiting'
+        : queueEntry.status.invited
+          ? 'Invited'
+          : queueEntry.status.admitted
+            ? 'Admitted'
             : queueEntry.status.cancelled ? 'Cancelled' : 'Unknown')
     : 'Not Joined'
 
   return (
     <>
-      <main className="max-w-[1440px] mx-auto px-8 pb-12 pt-24">
+      <main className="max-w-360 mx-auto px-8 pb-12 pt-24">
         {/* Hero Section: Queue Health */}
         <section className="mb-10">
           <SectionHeader
@@ -285,11 +290,15 @@ export default function PriorityQueuePage() {
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-xl font-bold font-headline">My Status</h3>
               <span className={`px-3 py-1 rounded-5xl text-xs font-bold uppercase ${
-                userLane === 'P1' ? 'bg-primary/10 text-primary'
-                  : userLane === 'P2' ? 'bg-secondary/10 text-secondary'
-                    : userLane === 'P3' ? 'bg-slate-100 text-slate-500'
+                userLane === 'P1'
+                  ? 'bg-primary/10 text-primary'
+                  : userLane === 'P2'
+                    ? 'bg-secondary/10 text-secondary'
+                    : userLane === 'P3'
+                      ? 'bg-slate-100 text-slate-500'
                       : 'bg-slate-100 text-slate-400'
-              }`}>
+              }`}
+              >
                 {userLane === 'None' ? 'Not in Queue' : `${userLane} ${userStatus}`}
               </span>
             </div>

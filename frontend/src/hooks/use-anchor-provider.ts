@@ -1,7 +1,9 @@
-import { useMemo } from 'react'
-import { AnchorProvider, type Wallet } from '@coral-xyz/anchor'
-import { Connection, PublicKey, type Transaction, type VersionedTransaction } from '@solana/web3.js'
+import type { Wallet } from '@coral-xyz/anchor'
+import type { Transaction, VersionedTransaction } from '@solana/web3.js'
+import { AnchorProvider } from '@coral-xyz/anchor'
 import { useWalletConnection } from '@solana/react-hooks'
+import { Connection, PublicKey } from '@solana/web3.js'
+import { useMemo } from 'react'
 import { useCluster } from './use-cluster'
 
 function adaptWallet(walletSession: any): Wallet {

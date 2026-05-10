@@ -1,8 +1,8 @@
 'use client'
 
+import type { PublicKey } from '@solana/web3.js'
 import Link from 'next/link'
 import { useState } from 'react'
-import { PublicKey } from '@solana/web3.js'
 import { PortfolioHero } from '@/components/dashboard/portfolio-hero'
 import { QuickActionCard } from '@/components/dashboard/quick-action-card'
 import { YieldChart } from '@/components/dashboard/yield-chart'
@@ -11,8 +11,8 @@ import { NftCard } from '@/components/facility/nft-card'
 import { SectionHeader } from '@/components/shared/section-header'
 import { StatCard } from '@/components/shared/stat-card'
 import { Button } from '@/components/ui/button'
-import { useYieldPositions } from '@/hooks'
 import { lamportsToSol } from '@/config/chain'
+import { useYieldPositions } from '@/hooks'
 
 const chartBars = [
   { label: 'Jan', height: '45%' },
