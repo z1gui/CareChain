@@ -22,6 +22,10 @@ import { getAssociatedTokenAddress } from '@/utils/pda'
 
 const CARE_MINT = new PublicKey(CARE_MINT_ADDRESS)
 
+function formatUnixDate(timestamp: { toString: () => string }) {
+  return new Date(Number(timestamp) * 1000).toLocaleDateString()
+}
+
 const activities = [
   {
     icon: 'local_fire_department',
@@ -328,7 +332,7 @@ export default function PriorityQueuePage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-on-surface-variant">Updated</span>
-                  <span className="font-bold">{new Date(Number(queueEntry.updatedAt) * 1000).toLocaleDateString()}</span>
+                  <span className="font-bold">{formatUnixDate(queueEntry.updatedAt)}</span>
                 </div>
               </div>
             )}

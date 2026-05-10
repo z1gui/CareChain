@@ -15,6 +15,8 @@ import {
 } from '@/utils/pda'
 import { useAnchorProvider } from './use-anchor-provider'
 
+type EmptyVariant = Record<string, never>
+
 /* ------------------------------------------------------------------ */
 /*  Program instance                                                    */
 /* ------------------------------------------------------------------ */
@@ -139,7 +141,7 @@ export function useYieldDistribution(snapshotId?: string) {
         return account as {
           snapshotId: string
           facilityId: string
-          source: { facilityIncome?: {}, careBurnBonus?: {} }
+          source: { facilityIncome?: EmptyVariant, careBurnBonus?: EmptyVariant }
           amountLamports: BN
           distributedPositionCount: number
           createdBy: PublicKey

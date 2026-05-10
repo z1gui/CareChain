@@ -14,6 +14,8 @@ import {
 } from '@/utils/pda'
 import { useAnchorProvider } from './use-anchor-provider'
 
+type EmptyVariant = Record<string, never>
+
 export function usePriorityQueueProgram() {
   const provider = useAnchorProvider()
 
@@ -74,10 +76,10 @@ export function useQueueEntry(facilityId: string = DEFAULT_FACILITY_ID, applican
           facilityId: string
           wallet: PublicKey | null
           mint: PublicKey | null
-          lane: { p1?: {}, p2?: {}, p3?: {} }
+          lane: { p1?: EmptyVariant, p2?: EmptyVariant, p3?: EmptyVariant }
           queueNo: BN
           burnAmount: BN
-          status: { waiting?: {}, invited?: {}, admitted?: {}, cancelled?: {} }
+          status: { waiting?: EmptyVariant, invited?: EmptyVariant, admitted?: EmptyVariant, cancelled?: EmptyVariant }
           bedPosition: PublicKey | null
           createdAt: BN
           updatedAt: BN
