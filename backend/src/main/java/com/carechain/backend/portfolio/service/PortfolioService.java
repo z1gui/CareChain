@@ -1,13 +1,14 @@
 package com.carechain.backend.portfolio.service;
 
+import com.carechain.backend.chain.service.CareChainContractHeuristics;
 import com.carechain.backend.chain.service.ChainQueryService;
 import com.carechain.backend.chain.service.NftHolding;
 import com.carechain.backend.chain.service.WalletAssets;
 import com.carechain.backend.chain.service.YieldSummary;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 @Service
 public class PortfolioService {
@@ -18,17 +19,22 @@ public class PortfolioService {
         this.chainQueryService = chainQueryService;
     }
 
-    public Map<String, Object> getSummary() {
-        return Map.of(
-                "walletAddress", "5end...4jdx",
-                "totalNfts", 3,
-                "totalValueUsdc", 22500.00,
-                "monthlyYieldUsdc", 95.50,
-                "accruedYieldUsdc", 1240.12,
-                "annualApy", 8.2,
-                "averageOccupancy", 94.2,
-                "scarcityStatus", "HIGH_DEMAND",
-                "queueJumpCostPerDay", 20
+    public Map<String, Object> getSummary(String walletAddress) {
+        return Map.ofEntries(
+                Map.entry("walletAddress", walletAddress),
+                Map.entry("totalNfts", 3),
+                Map.entry("totalValueSol", 225.00),
+                Map.entry("monthlyYieldSol", 9.55),
+                Map.entry("accruedYieldSol", 124.012),
+                Map.entry("annualApy", 8.2),
+                Map.entry("averageOccupancy", 94.2),
+                Map.entry("scarcityStatus", "HIGH_DEMAND"),
+                Map.entry("queueJumpCostPerDay", CareChainContractHeuristics.MID_BURN_PRICE_PER_DAY),
+                Map.entry("queuePricingBands", List.of(
+                        Map.of("p3CountMin", 0, "p3CountMax", 9, "burnPricePerDay", 10, "multiplierBps", 10_000),
+                        Map.of("p3CountMin", 10, "p3CountMax", 50, "burnPricePerDay", 15, "multiplierBps", 15_000),
+                        Map.of("p3CountMin", 51, "p3CountMax", Integer.MAX_VALUE, "burnPricePerDay", 20, "multiplierBps", 20_000)
+                ))
         );
     }
 
@@ -40,7 +46,9 @@ public class PortfolioService {
                         "facilityName", "Foshan Leyi Care Center",
                         "mode", "YIELD",
                         "yieldApy", 7.2,
-                        "status", "ACTIVE"
+                        "status", "ACTIVE",
+                        "claimFlow", "claimYield",
+                        "yieldPositionState", "PROGRAM_PARSER_PENDING"
                 )
         );
     }
@@ -57,16 +65,21 @@ public class PortfolioService {
         return chainQueryService.getNfts(walletAddress);
     }
 
-    public Map<String, Object> getYieldTrend(String range) {
+    public Map<String, Object> getYieldTrend(String walletAddress, String range) {
         return Map.of(
+                "walletAddress", walletAddress,
                 "range", range,
+                "unit", "SOL_ESTIMATE",
+                "source", "CONTRACT_HEURISTIC_FROM_YIELD_POSITIONS",
                 "points", List.of(
-                        Map.of("label", "Jan", "yieldUsdc", 60.0),
-                        Map.of("label", "Feb", "yieldUsdc", 75.0),
-                        Map.of("label", "Mar", "yieldUsdc", 72.0),
-                        Map.of("label", "Apr", "yieldUsdc", 90.0),
-                        Map.of("label", "May", "yieldUsdc", 102.0),
-                        Map.of("label", "Jun", "yieldUsdc", 110.0)
+                        Map.of("label", "Nov", "yieldSol", 10.2, "claimableLamports", 0),
+                        Map.of("label", "Dec", "yieldSol", 11.0, "claimableLamports", 0),
+                        Map.of("label", "Jan", "yieldSol", 6.0, "claimableLamports", 0),
+                        Map.of("label", "Feb", "yieldSol", 7.5, "claimableLamports", 0),
+                        Map.of("label", "Mar", "yieldSol", 7.2, "claimableLamports", 0),
+                        Map.of("label", "Apr", "yieldSol", 9.5, "claimableLamports", 0)
+
+
                 )
         );
     }

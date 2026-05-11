@@ -46,7 +46,22 @@ class QueueServiceTests {
         @Override
         public QueueState getQueueState(String walletAddress) {
             queueWallet = walletAddress;
-            return new QueueState(walletAddress, "WAITING", "test");
+            return new QueueState(
+                    walletAddress,
+                    "WAITING",
+                    "test",
+                    1,
+                    List.of("queue-1"),
+                    "test details",
+                    "P3",
+                    142,
+                    180,
+                    15L,
+                    15_000,
+                    false,
+                    true,
+                    "joinP3Queue"
+            );
         }
 
         @Override

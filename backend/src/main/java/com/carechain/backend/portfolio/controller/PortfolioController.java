@@ -24,13 +24,16 @@ public class PortfolioController {
     }
 
     @GetMapping("/portfolio/summary")
-    public ApiResponse<Map<String, Object>> getSummary() {
-        return ApiResponse.ok(portfolioService.getSummary());
+    public ApiResponse<Map<String, Object>> getSummary(@RequestParam String walletAddress) {
+        return ApiResponse.ok(portfolioService.getSummary(walletAddress));
     }
 
     @GetMapping("/portfolio/yield-trend")
-    public ApiResponse<Map<String, Object>> getYieldTrend(@RequestParam(defaultValue = "6m") String range) {
-        return ApiResponse.ok(portfolioService.getYieldTrend(range));
+    public ApiResponse<Map<String, Object>> getYieldTrend(
+            @RequestParam String walletAddress,
+            @RequestParam(defaultValue = "6m") String range
+    ) {
+        return ApiResponse.ok(portfolioService.getYieldTrend(walletAddress, range));
     }
 
     @GetMapping("/nft-holdings")

@@ -87,7 +87,18 @@ class HeliusChainQueryServiceTests {
         RecordingHeliusClient client = new RecordingHeliusClient(objectMapper.readTree("""
                 {
                   "total": 2,
-                  "items": []
+                  "items": [
+                    {
+                      "id": "yield-nft-1",
+                      "interface": "V1_NFT",
+                      "content": { "metadata": { "name": "Yield BedRight", "symbol": "YIELD" } }
+                    },
+                    {
+                      "id": "badge-1",
+                      "interface": "V1_NFT",
+                      "content": { "metadata": { "name": "Care Badge", "symbol": "CARE" } }
+                    }
+                  ]
                 }
                 """));
         HeliusChainQueryService service = new HeliusChainQueryService(client);
@@ -97,7 +108,8 @@ class HeliusChainQueryServiceTests {
         assertThat(client.method()).isEqualTo("getAssetsByOwner");
         assertThat(yield.walletAddress()).isEqualTo("wallet-1");
         assertThat(yield.observedAssetCount()).isEqualTo(2);
-        assertThat(yield.source()).contains("HELIUS_DAS_ASSETS");
+        assertThat(yield.yieldBearingAssetCount()).isEqualTo(1);
+        assertThat(yield.source()).contains("HELIUS_DAS_NFTS");
     }
 
     @Test
@@ -124,9 +136,11 @@ class HeliusChainQueryServiceTests {
         QueueState state = service.getQueueState("wallet-1");
 
         assertThat(client.method()).isEqualTo("getAssetsByOwner");
-        assertThat(state.status()).isEqualTo("HAS_QUEUE_ASSETS");
+        assertThat(state.status()).isEqualTo("WAITING");
         assertThat(state.queueAssetCount()).isEqualTo(1);
         assertThat(state.queueAssetIds()).containsExactly("queue-nft-1");
+        assertThat(state.currentLane()).isEqualTo("P3");
+        assertThat(state.burnUpgradeAvailable()).isTrue();
     }
 
     @Test

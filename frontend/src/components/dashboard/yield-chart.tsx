@@ -16,15 +16,17 @@ export function YieldChart({ bars }: YieldChartProps) {
       <div className="flex-grow flex items-end justify-between gap-2 pt-10">
         <div className="w-full flex items-end justify-around h-full px-2 relative z-10">
           {bars.map(bar => (
-            <div key={bar.label} className="group relative flex flex-col items-center w-12">
-              <div
-                className={
-                  bar.isActive
-                    ? 'w-full bg-primary-container rounded-t-lg shadow-[0_-8px_20px_rgba(0,131,120,0.2)]'
-                    : 'w-full bg-surface-container-high group-hover:bg-primary-fixed-dim rounded-t-lg transition-all'
-                }
-                style={{ height: bar.height }}
-              />
+            <div key={bar.label} className="group relative flex h-full w-12 flex-col items-center justify-end">
+              <div className="flex h-full w-full items-end">
+                <div
+                  className={
+                    bar.isActive
+                      ? 'w-full bg-primary-container rounded-t-lg shadow-[0_-8px_20px_rgba(0,131,120,0.2)]'
+                      : 'w-full bg-surface-container-high group-hover:bg-primary-fixed-dim rounded-t-lg transition-all'
+                  }
+                  style={{ height: bar.height }}
+                />
+              </div>
               <span
                 className={
                   bar.isActive

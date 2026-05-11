@@ -16,6 +16,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PortfolioServiceTests {
 
     @Test
+    void getSummaryIncludesRequestedWalletAddress() {
+        RecordingChainQueryService chainQueryService = new RecordingChainQueryService();
+        PortfolioService service = new PortfolioService(chainQueryService);
+
+        java.util.Map<String, Object> summary = service.getSummary("wallet-1");
+
+        assertThat(summary).containsEntry("walletAddress", "wallet-1");
+    }
+
+    @Test
+    void getYieldTrendIncludesRequestedWalletAddress() {
+        RecordingChainQueryService chainQueryService = new RecordingChainQueryService();
+        PortfolioService service = new PortfolioService(chainQueryService);
+
+        java.util.Map<String, Object> trend = service.getYieldTrend("wallet-1", "6m");
+
+        assertThat(trend).containsEntry("walletAddress", "wallet-1");
+        assertThat(trend).containsEntry("range", "6m");
+    }
+
+    @Test
     void getWalletAssetsDelegatesToChainQueryService() {
         RecordingChainQueryService chainQueryService = new RecordingChainQueryService();
         PortfolioService service = new PortfolioService(chainQueryService);
@@ -69,7 +90,19 @@ class PortfolioServiceTests {
         @Override
         public YieldSummary getYield(String walletAddress) {
             yieldWallet = walletAddress;
-            return new YieldSummary(walletAddress, new BigDecimal("12.50"), "USDC", "test");
+            return new YieldSummary(
+                    walletAddress,
+                    new BigDecimal("12.50"),
+                    "USDC",
+                    "test",
+                    2,
+                    1,
+                    500_000L,
+                    1_250_000L,
+                    "POSITIONS_DETECTED_PARSER_PENDING",
+                    new BigDecimal("95.50"),
+                    new BigDecimal("1146.00")
+            );
         }
 
         @Override

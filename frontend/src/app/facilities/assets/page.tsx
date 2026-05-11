@@ -1,48 +1,38 @@
 'use client'
 
-import type { PublicKey } from '@solana/web3.js'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { PublicKey } from '@solana/web3.js'
+import { getFacilityAssetsQuery } from '@/apis/facilities/queries'
 import { AssetManagementDialog } from '@/components/dialogs'
 import { SectionHeader } from '@/components/shared/section-header'
 import { Button } from '@/components/ui/button'
 
-const assets = [
-  {
-    serial: 'FSH-A301',
-    location: 'Foshan, China',
-    yield: '7.2%',
-    buyPrice: '$4,500 USDC',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBn1zUu4fxDftEO-CtwHgHB0SHRDMwvZ-LEwrCrb8FWuGfo21XBJRSTjwO1zao0VE2cBjVh6Vr-DHAB7NmC2m7UGi102HVKZK7T8EuJoUuIhdrJllPdBxgmywrtVBhueshEVCglsNtJwpwgY1NQT6-gTtGqi-vRb4qDCTXcq11QLmKtiGzaMu8Cp1zbkIThTDhx0TbzD88RsBrZQLvG7HJ6-I4fAIX6zyST6MDuLVubV3t59--ft1kh4-whvrp8b27eQ7ipfbSCPz1X',
-    type: 'Standard Bed',
-    mode: 'Yield Mode',
-    mintAddress: undefined as PublicKey | undefined,
-  },
-  {
-    serial: 'GZ-B102',
-    location: 'Guangzhou, China',
-    yield: '6.8%',
-    buyPrice: '$8,000 USDC',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBExhzYyOhm_5rK0qBX-e09yWbj8J6FViJjuBn5NBeMPmv83Gzz9hTMCGZMcz96YHyRx22UO4tCeJBjZSrLOSVqkSoIx1f54Pb82M5rY_uZwZU13nBf4G-o9MBmsjJ6HL1roiJDyarkftqOFT0Q-UI_aJGuqFVkGEtah2jj-8siJ-0nSC2RNUrEfFGrXPv-8Zpc_HdfedjpY7mEi9VJy4zaDiP8qVnzVKQDgjusr4PoxT2TZ0XmiEsClgZV13rluC0hGQOck9150M87',
-    type: 'Luxury Suite',
-    mode: 'Residence Mode',
-    mintAddress: undefined as PublicKey | undefined,
-  },
-  {
-    serial: 'SZ-C505',
-    location: 'Shenzhen, China',
-    yield: '8.1%',
-    buyPrice: '',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBomKHUA3qIO35Pv5TmRdP9U4NIAAKww1WolBdbshDKV8K8H3JDAzlAut11jMims6Pfw7AqYLv0LCMLnskeJkmz-y_i2eBwfKo8oMKrTRLaFMwZggfKDV98nnvTq2a91hAgh6RmtC6uh147BQ8AoZtLX3CYMuOH1HSnksimOUQytrQEG--LJawl23pWBajVFLgQsBxd-61umkprVnFifDEXjp2AShbytm9BDRg6q6vFTd8x0t3dkJXD5Ppf8F-tf0Xd93hA9uZ73Pu8',
-    type: 'Standard Bed',
-    mode: 'Yield Mode',
-    mintAddress: undefined as PublicKey | undefined,
-  },
-]
+const DEFAULT_FACILITY_ID = 'facility_foshan'
 
 export default function AssetManagementPage() {
   const [isAssetModalOpen, setIsAssetModalOpen] = useState(false)
   const [selectedMint, setSelectedMint] = useState<PublicKey | undefined>(undefined)
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery(getFacilityAssetsQuery(DEFAULT_FACILITY_ID))
+  const assets = data?.data ?? []
+
+  const totalValue = assets.reduce((sum, asset) => {
+    const numericValue = Number(asset.buyPrice.replaceAll(/[^\d.]/g, '')) || 0
+    return sum + numericValue
+  }, 0)
+
+  const averageApy = assets.length
+    ? assets.reduce((sum, asset) => sum + (Number(asset.yield.replace('%', '')) || 0), 0) / assets.length
+    : 0
+
+  const accruedYieldEstimate = totalValue * averageApy / 100 / 12
 
   return (
     <>
@@ -64,7 +54,7 @@ export default function AssetManagementPage() {
           <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-primary relative overflow-hidden group">
             <div className="relative z-10">
               <p className="text-sm font-medium text-on-surface-variant uppercase tracking-wider mb-1">Total NFTs</p>
-              <h2 className="text-5xl font-extrabold text-primary font-headline">3</h2>
+              <h2 className="text-5xl font-extrabold text-primary font-headline">{assets.length}</h2>
             </div>
             <div className="absolute right-[-20px] bottom-[-20px] opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
               <span className="material-symbols-outlined text-[120px]">inventory_2</span>
@@ -73,7 +63,7 @@ export default function AssetManagementPage() {
           <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-secondary relative overflow-hidden group">
             <div className="relative z-10">
               <p className="text-sm font-medium text-on-surface-variant uppercase tracking-wider mb-1">Total Value</p>
-              <h2 className="text-4xl font-extrabold text-on-surface font-headline">22,500 <span className="text-xl font-medium text-on-surface-variant">USDC</span></h2>
+              <h2 className="text-4xl font-extrabold text-on-surface font-headline">{totalValue.toLocaleString()} <span className="text-xl font-medium text-on-surface-variant">USDC</span></h2>
             </div>
             <div className="absolute right-[-20px] bottom-[-20px] opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
               <span className="material-symbols-outlined text-[120px]">account_balance_wallet</span>
@@ -82,7 +72,7 @@ export default function AssetManagementPage() {
           <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-tertiary relative overflow-hidden group">
             <div className="relative z-10">
               <p className="text-sm font-medium text-on-surface-variant uppercase tracking-wider mb-1">Accrued Yield</p>
-              <h2 className="text-4xl font-extrabold text-tertiary font-headline">1,240 <span className="text-xl font-medium text-tertiary">USDC</span></h2>
+              <h2 className="text-4xl font-extrabold text-tertiary font-headline">{Math.round(accruedYieldEstimate).toLocaleString()} <span className="text-xl font-medium text-tertiary">USDC</span></h2>
             </div>
             <div className="absolute right-[-20px] bottom-[-20px] opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
               <span className="material-symbols-outlined text-[120px]">trending_up</span>
@@ -92,15 +82,35 @@ export default function AssetManagementPage() {
 
         {/* NFT Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {isLoading && (
+            <div className="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-surface-container-high p-8 text-center">
+              <p className="text-sm text-on-surface-variant">Loading facility assets from backend...</p>
+            </div>
+          )}
+
+          {isError && (
+            <div className="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-red-200 p-8 text-center">
+              <p className="text-sm text-on-surface mb-4">
+                Failed to load facility assets: {error instanceof Error ? error.message : 'Unknown error'}
+              </p>
+              <Button onClick={() => refetch()}>Retry</Button>
+            </div>
+          )}
+
+          {!isLoading && !isError && assets.length === 0 && (
+            <div className="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-surface-container-high p-8 text-center">
+              <p className="text-sm text-on-surface-variant">No facility assets returned by backend.</p>
+            </div>
+          )}
+
           {assets.map(asset => (
             <div key={asset.serial} className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row border border-surface-container-high">
               <div className="sm:w-1/3 relative h-48 sm:h-auto">
                 <img alt={asset.serial} className="w-full h-full object-cover" src={asset.image} />
                 <div className={`absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-5xl text-xs font-bold shadow-sm tracking-wider ${
-                  asset.serial === 'GZ-B102' ? 'text-secondary' : 'text-primary'
-                }`}
-                >
-                  {asset.serial === 'FSH-A301' ? 'ACTIVE' : asset.serial === 'GZ-B102' ? 'ON-CHAIN' : 'PENDING'}
+                  asset.status === 'ON-CHAIN' ? 'text-secondary' : 'text-primary'
+                }`}>
+                  {asset.status}
                 </div>
               </div>
               <div className="sm:w-2/3 p-6 flex flex-col justify-between">
@@ -126,7 +136,7 @@ export default function AssetManagementPage() {
                 <div className="mt-8 flex">
                   <Button
                     onClick={() => {
-                      setSelectedMint(asset.mintAddress)
+                      setSelectedMint(asset.mintAddress ? new PublicKey(asset.mintAddress) : undefined)
                       setIsAssetModalOpen(true)
                     }}
                     className="flex-1 bg-primary text-on-primary py-2.5 rounded-lg text-sm font-bold active:scale-[0.98] transition-transform shadow-sm flex justify-center items-center gap-2"
@@ -155,7 +165,7 @@ export default function AssetManagementPage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
               <h4 className="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-1">On-Chain Transparency</h4>
-              <p className="text-xs text-on-surface-variant/70 max-w-xl">All assets are secured on-chain. Medical service quality is audited quarterly by independent third-party institutions.</p>
+              <p className="text-xs text-on-surface-variant/70 max-w-xl">Assets on this page are loaded from the backend facility assets API and can be mapped to on-chain BedRight flows later.</p>
             </div>
             <div className="flex items-center space-x-8">
               <div className="text-left">

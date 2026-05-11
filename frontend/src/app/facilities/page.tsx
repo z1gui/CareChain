@@ -2,57 +2,13 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { getFacilitiesQuery } from '@/apis/facilities/queries'
 import { BuyNftDialog } from '@/components/dialogs'
 import { FacilityCard } from '@/components/facility/facility-card'
 import { FacilityFilterBar } from '@/components/facility/facility-filter-bar'
 import { AppFooter } from '@/components/layout/app-footer'
 import { SectionHeader } from '@/components/shared/section-header'
-
-const facilities = [
-  {
-    name: 'Foshan Leyi Care Center',
-    location: 'Foshan, Chancheng District',
-    yield: '8.2%',
-    occupancy: 94,
-    totalBeds: 320,
-    queueCount: 142,
-    queueBoost: '20 $CARE/Day',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZpz9IugFANNkCrtJ4kYYbj60fZ43W5k0tKCtjPsK0fd8g-abMXW05gAiri-eSWOD_2_r6IGsKA3m-LidmT2Il0TU3FPFZSB4i-1-KcKPJS6tchAepEnGWrtTGJMvWBv52OYdD5DAo8vQRV1O59tCFN49dOyC__LJhR5Alu1mB2f980u9d4Yi-_KqjG9MswOTjklDJFXr35phNXEtv-AsOIiHsxuc0VhHfdkAfV1ANlaE2rRDe4gWfNN1RRfZxHn4mw8kE-sUf-bB_',
-    badges: [
-      { label: 'High Demand', variant: 'tertiary' as const },
-      { label: 'RWA Certified', variant: 'default' as const },
-    ],
-    detailHref: '/facilities/1',
-  },
-  {
-    name: 'Guangzhou Yuexiu Kangtai Court',
-    location: 'Guangzhou, Yuexiu District',
-    yield: '7.5%',
-    occupancy: 88,
-    totalBeds: 450,
-    queueCount: 89,
-    queueBoost: '15 $CARE/Day',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAg1KE_t7YXRnW_fnCQ7moIublO3H8xKHTFGfP2Uhfc2avuXaY8g3Dm9m0qoJhJebUoNsswefU7awc5mGJLIy-27iU3-6DA1Y0T2rqP8wdnNQah1Fbt7clPjSzy9nY_imwE_OnyrHD4bJV3wFhX6ycxiQh6CJiMvCI57K8a25opcDNYb0CI87ASlXHaLRGuo-vR7NeplTcKeWriEBd9uzNTaS40tPVWO-aD_rWiTtwQ5ezWRMyTwqmI0GCFhh1XwT_A0YqIEi4LLa2K',
-    badges: [
-      { label: 'Newly Listed', variant: 'secondary' as const },
-    ],
-    detailHref: '/facilities/2',
-  },
-  {
-    name: 'Shenzhen Futian Evergreen Residence',
-    location: 'Shenzhen, Futian District',
-    yield: '9.1%',
-    occupancy: 98,
-    totalBeds: 180,
-    queueCount: 215,
-    queueBoost: '35 $CARE/Day',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDlizZlPSXbIeycQ66QVuNc4nPsVYn3A1iXlY05KOfu5G--FkkA_GF_v2GbamBzC4j3lLbBnGMwRtMOz3jusYK_5TYaDtunpiNJwzPWiN2BqhePbwxK1TzcY2q1FJbmQ-9dpmv-h6N-sfGPHS5gMAqBMs-JKB0FhYNKyI3FptHJT4oGfqI9FCcxfhOvPh9OqjlvUbjIPIhp6z8P_g0SyPkzU8qQ4tu7Jg9qlKxCVVK5iX03hL1432qvTFc6mGR3nOCTE4iGeqHGHa0b',
-    badges: [
-      { label: 'High Demand', variant: 'tertiary' as const },
-    ],
-    detailHref: '/facilities/3',
-  },
-]
 
 const featuredOpportunities = [
   {
@@ -69,6 +25,8 @@ const featuredOpportunities = [
 
 export default function FacilitiesPage() {
   const [isBuyNftOpen, setIsBuyNftOpen] = useState(false)
+  const { data, isLoading, isError, error, refetch } = useQuery(getFacilitiesQuery())
+  const facilities = data?.data?.items ?? []
 
   return (
     <>
@@ -82,13 +40,39 @@ export default function FacilitiesPage() {
 
         {/* Facility Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {facilities.map(facility => (
+          {isLoading && (
+            <div className="lg:col-span-2 bg-surface-container-low rounded-xl border border-outline-variant p-8 text-center">
+              <p className="text-sm text-on-surface-variant">Loading facilities from backend...</p>
+            </div>
+          )}
+
+          {isError && (
+            <div className="lg:col-span-2 bg-surface-container-low rounded-xl border border-red-200 p-8 text-center">
+              <p className="text-sm text-on-surface mb-4">
+                Failed to load facilities: {error instanceof Error ? error.message : 'Unknown error'}
+              </p>
+              <button
+                onClick={() => refetch()}
+                className="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Retry
+              </button>
+            </div>
+          )}
+
+          {!isLoading && !isError && facilities.map(facility => (
             <FacilityCard
-              key={facility.name}
+              key={facility.detailHref}
               {...facility}
               onBuyClick={() => setIsBuyNftOpen(true)}
             />
           ))}
+
+          {!isLoading && !isError && facilities.length === 0 && (
+            <div className="lg:col-span-2 bg-surface-container-low rounded-xl border border-outline-variant p-8 text-center">
+              <p className="text-sm text-on-surface-variant">No facilities returned by backend.</p>
+            </div>
+          )}
 
           {/* Card 4 (Empty State) */}
           <div className="bg-surface-container-low rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-outline-variant p-8 opacity-60">
